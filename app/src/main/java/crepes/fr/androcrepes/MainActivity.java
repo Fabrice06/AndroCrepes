@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,10 +27,22 @@ public class MainActivity extends AppCompatActivity implements  OnClickListener 
         setContentView(R.layout.activity_main);
 
         LinearLayout row = null;
-        for(int i = 0 ; i<3; i++){
+        for(int i = 0 ; i<4; i++){
             row = new LinearLayout(this);
             row.setId(i);
 
+            Button bt = new Button(this);
+            bt.setText("+");
+
+            Button bp = new Button(this);
+            bp.setText("-");
+
+            TextView tv = new TextView(this);
+            tv.setWidth(500);
+
+            row.addView(bt);
+            row.addView(tv);
+            row.addView(bp);
 
 
             mLayouts.add(row);

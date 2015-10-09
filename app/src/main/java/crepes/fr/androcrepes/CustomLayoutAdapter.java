@@ -44,7 +44,7 @@ public class CustomLayoutAdapter extends BaseAdapter {
         }
         layout.setOrientation(LinearLayout.HORIZONTAL);
 
-        //Button bAdd = new ImageButton();
+        //Button bAdd = new Button(this);
         //bAdd.setText("+");
 
         //layout.addView(bAdd);
