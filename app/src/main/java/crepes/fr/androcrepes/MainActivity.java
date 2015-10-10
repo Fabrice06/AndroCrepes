@@ -5,66 +5,39 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements  OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<LinearLayout> mLayouts = new ArrayList<LinearLayout>();
-    private ArrayList<Button> mBoutonsAdd = new ArrayList<Button>();
+    private ArrayList<LinearLayout> mRows = new ArrayList<LinearLayout>();
+
+    GridView gridViewMain = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("MainActivity", "onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout row = null;
+
         for(int i = 0 ; i<4; i++){
-            row = new LinearLayout(this);
-            row.setId(i);
+            LinearLayout nRow = new LinearLayout(this);
 
-            Button bt = new Button(this);
-            bt.setText("+");
+            nRow.setId(i);
 
-            Button bp = new Button(this);
-            bp.setText("-");
+            mRows.add(nRow);
+        } // for
 
-            TextView tv = new TextView(this);
-            tv.setWidth(500);
+        gridViewMain = (GridView) findViewById(R.id.gridViewMain);
+        gridViewMain.setAdapter(new CustomLayoutAdapter(mRows));
 
-            row.addView(bt);
-            row.addView(tv);
-            row.addView(bp);
+    } // void
 
 
-            mLayouts.add(row);
-        }
-
-
-
-/*        Button cb = null;
-        for (int i =0; i<12; i++) {
-            cb = new Button(this);
-            cb.setText("Button #" + Integer.toString(i));
-            //cb.setBackgroundResource(R.drawable.fancy_button_selector);
-            cb.setOnClickListener(this);
-            cb.setId(i);
-            //registerForContextMenu(cb);
-            mButtons.add(cb);
-        }
-*/
-        GridView gridView = (GridView) findViewById(R.id.gridview);
-        gridView.setAdapter(new CustomLayoutAdapter(mLayouts));
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,10 +57,4 @@ public class MainActivity extends AppCompatActivity implements  OnClickListener 
 
         return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public void onClick(View v) {
-        Log.i("MainActivity", "onClick");
-
-    }
-}
+} // class

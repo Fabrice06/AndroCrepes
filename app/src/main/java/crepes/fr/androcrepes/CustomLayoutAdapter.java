@@ -1,11 +1,13 @@
 package crepes.fr.androcrepes;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -14,9 +16,20 @@ public class CustomLayoutAdapter extends BaseAdapter {
 
     private ArrayList<LinearLayout> mLayouts = null;
 
+    private View.OnClickListener mListenerAdd = new View.OnClickListener() {
+        public void onClick(View v) {
+            Log.i("MainActivity", "nBtnAdd click");
+        }
+    };
 
-    public CustomLayoutAdapter(ArrayList<LinearLayout> l) {
-        mLayouts = l;
+    private View.OnClickListener mListenerRemove = new View.OnClickListener() {
+        public void onClick(View v) {
+            Log.i("MainActivity", "nBtnRemove click");
+        }
+    };
+
+    public CustomLayoutAdapter(ArrayList<LinearLayout> pLayout) {
+        mLayouts = pLayout;
     }
 
     @Override
@@ -25,31 +38,44 @@ public class CustomLayoutAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return (Object) mLayouts.get(position);
+    public Object getItem(int pId) {
+        return (Object) mLayouts.get(pId);
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public long getItemId(int pId) {
+        return pId;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout layout;
-        if (convertView == null) {
-            layout = mLayouts.get(position);
+    public View getView(int pId, View pConvertView, ViewGroup pParent) {
+        LinearLayout nLayout =  null;
+
+        if (null == pConvertView) {
+            nLayout = mLayouts.get(pId);
+
         } else {
-            layout = (LinearLayout) convertView;
+            nLayout = (LinearLayout) pConvertView;
         }
-        layout.setOrientation(LinearLayout.HORIZONTAL);
 
-        //Button bAdd = new Button(this);
-        //bAdd.setText("+");
+        //nLayout.setOrientation(LinearLayout.HORIZONTAL);
+        //nLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        //layout.addView(bAdd);
+        Button nBtnAdd = new Button(nLayout.getContext());
+        nBtnAdd.setText("+");
+        nBtnAdd.setOnClickListener(mListenerAdd);
 
+        TextView nTxtInfo = new TextView(nLayout.getContext());
+        nTxtInfo.setText("test plat");
 
-        return layout;
+        Button nBtnRemove = new Button(nLayout.getContext());
+        nBtnRemove.setText("-");
+        nBtnRemove.setOnClickListener(mListenerRemove);
+
+        nLayout.addView(nBtnAdd);
+        nLayout.addView(nTxtInfo);
+        nLayout.addView(nBtnRemove);
+
+        return nLayout;
     }
 }
