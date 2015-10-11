@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -77,5 +76,5 @@ public class CustomLayoutAdapter extends BaseAdapter {
         nLayout.addView(nBtnRemove);
 
         return nLayout;
-    }
-}
+    } // View
+} // class
