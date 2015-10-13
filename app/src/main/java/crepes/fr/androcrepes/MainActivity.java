@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<LinearLayout> mRows = new ArrayList<LinearLayout>();
 
-    GridView gridViewMain = null;
+    ListView listViewMain = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        listViewMain = (ListView) findViewById(R.id.listViewMain);
 
         for(int i = 0 ; i<4; i++){
             LinearLayout nRow = new LinearLayout(this);
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
             mRows.add(nRow);
         } // for
 
-        gridViewMain = (GridView) findViewById(R.id.gridViewMain);
-        gridViewMain.setAdapter(new CustomLayoutAdapter(mRows));
+
+        listViewMain.setAdapter(new CustomLayoutAdapter(mRows));
 
     } // void
 

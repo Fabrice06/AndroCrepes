@@ -9,18 +9,18 @@
         <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/classes-6446e1484db8d2319b45c1aacc8df65fff82fa5c.jar" />
     </item>
     <item
-        jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-f99014d97181f402dca66b8236782e00597de643.jar" />
-    </item>
-    <item
         jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
         <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/classes-35ad64d290e923aa848cbc01a97ced6418cac795.jar" />
+    </item>
+    <item
+        jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-f99014d97181f402dca66b8236782e00597de643.jar" />
     </item>
     <item
         jar="/Users/vince/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"

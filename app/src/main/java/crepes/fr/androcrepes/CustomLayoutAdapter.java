@@ -1,6 +1,7 @@
 package crepes.fr.androcrepes;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -27,7 +28,7 @@ public class CustomLayoutAdapter extends BaseAdapter {
         }
     };
 
-    public CustomLayoutAdapter(ArrayList<LinearLayout> pLayout) {
+    public CustomLayoutAdapter(final ArrayList<LinearLayout> pLayout) {
         mLayouts = pLayout;
     }
 
@@ -37,7 +38,7 @@ public class CustomLayoutAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int pId) {
+    public Object getItem(final int pId) {
         return (Object) mLayouts.get(pId);
     }
 
@@ -47,33 +48,62 @@ public class CustomLayoutAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int pId, View pConvertView, ViewGroup pParent) {
-        LinearLayout nLayout =  null;
+    public View getView(final int pId, final View pConvertView, final ViewGroup pParent) {
 
-        if (null == pConvertView) {
-            nLayout = mLayouts.get(pId);
+        // create the layout params that will be used to define how 'add' Button will be displayed
+        final LinearLayout.LayoutParams nParamsAdd = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        } else {
-            nLayout = (LinearLayout) pConvertView;
-        }
+        nParamsAdd.weight = 2.0f;
+        nParamsAdd.gravity = Gravity.RIGHT;
 
-        //nLayout.setOrientation(LinearLayout.HORIZONTAL);
-        //nLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        // create the layout params that will be used to define how 'info' TextView will be displayed
+        final LinearLayout.LayoutParams nParamsTxt = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        nParamsTxt.weight = 96.0f;
+        nParamsTxt.gravity = Gravity.CENTER;
 
-        Button nBtnAdd = new Button(nLayout.getContext());
-        nBtnAdd.setText("+");
-        nBtnAdd.setOnClickListener(mListenerAdd);
+        // create the layout params that will be used to define how 'remove' Button will be displayed
+        final LinearLayout.LayoutParams nParamsRemove = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        nParamsRemove.weight = 2.0f;
+        nParamsRemove.gravity = Gravity.LEFT;
+
+
+        // create the layout params that will be used to define how layout will be displayed
+        final LinearLayout.LayoutParams nParamsLayout = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        //LinearLayout nLayout =  null;
+
+        //if (null == pConvertView) {
+            //nLayout = mLayouts.get(pId);
+        //} else {
+        //    nLayout = (LinearLayout) pConvertView;
+        //}
+
+        LinearLayout nLayout = mLayouts.get(pId);
+        nLayout.setOrientation(LinearLayout.HORIZONTAL);
+        nLayout.setLayoutParams(nParamsLayout);
+
+
+        final Button nBtnAdd = new Button(nLayout.getContext());
+            nBtnAdd.setText("+");
+            nBtnAdd.setLayoutParams(nParamsAdd);
+            nBtnAdd.setOnClickListener(mListenerAdd);
+            nLayout.addView(nBtnAdd);
 
         TextView nTxtInfo = new TextView(nLayout.getContext());
-        nTxtInfo.setText("test plat");
+            nTxtInfo.setText("test plat");
+            nTxtInfo.setLayoutParams(nParamsTxt);
+            nLayout.addView(nTxtInfo);
 
-        Button nBtnRemove = new Button(nLayout.getContext());
-        nBtnRemove.setText("-");
-        nBtnRemove.setOnClickListener(mListenerRemove);
-
-        nLayout.addView(nBtnAdd);
-        nLayout.addView(nTxtInfo);
-        nLayout.addView(nBtnRemove);
+        final Button nBtnRemove = new Button(nLayout.getContext());
+            nBtnRemove.setText("-");
+            nBtnRemove.setLayoutParams(nParamsRemove);
+            nBtnRemove.setOnClickListener(mListenerRemove);
+            nLayout.addView(nBtnRemove);
 
         return nLayout;
     } // View
