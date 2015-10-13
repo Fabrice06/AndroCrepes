@@ -3,8 +3,10 @@ package crepes.fr.androcrepes;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -25,8 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         listViewMain = (ListView) findViewById(R.id.listViewMain);
 
+        LayoutInflater nInflater = LayoutInflater.from(this);
+
         for(int i = 0 ; i<4; i++){
-            LinearLayout nRow = new LinearLayout(this);
+            View nView = nInflater.inflate(R.layout.row_plat, null);
+            LinearLayout nRow = (LinearLayout) nView.findViewById(R.id.layoutRowPlat);
 
             nRow.setId(i);
 

@@ -1,7 +1,6 @@
 package crepes.fr.androcrepes;
 
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -50,60 +49,22 @@ public class CustomLayoutAdapter extends BaseAdapter {
     @Override
     public View getView(final int pId, final View pConvertView, final ViewGroup pParent) {
 
-        // create the layout params that will be used to define how 'add' Button will be displayed
-        final LinearLayout.LayoutParams nParamsAdd = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout nLayout =  null;
 
-        nParamsAdd.weight = 2.0f;
-        nParamsAdd.gravity = Gravity.RIGHT;
+        if (null == pConvertView) {
+            nLayout = mLayouts.get(pId);
+        } else {
+            nLayout = (LinearLayout) pConvertView;
+        }
 
-        // create the layout params that will be used to define how 'info' TextView will be displayed
-        final LinearLayout.LayoutParams nParamsTxt = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        nParamsTxt.weight = 96.0f;
-        nParamsTxt.gravity = Gravity.CENTER;
+        Button nBtnRemove = (Button) nLayout.findViewById(R.id.btnRowRemove);
+        nBtnRemove.setOnClickListener(mListenerRemove);
 
-        // create the layout params that will be used to define how 'remove' Button will be displayed
-        final LinearLayout.LayoutParams nParamsRemove = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        TextView nTxtInfo = (TextView) nLayout.findViewById(R.id.txtRowInfo);
+        nTxtInfo.setText("test plat");
 
-        nParamsRemove.weight = 2.0f;
-        nParamsRemove.gravity = Gravity.LEFT;
-
-
-        // create the layout params that will be used to define how layout will be displayed
-        final LinearLayout.LayoutParams nParamsLayout = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        //LinearLayout nLayout =  null;
-
-        //if (null == pConvertView) {
-            //nLayout = mLayouts.get(pId);
-        //} else {
-        //    nLayout = (LinearLayout) pConvertView;
-        //}
-
-        LinearLayout nLayout = mLayouts.get(pId);
-        nLayout.setOrientation(LinearLayout.HORIZONTAL);
-        nLayout.setLayoutParams(nParamsLayout);
-
-
-        final Button nBtnAdd = new Button(nLayout.getContext());
-            nBtnAdd.setText("+");
-            nBtnAdd.setLayoutParams(nParamsAdd);
-            nBtnAdd.setOnClickListener(mListenerAdd);
-            nLayout.addView(nBtnAdd);
-
-        TextView nTxtInfo = new TextView(nLayout.getContext());
-            nTxtInfo.setText("test plat");
-            nTxtInfo.setLayoutParams(nParamsTxt);
-            nLayout.addView(nTxtInfo);
-
-        final Button nBtnRemove = new Button(nLayout.getContext());
-            nBtnRemove.setText("-");
-            nBtnRemove.setLayoutParams(nParamsRemove);
-            nBtnRemove.setOnClickListener(mListenerRemove);
-            nLayout.addView(nBtnRemove);
+        Button nBtnAdd = (Button) nLayout.findViewById(R.id.btnRowAdd);
+        nBtnAdd.setOnClickListener(mListenerAdd);
 
         return nLayout;
     } // View
