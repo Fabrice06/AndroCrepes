@@ -5,25 +5,65 @@ import java.util.ArrayList;
 /**
  * Created by vince on 13/10/2015.
  */
-public class Plats {
+public class Plats extends ArrayList<Plat> {
 
-    private ArrayList<Plat> mPlats = new ArrayList<Plat>();
+    // instance singleton
+    protected static Plats mInstance;
 
-    // mettre ici une gestion d'exception?? si l'id n'existe pas?
+    private Plats() {
+    } // constructeur privé
+
+
+    public static Plats getInstance() {
+
+        if (null == mInstance) {
+            mInstance = new Plats();
+        }
+        return mInstance;
+    } // Plats
+
+
     public Plat getPlat(final int pId) {
-        return mPlats.get(pId);
-    }
+
+        Plat nReturn = null;
+
+        for (Plat nItem : this) {
+            if (nItem.getId() == pId) {
+                nReturn = nItem;
+            } // if
+        } // for
+        return nReturn;
+    } // Plat
+
+    public Plat getPlat(final String pNom) {
+
+        Plat nReturn = null;
+
+        for (Plat nItem : this) {
+            if (nItem.getNom() == pNom) {
+                nReturn = nItem;
+            } // if
+        } // for
+        return nReturn;
+    } // Plat
+
 
     public void addPlat(final Plat pPlat) {
-        mPlats.add(pPlat.getId(), pPlat);
-    }
+
+        // on ne veux pas de doubles
+        if (!containsPlat(pPlat)) {
+            mInstance.add(pPlat.getId(), pPlat);
+        } // if
+    } // void
+
 
     public int getSize() {
-        return mPlats.size();
+        return mInstance.size();
     }
 
+
     public boolean containsPlat(final Plat pPlat) {
-        return mPlats.contains(pPlat);
+        return mInstance.contains(pPlat);
     }
 
 } //class

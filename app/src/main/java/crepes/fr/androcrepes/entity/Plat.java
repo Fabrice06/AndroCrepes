@@ -6,29 +6,26 @@ package crepes.fr.androcrepes.entity;
 public class Plat {
 
     private String mNom;
-    private static int mId;
+    private int mId;
 
-    // mettre un id ici pour rendre unique le plat dans l'application ???
 
-    public Plat() {
-        mId++;
-        mNom= "";
-    } // constructeur par défaut
-
-    public Plat(final String pNom) {
-        super();
-        this.mNom= pNom;
+    public Plat(final int pId, final String pNom) {
+        this.mId = pId;
+        this.mNom = pNom;
     } // constructeur
+
 
     public String getNom() {
         return mNom;
     } // String
 
+
     public void setNom(final String pNom) {
         this.mNom = pNom;
     } // void
 
+
     public int getId() {
         return mId;
-    }
+    } // int
 } // class

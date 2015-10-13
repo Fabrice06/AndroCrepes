@@ -3,20 +3,16 @@ package crepes.fr.androcrepes;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import crepes.fr.androcrepes.entity.Plat;
+import crepes.fr.androcrepes.entity.Plats;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<LinearLayout> mRows = new ArrayList<LinearLayout>();
-
-    ListView listViewMain = null;
+    ListView mListViewMain = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +21,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listViewMain = (ListView) findViewById(R.id.listViewMain);
+        mListViewMain = (ListView) findViewById(R.id.listViewMain);
+        mListViewMain.setDivider(null);
 
-        LayoutInflater nInflater = LayoutInflater.from(this);
+        Plats nPlats = Plats.getInstance();
 
-        for(int i = 0 ; i<4; i++){
-            View nView = nInflater.inflate(R.layout.row_plat, null);
-            LinearLayout nRow = (LinearLayout) nView.findViewById(R.id.layoutRowPlat);
+        for (int i=0; i<20; i++) {
+            final Plat nPlat= new Plat(i, "test" + i);
 
-            nRow.setId(i);
+            nPlats.addPlat(nPlat);
+        }
 
-            mRows.add(nRow);
-        } // for
+        ListAdapter mListAdapter = new ListAdapter(this, nPlats);
 
-
-        listViewMain.setAdapter(new CustomLayoutAdapter(mRows));
+        mListViewMain.setAdapter(mListAdapter);
 
     } // void
 
