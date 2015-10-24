@@ -15,10 +15,20 @@ import crepes.fr.androcrepes.entity.Plats;
 
 public class ListAdapter extends ArrayAdapter<Plat> {
 
-    LayoutInflater mInflater = null;
+//    public interface ListAdapterCallBack {
+//        void addFromListAdapter(Plat pPlat);
+//        void removeFromListAdapter(Plat pPlat);
+//    } // interface
+//
+//    private ListAdapterCallBack mCallBack;
+
+    private Context mContext;
+
+    private LayoutInflater mInflater = null;
 
     public ListAdapter(final Context pContext, Plats pPlats) {
         super(pContext, 0, pPlats);
+        this.mContext = pContext;
     } // constructeur
 
 
@@ -41,6 +51,12 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 final Button nBtnRemove = (Button) nView.findViewById(R.id.btnRowRemove);
                 nBtnRemove.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+
+                        if(mContext instanceof MainActivity){
+                            ((MainActivity)mContext).removeFromListAdapter(nPlat);
+                        }
+
+//                        mCallBack.removeFromListAdapter(nPlat);
                         Log.i("MainActivity", "nBtnRemove click " + nPlat.getId());
                     }
                 });
@@ -50,6 +66,11 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 final Button nBtnAdd = (Button) nView.findViewById(R.id.btnRowAdd);
                 nBtnAdd.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+
+                        if(mContext instanceof MainActivity){
+                            ((MainActivity)mContext).addFromListAdapter(nPlat);
+                        }
+//                        mCallBack.addFromListAdapter(nPlat);
                         Log.i("MainActivity", "nBtnAdd click " + nPlat.getId());
                     }
                 });

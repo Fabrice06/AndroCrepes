@@ -28,7 +28,7 @@ public class Plats extends ArrayList<Plat> {
         Plat nReturn = null;
 
         for (Plat nItem : this) {
-            if (nItem.getId() == pId) {
+            if (pId == nItem.getId()) {
                 nReturn = nItem;
             } // if
         } // for
@@ -40,7 +40,7 @@ public class Plats extends ArrayList<Plat> {
         Plat nReturn = null;
 
         for (Plat nItem : this) {
-            if (nItem.getNom() == pNom) {
+            if (nItem.getNom().equals(pNom)) {
                 nReturn = nItem;
             } // if
         } // for
@@ -50,6 +50,9 @@ public class Plats extends ArrayList<Plat> {
 
     public void addPlat(final Plat pPlat) {
 
+        //fixme: trouver et checker la taille max
+
+        //fixme: a tester containsPlat pas sûr que ça marche
         // on ne veux pas de doubles
         if (!containsPlat(pPlat)) {
             mInstance.add(pPlat.getId(), pPlat);
@@ -61,7 +64,7 @@ public class Plats extends ArrayList<Plat> {
         return mInstance.size();
     }
 
-
+    //fixme: a tester containsPlat pas sûr que ça marche
     public boolean containsPlat(final Plat pPlat) {
         return mInstance.contains(pPlat);
     }

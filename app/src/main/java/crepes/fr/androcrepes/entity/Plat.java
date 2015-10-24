@@ -7,11 +7,13 @@ public class Plat {
 
     private String mNom;
     private int mId;
+    private int mQuantite;
 
 
-    public Plat(final int pId, final String pNom) {
+    public Plat(final int pId, final String pNom, final int pQuantite) {
         this.mId = pId;
         this.mNom = pNom;
+        this.mQuantite = pQuantite;
     } // constructeur
 
 
@@ -28,4 +30,13 @@ public class Plat {
     public int getId() {
         return mId;
     } // int
+
+    public void setQuantite(final int pQuantite) {
+        this.mQuantite = pQuantite;
+    } // void
+
+//    public int getQuantite() {
+//        return mQuantite;
+//    } // int
+
 } // class
