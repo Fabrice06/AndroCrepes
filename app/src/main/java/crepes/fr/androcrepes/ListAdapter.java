@@ -81,3 +81,14 @@ public class ListAdapter extends ArrayAdapter<Plat> {
         return nView;
     } // View
 } // class
+
+/*
+private ProgressBar progressBar;
+ private int progressStatus = 0;
+progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+  textView = (TextView) findViewById(R.id.textView1);
+  progressBar.setProgress(progressStatus);
+  textView.setText(progressStatus+"/"+progressBar.getMax());
+
+
+ */

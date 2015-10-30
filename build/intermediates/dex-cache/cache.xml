@@ -2,11 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
+        jar="/Volumes/Boot 2/AndroidWorkSpace/AndroCrepes/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Volumes/Boot 2/AndroidWorkSpace/AndroCrepes/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-6c5ce1fe529c54e6bb885208dea4aafa3e1ab46d.jar" />
+    </item>
+    <item
+        jar="/Users/Fabrice/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Volumes/Boot 2/AndroidWorkSpace/AndroCrepes/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-bb1f74f1d2dba56123f7f4a8178430ed4da5eb62.jar" />
+    </item>
+    <item
+        jar="/Volumes/Boot 2/AndroidWorkSpace/AndroCrepes/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Volumes/Boot 2/AndroidWorkSpace/AndroCrepes/app/build/intermediates/pre-dexed/debug/classes-94a224efa74683f343084e67b308f0fcbaa78010.jar" />
+    </item>
+    <item
+        jar="/Volumes/Boot 2/AndroidWorkSpace/AndroCrepes/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
-        <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/classes-5b8822272c76404754b1037aa588433506c84137.jar" />
+        <dex dex="/Volumes/Boot 2/AndroidWorkSpace/AndroCrepes/app/build/intermediates/pre-dexed/debug/classes-ce9d4e384d305f77de02ec93a3abd44d9d87a8fb.jar" />
+    </item>
+    <item
+        jar="/Volumes/Boot 2/AndroidWorkSpace/AndroCrepes/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Volumes/Boot 2/AndroidWorkSpace/AndroCrepes/app/build/intermediates/pre-dexed/debug/classes-f74a5841094bc25a57dee97b4c509ed884875d81.jar" />
     </item>
 
 </items>
