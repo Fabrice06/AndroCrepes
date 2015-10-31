@@ -41,7 +41,6 @@
                 android:textColor="@color/colorText" />
         </FrameLayout>
 
-
     </LinearLayout>
 
     <FrameLayout

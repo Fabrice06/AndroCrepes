@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
         // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
+            Toast.makeText(getApplicationContext(), "Attention ce plat est épuisé !!!", Toast.LENGTH_SHORT).show();
 //fixme: afficher popup message: pString + " !"
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {

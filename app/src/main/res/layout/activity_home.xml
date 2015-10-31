@@ -57,7 +57,7 @@
                 android:id="@+id/btnHomeCuisine"
                 android:onClick="goCuisine"
                 android:background="#9C27B0"
-                android:textColor="#F0FFFF"/>
+                android:textColor="#F0FFFF" />
 
             <FrameLayout
                 android:layout_width="10dp"
