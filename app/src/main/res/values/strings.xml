@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">AndroCrepes</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_homme">HommeActivity</string>
     <string name="Logo">Logo</string>
     <string name="title_activity_cuisine">CuisineActivity</string>
+
+    <string name="btnAjouter">Ajouter</string>
+
+    <color name="colorText">#181870</color>
+    <color name="colorBtnValid">#FFE0B2</color>
+
 </resources>

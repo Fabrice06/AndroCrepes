@@ -17,10 +17,6 @@
         android:layout_height="wrap_content"
         android:gravity="left">
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            ></FrameLayout>
 
         <ImageView
         android:layout_width="wrap_content"
@@ -38,7 +34,7 @@
             android:layout_height="match_parent"
             android:text="XXX"
             android:id="@+id/txtRowInfo"
-            android:textColor="#181870"
+            android:textColor="@color/colorText"
             android:textSize="20dp"
             />
 
@@ -106,8 +102,7 @@
             android:progress="1"
             android:layout_gravity="center"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_weight="6
-            "/>
+            android:layout_weight="6"/>
 
         <FrameLayout
             android:layout_width="0dp"

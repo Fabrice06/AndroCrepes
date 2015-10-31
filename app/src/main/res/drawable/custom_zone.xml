@@ -6,9 +6,10 @@
         />
     <stroke
         android:width="5dip"
-        android:color="#FFE0B2"
+        android:color="@color/colorBtnValid"
         />
+
     <solid
-        android:color="#FFE0B2"
+        android:color="@color/colorBtnValid"
         />
 </shape>
