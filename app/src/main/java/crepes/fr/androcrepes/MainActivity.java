@@ -212,4 +212,8 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void goHome(View view) {
+        finish();
+    }
 } // class

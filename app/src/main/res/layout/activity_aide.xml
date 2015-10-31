@@ -9,23 +9,21 @@
     android:orientation="vertical"
     android:background="@android:color/holo_orange_light">
 
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5">
+        android:layout_height="wrap_content">
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/home"
             android:background="@drawable/roundedbutton"
-            android:onClick="goDeb"/>
+            android:onClick="goRetour"/>
 
         <FrameLayout
-        android:layout_width="5dp"
-        android:layout_height="0dp"></FrameLayout>
+            android:layout_width="5dp"
+            android:layout_height="0dp"></FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -35,7 +33,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Activité Cuisine"
+                android:text="Aide en ligne"
                 android:gravity="center"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -44,50 +42,17 @@
         </FrameLayout>
 
 
-
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="0dp"
-        android:layout_height="10dp"></FrameLayout>
+        android:layout_height="5dp"></FrameLayout>
 
-    <ListView
+    <WebView
+        android:id="@+id/webwiew"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listMain"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="90"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="10.0px"/>
+        android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="10dp"></FrameLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/ajoutEditText"
-            android:layout_weight="90"
-            android:inputType="text"
-            android:hint="@string/btnAjouter" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/btnAjouter"
-            android:layout_gravity="left"
-            android:layout_weight="10"
-            android:background="@drawable/roundedbuttonvalid"/>
-
-    </LinearLayout>
+    </WebView>
 
 </LinearLayout>
-

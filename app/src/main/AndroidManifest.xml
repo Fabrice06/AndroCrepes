@@ -27,6 +27,10 @@
             android:name=".CuisineActivity"
             android:label="@string/title_activity_cuisine" >
         </activity>
+        <activity
+            android:name=".AideActivity"
+            android:label="@string/title_activity_aide" >
+        </activity>
     </application>
 
 </manifest>

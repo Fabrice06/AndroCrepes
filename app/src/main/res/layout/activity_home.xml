@@ -91,7 +91,7 @@
                 android:text="aide"
                 android:layout_gravity="left"
                 android:id="@+id/btnAide"
-                android:onClick=""
+                android:onClick="goAide"
                 android:background="#FF5722"
                 android:textColor="#F0FFFF" />
 

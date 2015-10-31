@@ -62,7 +62,7 @@
             android:text="Retirer"
             android:id="@+id/btnRowRemove"
             android:layout_gravity="left"
-            android:background="#A02828"
+            android:background="@drawable/roundedbuttonmoins"
             android:textColor="#F0FFFF"/>
 
         <FrameLayout
@@ -76,7 +76,7 @@
             android:text="Ajouter"
             android:id="@+id/btnRowAdd"
             android:layout_gravity="right"
-            android:background="#288C28"
+            android:background="@drawable/roundedbuttonplus"
             android:textColor="#F0FFFF"/>
 
         <FrameLayout

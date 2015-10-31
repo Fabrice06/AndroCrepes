@@ -24,18 +24,28 @@ public class HomeActivity extends AppCompatActivity {
 
     // event associé au bouton btnHomeCuisine
     public void goCuisine(View v) {
-        startMainActivity("cuisine");
+        Intent intent = new Intent(this, CuisineActivity.class);
+        startSelectedActivity(intent);
+        //startMainActivity("cuisine");
     }
 
     // event associé au bouton btnHomeSalle
     public void goSalle(View v) {
-        startMainActivity("salle");
+        Intent intent = new Intent(this, MainActivity.class);
+        startSelectedActivity(intent);
+        //startMainActivity("salle");
     }
+
+
     // démarre l'activity MainActivity
     //fixme mettre une enum à la plase du paramètre String
     private void startMainActivity(final String pAction) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(EXTRA_ACTION, pAction);
+        startActivity(intent);
+    }
+
+    private void startSelectedActivity(Intent intent){
         startActivity(intent);
     }
 
@@ -92,5 +102,10 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goAide(View view) {
+        Intent intent = new Intent(this, AideActivity.class);
+        startSelectedActivity(intent);
     }
 } // class

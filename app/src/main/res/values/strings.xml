@@ -10,5 +10,8 @@
 
     <color name="colorText">#181870</color>
     <color name="colorBtnValid">#FFE0B2</color>
+    <string name="title_activity_aide">AideActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
