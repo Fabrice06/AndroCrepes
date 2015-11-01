@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Cuisine :"
+                android:text="Cuisine"
                 android:gravity="center"
                 android:textSize="20dp"
                 android:textStyle="bold"

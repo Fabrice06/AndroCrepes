@@ -30,12 +30,21 @@
             ></FrameLayout>
 
         <EditText
+            android:id="@+id/txtEditQte"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:inputType="number"
+            android:hint="Qté"
+            />
+
+        <EditText
             android:id="@+id/txtEditPlat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorText"
             android:inputType="text"
-            android:hint="Ajouter un plat"
+            android:hint="Plat"
             />
 
     </LinearLayout>
@@ -49,10 +58,10 @@
         android:layout_height="match_parent">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="25dp"
             android:text="Ajouter"
-            android:id="@+id/btnRowAdd"
+            android:id="@+id/btnPlatAdd"
             android:layout_gravity="right"
             android:background="@drawable/roundedbuttonplus"
             android:textColor="#F0FFFF"/>

@@ -69,6 +69,7 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
     }
 
     @Override
+<<<<<<< HEAD
     public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
     }
 
@@ -86,4 +87,24 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
     public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
 
     } // void
+=======
+    public void singleFromClient(String pString) {
+
+    }
+
+    @Override
+    public void listeFromClient(List<String> pListData) {
+
+    }
+
+    @Override
+    public void quantiteFromClient(List<String> pListData) {
+
+    }
+
+    @Override
+    public void connectedFromClient() {
+
+    }
+>>>>>>> 0b15199dfe0a9a3cf56907c52ae888e5164375e4
 }
