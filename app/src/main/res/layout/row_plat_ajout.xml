@@ -29,13 +29,13 @@
             android:layout_height="0dp"
             ></FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="XXX"
-            android:id="@+id/txtRowInfo"
+        <EditText
+            android:id="@+id/txtEditPlat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorText"
-            android:textSize="20dp"
+            android:inputType="text"
+            android:hint="Ajouter un plat"
             />
 
     </LinearLayout>
@@ -44,31 +44,9 @@
         android:layout_width="0dp"
         android:layout_height="10dp"></FrameLayout>
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layoutRowPlat">
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="3"></FrameLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="Retirer"
-            android:id="@+id/btnRowRemove"
-            android:layout_gravity="left"
-            android:background="@drawable/roundedbuttonmoins"
-            android:textColor="#F0FFFF"/>
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="3"></FrameLayout>
+        android:layout_height="match_parent">
 
         <Button
             android:layout_width="wrap_content"
@@ -79,11 +57,6 @@
             android:background="@drawable/roundedbuttonplus"
             android:textColor="#F0FFFF"/>
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="3"></FrameLayout>
-
-    </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

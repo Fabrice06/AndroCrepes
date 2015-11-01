@@ -22,6 +22,8 @@ public class ListAdapter extends ArrayAdapter<Plat> {
 //
 //    private ListAdapterCallBack mCallBack;
 
+    private static final String TAG = ListAdapter.class.getSimpleName();
+
     private Context mContext;
 
     private LayoutInflater mInflater = null;
@@ -34,6 +36,8 @@ public class ListAdapter extends ArrayAdapter<Plat> {
 
     @Override
     public View getView(final int pPosition, final View pConvertView, final ViewGroup pParent) {
+
+        Log.d(TAG, "getView");
 
         View nView = pConvertView;
 
