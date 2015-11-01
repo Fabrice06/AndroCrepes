@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Activité Cuisine"
+                android:text="Cuisine :"
                 android:gravity="center"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -43,9 +43,20 @@
                 android:textColor="@color/colorText" />
         </FrameLayout>
 
-
-
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="10dp"></FrameLayout>
+
+
+    <include
+        layout="@layout/row_plat_ajout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        />
 
     <FrameLayout
         android:layout_width="0dp"
@@ -63,31 +74,6 @@
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="10dp"></FrameLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/ajoutEditText"
-            android:layout_weight="90"
-            android:inputType="text"
-            android:hint="@string/btnAjouter" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/btnAjouter"
-            android:layout_gravity="left"
-            android:layout_weight="10"
-            android:background="@drawable/roundedbuttonvalid"/>
-
-    </LinearLayout>
 
 </LinearLayout>
 

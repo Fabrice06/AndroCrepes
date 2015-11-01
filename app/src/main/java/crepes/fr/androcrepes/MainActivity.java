@@ -25,6 +25,8 @@ import crepes.fr.androcrepes.network.Client.ClientCallBack;
 
 public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     //fixme: deux variables suivantes à changer via le menu connection
     private static final String SERVER_IP = "10.0.3.2";
     private static final int SERVER_PORT = 7777;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i("MainActivity", "onCreate");
+        Log.d(TAG, "onCreate");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -75,13 +77,13 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
 
-        Log.i("MainActivity", "singleFromClient callback: " + pString);
+        Log.d(TAG, "singleFromClient callback: " + pString);
         // recherche du dernier mot/chiffre pour identifier la réponse
         String nReponse = pString.substring(pString.lastIndexOf(" ")+1);
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
         // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            Toast.makeText(getApplicationContext(), "Attention ce plat est épuisé !!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), pString, Toast.LENGTH_SHORT).show();
 //fixme: afficher popup message: pString + " !"
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
         for (int nLen = pListData.size(), i = 1; i < nLen; i++) {
             String nPlat = pListData.get(i);
 
-            Log.i("MainActivity", "listeFromClient for item " + i + " : " + nPlat);
+            Log.d(TAG, "listeFromClient for item " + i + " : " + nPlat);
         } // for
     }
 
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
             // maj de l'ihm
             mListAdapter.notifyDataSetChanged();
 
-            Log.i("MainActivity", "quantiteFromClient for item " + i + " : " + nNom + " is " + nQuantite);
+            Log.d(TAG, "quantiteFromClient for item " + i + " : " + nNom + " is " + nQuantite);
         } // for
     } // void
 
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
         mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
 
-        Log.i("MainActivity", "addFromListePlat callback");
+        Log.d(TAG, "addFromListePlat callback");
     } // void
 
 
@@ -148,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
         mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
 
-        Log.i("MainActivity", "removeFromListePlat callback");
+        Log.d(TAG, "removeFromListePlat callback");
     }
 
 
@@ -163,13 +165,13 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i("MainActivity", "onStart");
+        Log.d(TAG, "onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("MainActivity", "onResume");
+        Log.d(TAG, "onResume");
     }
 
     @Override
@@ -180,32 +182,32 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
     @Override
     protected void onPause() {
-        Log.i("MainActivity", "onPause");
+        Log.d(TAG, "onPause");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        Log.i("MainActivity", "onStop");
+        Log.d(TAG, "onStop");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        Log.i("MainActivity", "onDestroy");
+        Log.d(TAG, "onDestroy");
         super.onDestroy();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.i("MainActivity", "onCreateOptionMenu");
+        Log.d(TAG, "onCreateOptionMenu");
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.i("MainActivity", "onOptionsItemSelected");
+        Log.d(TAG, "onOptionsItemSelected");
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
