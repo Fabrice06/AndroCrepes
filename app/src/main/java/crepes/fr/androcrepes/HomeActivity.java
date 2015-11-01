@@ -33,6 +33,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
+
     } // void
 
     // event associé au bouton btnHomeCuisine
@@ -73,6 +74,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
     @Override
     public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
+//        mClient.send(EnumSendWord.QUANTITE, "");
     }
 
     @Override
@@ -144,34 +146,4 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
         return super.onOptionsItemSelected(item);
     }
-
-<<<<<<< HEAD
-
-=======
-    public void goAide(View view) {
-        Log.d(TAG, "goAide");
-        Intent intent = new Intent(this, AideActivity.class);
-        startSelectedActivity(intent);
-    }
-
-    @Override
-    public void singleFromClient(String pString) {
-
-    }
-
-    @Override
-    public void listeFromClient(List<String> pListData) {
-
-    }
-
-    @Override
-    public void quantiteFromClient(List<String> pListData) {
-
-    }
-
-    @Override
-    public void connectedFromClient() {
-
-    }
->>>>>>> 0b15199dfe0a9a3cf56907c52ae888e5164375e4
 } // class

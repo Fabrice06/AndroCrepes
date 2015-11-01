@@ -21,21 +21,10 @@ import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
 import crepes.fr.androcrepes.network.Client.ClientCallBack;
 
-//import crepes.fr.androcrepes.ListAdapter.ListAdapterCallBack;
-
 public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-<<<<<<< HEAD
-=======
-    //fixme: deux variables suivantes à changer via le menu connection
-    private static final String SERVER_IP = "10.0.3.2";
-//    private static final String SERVER_IP = "10.0.2.2";
-    private static final int SERVER_PORT = 7777;
-
-
->>>>>>> 0b15199dfe0a9a3cf56907c52ae888e5164375e4
     private ListView mListViewMain = null;
     private ListAdapter mListAdapter;
 
@@ -67,12 +56,14 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
+        // par choix, on décide de mettre à jour l'ihm via la commande QUANTITE
+        mClient.send(EnumSendWord.QUANTITE, "");
     } // void
 
     @Override
     public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
-        // par choix, on décide de mettre à jour l'ihm via la commande QUANTITE
-        mClient.send(EnumSendWord.QUANTITE, "");
+//        // par choix, on décide de mettre à jour l'ihm via la commande QUANTITE
+//        mClient.send(EnumSendWord.QUANTITE, "");
     }
 
     @Override
