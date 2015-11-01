@@ -8,10 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import java.util.List;
+
 import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
 
-public class CuisineActivity extends AppCompatActivity {
+public class CuisineActivity extends AppCompatActivity implements Client.ClientCallBack {
 
     private static final String TAG = CuisineActivity.class.getSimpleName();
 
@@ -62,5 +64,25 @@ public class CuisineActivity extends AppCompatActivity {
     public void goDeb(View view) {
         Log.d(TAG, "goDeb");
         finish();
+    }
+
+    @Override
+    public void singleFromClient(String pString) {
+
+    }
+
+    @Override
+    public void listeFromClient(List<String> pListData) {
+
+    }
+
+    @Override
+    public void quantiteFromClient(List<String> pListData) {
+
+    }
+
+    @Override
+    public void connectedFromClient() {
+
     }
 }

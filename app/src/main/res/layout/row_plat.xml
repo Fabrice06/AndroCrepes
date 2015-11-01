@@ -51,16 +51,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/layoutRowPlat">
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="3"></FrameLayout>
-
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="25dp"
-            android:text="Retirer"
-            android:id="@+id/btnRowRemove"
+            android:text="Annuller"
+            android:id="@+id/btnRowAdd"
             android:layout_gravity="left"
             android:background="@drawable/roundedbuttonmoins"
             android:textColor="#F0FFFF"/>
@@ -71,18 +66,12 @@
             android:layout_weight="3"></FrameLayout>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="25dp"
-            android:text="Ajouter"
-            android:id="@+id/btnRowAdd"
-            android:layout_gravity="right"
+            android:text="Commander"
+            android:id="@+id/btnRowRemove"
             android:background="@drawable/roundedbuttonplus"
             android:textColor="#F0FFFF"/>
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="3"></FrameLayout>
 
     </LinearLayout>
 

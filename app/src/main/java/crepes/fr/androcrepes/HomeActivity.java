@@ -8,7 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class HomeActivity extends AppCompatActivity {
+import java.util.List;
+
+import crepes.fr.androcrepes.network.Client;
+
+public class HomeActivity extends AppCompatActivity implements Client.ClientCallBack {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
 
@@ -114,5 +118,25 @@ public class HomeActivity extends AppCompatActivity {
         Log.d(TAG, "goAide");
         Intent intent = new Intent(this, AideActivity.class);
         startSelectedActivity(intent);
+    }
+
+    @Override
+    public void singleFromClient(String pString) {
+
+    }
+
+    @Override
+    public void listeFromClient(List<String> pListData) {
+
+    }
+
+    @Override
+    public void quantiteFromClient(List<String> pListData) {
+
+    }
+
+    @Override
+    public void connectedFromClient() {
+
     }
 } // class

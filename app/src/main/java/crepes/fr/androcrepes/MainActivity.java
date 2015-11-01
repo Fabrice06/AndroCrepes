@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     //fixme: deux variables suivantes à changer via le menu connection
-//    private static final String SERVER_IP = "10.0.3.2";
-    private static final String SERVER_IP = "10.0.2.2";
+    private static final String SERVER_IP = "10.0.3.2";
+//    private static final String SERVER_IP = "10.0.2.2";
     private static final int SERVER_PORT = 7777;
 
 
