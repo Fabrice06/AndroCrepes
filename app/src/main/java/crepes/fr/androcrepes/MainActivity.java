@@ -27,12 +27,6 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    //fixme: deux variables suivantes à changer via le menu connection
-//    private static final String SERVER_IP = "10.0.3.2";
-    private static final String SERVER_IP = "10.0.2.2";
-    private static final int SERVER_PORT = 7777;
-
-
     private ListView mListViewMain = null;
     private ListAdapter mListAdapter;
 
@@ -62,11 +56,8 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
         mListAdapter = new ListAdapter(this, mPlats);
         mListViewMain.setAdapter(mListAdapter);
 
-        // lance une connexion au serveur
         //fixme: définir plan B si serveur hors d'atteinte
-        mClient = new Client(this, SERVER_IP, SERVER_PORT);
-        mClient.connect();
-
+        mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
     } // void
 
     @Override

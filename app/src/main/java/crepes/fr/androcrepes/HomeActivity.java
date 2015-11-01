@@ -8,9 +8,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class HomeActivity extends AppCompatActivity {
+import java.util.List;
+
+import crepes.fr.androcrepes.network.Client;
+
+public class HomeActivity extends AppCompatActivity implements Client.ClientCallBack {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
+
+    //fixme: deux variables suivantes à changer via le menu settings
+//    public static final String SERVER_IP = "10.0.3.2";
+    public static final String SERVER_IP = "10.0.2.2";
+    public static final int SERVER_PORT = 7777;
+    private Client mClient;
 
     public final static String EXTRA_ACTION = "EXTRA_ACTION";
 
@@ -21,7 +31,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
+        //fixme: définir plan B si serveur hors d'atteinte
+        mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
     } // void
 
     // event associé au bouton btnHomeCuisine
@@ -39,7 +50,12 @@ public class HomeActivity extends AppCompatActivity {
         startSelectedActivity(intent);
         //startMainActivity("salle");
     }
-
+    
+    public void goAide(View view) {
+        Log.d(TAG, "goAide");
+        Intent intent = new Intent(this, AideActivity.class);
+        startSelectedActivity(intent);
+    }
 
     // démarre l'activity MainActivity
     //fixme mettre une enum à la plase du paramètre String
@@ -54,6 +70,25 @@ public class HomeActivity extends AppCompatActivity {
         Log.d(TAG, "startSelectedActivity");
         startActivity(intent);
     }
+
+    @Override
+    public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
+    }
+
+    @Override
+    public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
+
+    } // void
+
+    @Override
+    public void listeFromClient(List<String> pListData) {
+//fixme: pas utilisé pour le moment pas toucher
+    }
+
+    @Override
+    public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
+
+    } // void
 
     @Override
     protected void onStart() {
@@ -110,9 +145,5 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void goAide(View view) {
-        Log.d(TAG, "goAide");
-        Intent intent = new Intent(this, AideActivity.class);
-        startSelectedActivity(intent);
-    }
+
 } // class

@@ -8,16 +8,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import java.util.List;
+
 import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
 
-public class CuisineActivity extends AppCompatActivity {
+public class CuisineActivity extends AppCompatActivity implements Client.ClientCallBack {
 
     private static final String TAG = CuisineActivity.class.getSimpleName();
 
     private ListView mListViewMain = null;
     private ListAdapter mListAdapter;
 
+    private Client mClient;
     private Plats mPlats;
 
     @Override
@@ -32,7 +35,8 @@ public class CuisineActivity extends AppCompatActivity {
         mListAdapter = new ListAdapter(this, mPlats);
         mListViewMain.setAdapter(mListAdapter);
 
-
+        //fixme: définir plan B si serveur hors d'atteinte
+        mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
     }
 
     @Override
@@ -63,4 +67,23 @@ public class CuisineActivity extends AppCompatActivity {
         Log.d(TAG, "goDeb");
         finish();
     }
+
+    @Override
+    public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
+    }
+
+    @Override
+    public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
+
+    } // void
+
+    @Override
+    public void listeFromClient(List<String> pListData) {
+//fixme: pas utilisé pour le moment pas toucher
+    }
+
+    @Override
+    public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
+
+    } // void
 }

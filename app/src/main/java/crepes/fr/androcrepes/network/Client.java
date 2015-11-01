@@ -25,32 +25,55 @@ public class Client {
         void connectedFromClient();
     } // interface
 
-    private ClientCallBack mCallBack;
+    protected static ClientCallBack mCallBack;
 
-    private String mIp = "";
-    private int mPort = 0;
+    protected static String mIp = "";
+    protected static int mPort = 0;
 
-    private List<String> mDatas = new ArrayList<String>();
+    protected static List<String> mDatas = new ArrayList<String>();
 
-    private Socket mSocket;
-    private Connection mConnection;
-    private ReadMessages mReadMessages;
+    protected static Socket mSocket;
+    protected static Connection mConnection;
+    protected static ReadMessages mReadMessages;
 
-    private PrintWriter mWriter = new PrintWriter(System.out, true);
-    private BufferedReader mReader = new BufferedReader(new InputStreamReader(System.in));
+    protected static PrintWriter mWriter = new PrintWriter(System.out, true);
+    protected static BufferedReader mReader = new BufferedReader(new InputStreamReader(System.in));
+
+    // instance singleton
+    protected static Client mInstance;
+
+    private Client() {
+    } // constructeur privé
 
 
-    public Client(final ClientCallBack pCallback, final String pIp, final int pPort) {
-        this.mCallBack = pCallback;
-        this.mIp = pIp;
-        this.mPort = pPort;
-        mDatas.clear();
-    } // constructeur
+    public static Client getInstance(final ClientCallBack pCallback, final String pIp, final int pPort) {
 
-    public void connect() {
-        mConnection = new Connection();
-        mConnection.execute();
-    } // void
+        if (null == mInstance) {
+            mInstance = new Client();
+
+            mInstance.mCallBack = pCallback;
+            mInstance.mIp = pIp;
+            mInstance.mPort = pPort;
+            mDatas.clear();
+
+
+            mConnection = new Connection();
+            mConnection.execute();
+        }
+        return mInstance;
+    } // Plats
+
+//    public Client(final ClientCallBack pCallback, final String pIp, final int pPort) {
+//        this.mCallBack = pCallback;
+//        this.mIp = pIp;
+//        this.mPort = pPort;
+//        mDatas.clear();
+//    } // constructeur
+
+//    public void connect() {
+//        mConnection = new Connection();
+//        mConnection.execute();
+//    } // void
 
 
     public Boolean send(final EnumSendWord pEnumSendWord, final String pMessage) {
@@ -120,7 +143,7 @@ public class Client {
         } // if
     } // void
 
-    private class Connection extends AsyncTask<Void, Void, Boolean> {
+    private static class Connection extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected void onPreExecute() {
@@ -170,7 +193,7 @@ public class Client {
     } // class
 
 
-    private class ReadMessages extends AsyncTask<Void, String, Void> {
+    private static class ReadMessages extends AsyncTask<Void, String, Void> {
 
         @Override
         protected Void doInBackground(Void... v) {
