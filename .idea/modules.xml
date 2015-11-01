@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroCrepes.iml" filepath="$PROJECT_DIR$/AndroCrepes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androCrepe.iml" filepath="$PROJECT_DIR$/androCrepe.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

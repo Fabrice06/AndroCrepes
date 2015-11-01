@@ -1,7 +1,17 @@
 package crepes.fr.androcrepes.commons;
 
 /**
- * Created by vince on 23/10/2015.
+ * <b>EnumSendWord est un type énuméré.</b>
+ * <p>
+ *     Il existe 5 types de membres utilisés pour identifier les requêtes envoyées au serveur:
+ *     <ul>
+ *         <li>LISTE</li>
+ *         <li>QUANTITE</li>
+ *         <li>COMMANDE</li>
+ *         <li>AJOUT</li>
+ *         <li>LOGOUT</li>
+ *     </ul>
+ * </p>
  */
 public enum EnumSendWord {
 
@@ -11,17 +21,31 @@ public enum EnumSendWord {
     AJOUT("AJOUT"),
     LOGOUT("LOGOUT");
 
+    /**
+     * Valeur d'un des mots de la requête
+     */
     private String mValue = "";
 
+    /**
+     * Constructeur
+     *
+     * @param pValue
+     *          Valeur d'un des mots de la requête
+     */
     EnumSendWord(String pValue) {
         this.mValue = pValue;
     }
 
+    /**
+     * Retourne le mot utilisé pour identifier la requête.
+     *
+     * @return Le mot correspondant, sous forme d'une chaîne de caractères.
+     */
     public String getValue() {
         return mValue;
     }
 
-    public String toString(){
-        return mValue;
-    }
+//    public String toString(){
+//        return mValue;
+//    }
 } // enum
