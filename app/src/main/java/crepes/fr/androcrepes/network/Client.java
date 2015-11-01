@@ -18,6 +18,8 @@ import crepes.fr.androcrepes.commons.Tools;
 //fixme voir si singleton opportun et possible
 public class Client {
 
+    private static final String TAG = Client.class.getSimpleName();
+
     public interface ClientCallBack {
         void singleFromClient(String pString);
         void listeFromClient(List<String> pListData);
@@ -144,6 +146,8 @@ public class Client {
     } // void
 
     private static class Connection extends AsyncTask<Void, Void, Boolean> {
+
+        private final String TAG = Connection.class.getSimpleName();
 
         @Override
         protected void onPreExecute() {
