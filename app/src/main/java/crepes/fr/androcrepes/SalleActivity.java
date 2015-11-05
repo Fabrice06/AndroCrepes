@@ -1,6 +1,5 @@
 package crepes.fr.androcrepes;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,7 +24,7 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
 
     private static final String TAG = SalleActivity.class.getSimpleName();
 
-    private ListView mListViewMain = null;
+    private ListView mListViewSalle = null;
     private ListAdapter mListAdapter;
 
     private ProgressBar progressBar;
@@ -39,25 +38,25 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
         Log.d(TAG, "onCreate");
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_salle);
 
-        mListViewMain = (ListView) findViewById(R.id.listMain);
+        mListViewSalle = (ListView) findViewById(R.id.listSalle);
        // mListViewMain.setDivider(null);
         //Pour la séparation entre les differents elements de la listview sans : xml prends la main
 
         //fixme: HomeActivity.EXTRA_ACTION cuisine ou salle (enum)
-        Intent data = getIntent();
+//        Intent data = getIntent();
         //mAction = data.getStringExtra(HomeActivity.EXTRA_ACTION);
 
 
         mPlats = Plats.getInstance();
         mListAdapter = new ListAdapter(this, mPlats);
-        mListViewMain.setAdapter(mListAdapter);
+        mListViewSalle.setAdapter(mListAdapter);
 
         //fixme: définir plan B si serveur hors d'atteinte
-        mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
+//        mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
         // par choix, on décide de mettre à jour l'ihm via la commande QUANTITE
-        mClient.send(EnumSendWord.QUANTITE, "");
+//        mClient.send(EnumSendWord.QUANTITE, "");
     } // void
 
     @Override

@@ -10,6 +10,7 @@ import android.view.View;
 
 import java.util.List;
 
+import crepes.fr.androcrepes.commons.EnumSendWord;
 import crepes.fr.androcrepes.network.Client;
 
 public class HomeActivity extends AppCompatActivity implements Client.ClientCallBack {
@@ -74,7 +75,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
     @Override
     public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
-//        mClient.send(EnumSendWord.QUANTITE, "");
+        mClient.send(EnumSendWord.QUANTITE, "");
     }
 
     @Override

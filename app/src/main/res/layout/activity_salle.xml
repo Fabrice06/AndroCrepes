@@ -48,7 +48,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listMain"
+        android:id="@+id/listSalle"
         android:layout_gravity="center_horizontal"
         android:layout_weight="90"
         android:divider="@android:color/transparent"

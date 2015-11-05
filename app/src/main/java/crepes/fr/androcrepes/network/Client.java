@@ -27,19 +27,19 @@ public class Client {
         void connectedFromClient();
     } // interface
 
-    protected static ClientCallBack mCallBack;
+    private static ClientCallBack mCallBack;
 
-    protected static String mIp = "";
-    protected static int mPort = 0;
+    private static String mIp = "";
+    private static int mPort = 0;
 
-    protected static List<String> mDatas = new ArrayList<String>();
+    private static List<String> mDatas = new ArrayList<String>();
 
-    protected static Socket mSocket;
-    protected static Connection mConnection;
-    protected static ReadMessages mReadMessages;
+    private static Socket mSocket;
+    private static Connection mConnection;
+    private static ReadMessages mReadMessages;
 
-    protected static PrintWriter mWriter = new PrintWriter(System.out, true);
-    protected static BufferedReader mReader = new BufferedReader(new InputStreamReader(System.in));
+    private static PrintWriter mWriter = new PrintWriter(System.out, true);
+    private static BufferedReader mReader = new BufferedReader(new InputStreamReader(System.in));
 
     // instance singleton
     protected static Client mInstance;

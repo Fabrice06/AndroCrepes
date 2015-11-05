@@ -56,6 +56,10 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 nBtnRemove.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
+                        if(mContext instanceof CuisineActivity){
+                            ((CuisineActivity)mContext).removeFromListAdapter(nPlat);
+                        }
+
                         if(mContext instanceof SalleActivity){
                             ((SalleActivity)mContext).removeFromListAdapter(nPlat);
                         }
@@ -70,6 +74,10 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 final Button nBtnAdd = (Button) nView.findViewById(R.id.btnRowAdd);
                 nBtnAdd.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+
+                        if(mContext instanceof CuisineActivity){
+                            ((CuisineActivity)mContext).addFromListAdapter(nPlat);
+                        }
 
                         if(mContext instanceof SalleActivity){
                             ((SalleActivity)mContext).addFromListAdapter(nPlat);

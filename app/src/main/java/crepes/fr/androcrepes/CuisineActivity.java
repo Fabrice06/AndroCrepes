@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import crepes.fr.androcrepes.commons.EnumSendWord;
+import crepes.fr.androcrepes.entity.Plat;
 import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
 
@@ -69,6 +70,23 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
     public void goDeb(View view) {
         Log.d(TAG, "goDeb");
         finish();
+    }
+
+    //    @Override
+    public void addFromListAdapter(Plat pPlat) {
+
+//        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
+
+        Log.d(TAG, "addFromListePlat callback");
+    } // void
+
+
+    //    @Override
+    public void removeFromListAdapter(Plat pPlat) {
+
+//        mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
+
+        Log.d(TAG, "removeFromListePlat callback");
     }
 
     @Override
