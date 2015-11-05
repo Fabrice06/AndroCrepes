@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     // event associé au bouton btnHomeSalle
     public void goSalle(View v) {
         Log.d(TAG, "goSalle");
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, SalleActivity.class);
         startSelectedActivity(intent);
         //startMainActivity("salle");
     }
@@ -58,11 +58,11 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         startSelectedActivity(intent);
     }
 
-    // démarre l'activity MainActivity
+    // démarre l'activity SalleActivity
     //fixme mettre une enum à la plase du paramètre String
     private void startMainActivity(final String pAction) {
         Log.d(TAG, "startMainActivity");
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, SalleActivity.class);
         intent.putExtra(EXTRA_ACTION, pAction);
         startActivity(intent);
     }

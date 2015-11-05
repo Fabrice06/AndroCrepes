@@ -56,12 +56,12 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 nBtnRemove.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
-                        if(mContext instanceof MainActivity){
-                            ((MainActivity)mContext).removeFromListAdapter(nPlat);
+                        if(mContext instanceof SalleActivity){
+                            ((SalleActivity)mContext).removeFromListAdapter(nPlat);
                         }
 
 //                        mCallBack.removeFromListAdapter(nPlat);
-                        Log.i("MainActivity", "nBtnRemove click " + nPlat.getId());
+                        Log.i("SalleActivity", "nBtnRemove click " + nPlat.getId());
                     }
                 });
 
@@ -71,11 +71,11 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 nBtnAdd.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
-                        if(mContext instanceof MainActivity){
-                            ((MainActivity)mContext).addFromListAdapter(nPlat);
+                        if(mContext instanceof SalleActivity){
+                            ((SalleActivity)mContext).addFromListAdapter(nPlat);
                         }
 //                        mCallBack.addFromListAdapter(nPlat);
-                        Log.i("MainActivity", "nBtnAdd click " + nPlat.getId());
+                        Log.i("SalleActivity", "nBtnAdd click " + nPlat.getId());
                     }
                 });
 

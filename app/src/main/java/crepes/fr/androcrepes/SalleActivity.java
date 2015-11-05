@@ -21,9 +21,9 @@ import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
 import crepes.fr.androcrepes.network.Client.ClientCallBack;
 
-public class MainActivity extends AppCompatActivity implements ClientCallBack {
+public class SalleActivity extends AppCompatActivity implements ClientCallBack {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = SalleActivity.class.getSimpleName();
 
     private ListView mListViewMain = null;
     private ListAdapter mListAdapter;
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i("MainActivity", "onRestart");
+        Log.i("SalleActivity", "onRestart");
     }
 
     @Override
