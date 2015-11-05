@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements ClientCallBack {
 
             // nouveau plat
             if (null == nPlat) {
-                nPlat= new Plat(mPlats.getSize(), nNom, nQuantite);
+                nPlat= new Plat(nNom, nQuantite);
                 mPlats.addPlat(nPlat);
 
             } else { // update quantité
