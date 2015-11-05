@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.List;
@@ -24,11 +23,12 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
 
     private static final String TAG = SalleActivity.class.getSimpleName();
 
+//    private static final String SERVER_IP = "10.0.3.2";
+    private static final String SERVER_IP = "10.0.2.2";
+    private static final int SERVER_PORT = 7777;
+
     private ListView mListViewSalle = null;
     private ListAdapter mListAdapter;
-
-    private ProgressBar progressBar;
-    private int progressStatus = 0;
 
     private Client mClient;
     private Plats mPlats;
@@ -41,28 +41,19 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
         setContentView(R.layout.activity_salle);
 
         mListViewSalle = (ListView) findViewById(R.id.listSalle);
-       // mListViewMain.setDivider(null);
-        //Pour la séparation entre les differents elements de la listview sans : xml prends la main
-
-        //fixme: HomeActivity.EXTRA_ACTION cuisine ou salle (enum)
-//        Intent data = getIntent();
-        //mAction = data.getStringExtra(HomeActivity.EXTRA_ACTION);
-
-
         mPlats = Plats.getInstance();
         mListAdapter = new ListAdapter(this, mPlats);
         mListViewSalle.setAdapter(mListAdapter);
 
-        //fixme: définir plan B si serveur hors d'atteinte
-//        mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
-        // par choix, on décide de mettre à jour l'ihm via la commande QUANTITE
-//        mClient.send(EnumSendWord.QUANTITE, "");
+        mClient = new Client(this, SERVER_IP, SERVER_PORT);
+        mClient.connect();
+
     } // void
 
     @Override
     public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
-//        // par choix, on décide de mettre à jour l'ihm via la commande QUANTITE
-//        mClient.send(EnumSendWord.QUANTITE, "");
+        Log.d(TAG, "connectedFromClient callback");
+        mClient.send(EnumSendWord.QUANTITE, "");
     }
 
     @Override
@@ -78,10 +69,6 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
 //fixme: afficher popup message: pString + " !"
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {
-            // commande réalisée avec succés ('commandé' trouvé en fin de message)
-            // ou ajout réalisé avec succés (valeur numérique trouvée en fin de message)
-            // mise à jour de l'information
-            mClient.send(EnumSendWord.QUANTITE, "");
 
         } else {
             // cas non répertorié: ceinture et bretelles
@@ -92,6 +79,7 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
 
     @Override
     public void listeFromClient(List<String> pListData) {
+        Log.d(TAG, "listeFromClient callback");
 //fixme: pas utilisé pour le moment pas toucher
         for (int nLen = pListData.size(), i = 1; i < nLen; i++) {
             String nPlat = pListData.get(i);
@@ -103,34 +91,38 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
 
     @Override
     public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
+        Log.d(TAG, "quantiteFromClient callback");
 
         for (int nLen = pListData.size(), i = 1; i < (nLen-1); i+=2) {
             String nNom = pListData.get(i);
             int nQuantite = Integer.parseInt(pListData.get(i + 1));
 
             Plat nPlat = mPlats.getPlat(nNom);
-
             // nouveau plat
             if (null == nPlat) {
+                Log.d(TAG, "quantiteFromClient callback if plat ");
                 nPlat= new Plat(nNom, nQuantite);
                 mPlats.addPlat(nPlat);
 
             } else { // update quantité
+                Log.d(TAG, "quantiteFromClient callback esle plat ");
                 nPlat.setQuantite(nQuantite);
             }
 
             // maj de l'ihm
-            mListAdapter.notifyDataSetChanged();
+            //mListAdapter.notifyDataSetChanged();
 
-            Log.d(TAG, "quantiteFromClient for item " + i + " : " + nNom + " is " + nQuantite);
-        } // for
+            Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
+        }
+
+        // maj de l'ihm
+        mListAdapter.notifyDataSetChanged();
+
     } // void
 
 
 //    @Override
     public void addFromListAdapter(Plat pPlat) {
-
-        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
 
         Log.d(TAG, "addFromListePlat callback");
     } // void
@@ -139,18 +131,8 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
 //    @Override
     public void removeFromListAdapter(Plat pPlat) {
 
-        mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
-
         Log.d(TAG, "removeFromListePlat callback");
     }
-
-
-    // event associé au bouton btnLogout
-    public void onLogout(View v) {
-
-        mClient.logout();
-            finish();
-    } // void
 
 
     @Override
@@ -174,6 +156,7 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
+        mClient.logout();
         super.onPause();
     }
 

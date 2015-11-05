@@ -18,95 +18,70 @@ import crepes.fr.androcrepes.commons.Tools;
 //fixme voir si singleton opportun et possible
 public class Client {
 
-    private static final String TAG = Client.class.getSimpleName();
-
     public interface ClientCallBack {
         void singleFromClient(String pString);
         void listeFromClient(List<String> pListData);
         void quantiteFromClient(List<String> pListData);
         void connectedFromClient();
-    } // interface
+        } // interface
 
-    private static ClientCallBack mCallBack;
+    private ClientCallBack mCallBack;
 
-    private static String mIp = "";
-    private static int mPort = 0;
+    private String mIp = "";
+    private int mPort = 0;
 
-    private static List<String> mDatas = new ArrayList<String>();
+    private List<String> mDatas = new ArrayList<String>();
 
-    private static Socket mSocket;
-    private static Connection mConnection;
-    private static ReadMessages mReadMessages;
+    private Socket mSocket;
+    private Connection mConnection;
+    private ReadMessages mReadMessages;
 
-    private static PrintWriter mWriter = new PrintWriter(System.out, true);
-    private static BufferedReader mReader = new BufferedReader(new InputStreamReader(System.in));
-
-    // instance singleton
-    protected static Client mInstance;
-
-    private Client() {
-    } // constructeur privé
+    private PrintWriter mWriter = new PrintWriter(System.out, true);
+    private BufferedReader mReader = new BufferedReader(new InputStreamReader(System.in));
 
 
-    public static Client getInstance(final ClientCallBack pCallback, final String pIp, final int pPort) {
+    public Client(final ClientCallBack pCallback, final String pIp, final int pPort) {
+        this.mCallBack = pCallback;
+        this.mIp = pIp;
+        this.mPort = pPort;
+        mDatas.clear();
+        } // constructeur
 
-        if (null == mInstance) {
-            mInstance = new Client();
-
-            mInstance.mCallBack = pCallback;
-            mInstance.mIp = pIp;
-            mInstance.mPort = pPort;
-            mDatas.clear();
-
-
-            mConnection = new Connection();
-            mConnection.execute();
-        }
-        return mInstance;
-    } // Plats
-
-//    public Client(final ClientCallBack pCallback, final String pIp, final int pPort) {
-//        this.mCallBack = pCallback;
-//        this.mIp = pIp;
-//        this.mPort = pPort;
-//        mDatas.clear();
-//    } // constructeur
-
-//    public void connect() {
-//        mConnection = new Connection();
-//        mConnection.execute();
-//    } // void
+    public void connect() {
+        mConnection = new Connection();
+        mConnection.execute();
+        } // void
 
 
     public Boolean send(final EnumSendWord pEnumSendWord, final String pMessage) {
         return write(pEnumSendWord, pMessage);
-    } // void
+        } // void
 
     public void test() {
-//        write(EnumSendWord.COMMANDE, "10 crepe au jambon");
-//        write(EnumSendWord.LISTE, "");
-//        write(EnumSendWord.QUANTITE, "");
-//        write(EnumSendWord.COMMANDE, "crepe au jambon");
-//        write(EnumSendWord.COMMANDE, "crepe au jambon");
-//        write(EnumSendWord.COMMANDE, "crepe au jambon");
-//        write(EnumSendWord.COMMANDE, "crepe au jambon");
-//        write(EnumSendWord.COMMANDE, "crepe au jambon");
-//        write(EnumSendWord.LISTE, "");
-//        write(EnumSendWord.QUANTITE, "");
-//        write(EnumSendWord.COMMANDE, "crepe au jambon");
-//        write(EnumSendWord.COMMANDE, "crepe au fromage");
-//        write(EnumSendWord.AJOUT, "17 crepe au jambon");
-//        write(EnumSendWord.AJOUT, "2 crepe au fromage");
-//        write(EnumSendWord.AJOUT, "7 crepe au sucre");
-//        write(EnumSendWord.LISTE, "");
-//        write(EnumSendWord.QUANTITE, "");
-//        write(EnumSendWord.COMMANDE, "crepe au jambon");
-//        write(EnumSendWord.COMMANDE, "crepe au fromage");
-//        write(EnumSendWord.COMMANDE, "crepe au fromage");
-//        write(EnumSendWord.COMMANDE, "crepe au fromage");
-//        write(EnumSendWord.LISTE, "");
-//        write(EnumSendWord.QUANTITE, "");
-    } // void
+//write(EnumSendWord.COMMANDE, "10 crepe au jambon");
+//write(EnumSendWord.LISTE, "");
+//write(EnumSendWord.QUANTITE, "");
+//write(EnumSendWord.COMMANDE, "crepe au jambon");
+//write(EnumSendWord.COMMANDE, "crepe au jambon");
+//write(EnumSendWord.COMMANDE, "crepe au jambon");
+//write(EnumSendWord.COMMANDE, "crepe au jambon");
+//write(EnumSendWord.COMMANDE, "crepe au jambon");
+//write(EnumSendWord.LISTE, "");
+//write(EnumSendWord.QUANTITE, "");
+//write(EnumSendWord.COMMANDE, "crepe au jambon");
+//write(EnumSendWord.COMMANDE, "crepe au fromage");
+//write(EnumSendWord.AJOUT, "17 crepe au jambon");
+//write(EnumSendWord.AJOUT, "2 crepe au fromage");
+//write(EnumSendWord.AJOUT, "7 crepe au sucre");
+//write(EnumSendWord.LISTE, "");
+//write(EnumSendWord.QUANTITE, "");
+//write(EnumSendWord.COMMANDE, "crepe au jambon");
+//write(EnumSendWord.COMMANDE, "crepe au fromage");
+//write(EnumSendWord.COMMANDE, "crepe au fromage");
+//write(EnumSendWord.COMMANDE, "crepe au fromage");
+//write(EnumSendWord.LISTE, "");
+//write(EnumSendWord.QUANTITE, "");
+        } // void
 
     private Boolean write(final EnumSendWord pEnumSendWord, final String pMessage) {
 
@@ -119,42 +94,40 @@ public class Client {
                 String nMessage = pEnumSendWord.getValue();
                 if (!pMessage.isEmpty()) {
                     nMessage = nMessage + " " + pMessage;
-                }
+                    }
                 mWriter.println(nMessage);
                 nReturn = true;
+                } // if
             } // if
-        } // if
         return nReturn;
-    } // Boolean
+        } // Boolean
 
 
     public void logout() {
 
         if(write(EnumSendWord.LOGOUT, "")) {
             mReadMessages.cancel(true);
-        }
+            }
 
         if (null != mSocket) {
             mWriter.close();
             try {
                 mReader.close();
                 mSocket.close();
-            } catch (IOException e) {
+                } catch (IOException e) {
                 e.printStackTrace();
-            }
-        } // if
-    } // void
+                }
+            } // if
+        } // void
 
-    private static class Connection extends AsyncTask<Void, Void, Boolean> {
-
-        private final String TAG = Connection.class.getSimpleName();
+    private class Connection extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected void onPreExecute() {
             // ceinture et bretelle: ce cas peut-il arriver ??
             //logout();
             Log.i("Client Connection", "Connection.onPreExecute");
-        }
+            }
 
         @Override
         protected Boolean doInBackground(Void... pVoid) {
@@ -171,13 +144,13 @@ public class Client {
 
                 nReturn= true;
 
-            } catch (IOException e) {
+                } catch (IOException e) {
                 Log.i("Client Connection", "doInBackground IOException");
                 e.printStackTrace();
-            }
+                }
 
             return nReturn;
-        } // boolean
+            } // boolean
 
         @Override
         protected void onPostExecute(Boolean nBoolean) {
@@ -190,14 +163,14 @@ public class Client {
                 mReadMessages.execute();
 
                 mCallBack.connectedFromClient();
-            } else {
+                } else {
                 //fixme: prévenir l'utilisateur
-            }
-        } // void
-    } // class
+                }
+            } // void
+        } // class
 
 
-    private static class ReadMessages extends AsyncTask<Void, String, Void> {
+    private class ReadMessages extends AsyncTask<Void, String, Void> {
 
         @Override
         protected Void doInBackground(Void... v) {
@@ -207,44 +180,40 @@ public class Client {
 
                     if (!nData.isEmpty()) {
                         publishProgress(nData.trim());
-                    }
+                        }
 
-                } catch (IOException e) {
+                    } catch (IOException e) {
                     Log.i("Client ReadMessages", "doInBackground IOException");
                     e.printStackTrace();
                     break;
+                    }
                 }
-            }
 
             // remplace ReadMessages.onPostExecute
-//            mCallBack.doPostExecute();
+            //mCallBack.doPostExecute();
 
             return null;
-        }
+            }
 
         @Override
         protected void onProgressUpdate(String... messages) {
 
-//            Log.i("Client onProgressUpdate", "mDatas.size " + mDatas.size());
-
             if (0 == mDatas.size()) {
-//                Log.i("Client onProgressUpdate", "mDatas empty ");
+
                 if ((messages[0].indexOf(":")) >= 0) { // c'est une action GET (LISTE ou QUANTITE)
                     //fixme: trouver et checker la taille max
                     mDatas.add("DEBUTLISTE");
 
                 } else { // c'est une action PUT, POST, DELETE
-//                    Log.i("Client onProgressUpdate", "mDatas indexof ");
                     //fixme: trouver et checker la taille max
-//                    mDatas.add(messages[0]);
+
                     mCallBack.singleFromClient(messages[0]);
-//                    mDatas.clear();
+                    mDatas.clear();
                 }
 
             } else { // c'est une action GET (LISTE ou QUANTITE)
 
                 if (EnumReceiveWord.FINLISTE.getValue().equals(messages[0])) {
-//                    Log.i("Client onProgressUpdate", "mDatas FINLISTE " + mDatas.get(mDatas.size()-1));
                     // si le dernier est un integer, c'est une quantité
                     if (Tools.isInteger(mDatas.get(mDatas.size() - 1))) {
                         mDatas.set(0, EnumSendWord.QUANTITE.getValue());
@@ -258,13 +227,10 @@ public class Client {
                     mDatas.clear();
 
                 } else {
-//                    Log.i("Client onProgressUpdate", "mDatas !FINLISTE ");
                     //fixme: trouver et checker la taille max
                     mDatas.add(messages[0]);
+                    } // else
                 } // else
-            } // else
-        }
-
-    } // class
-
+            }
+        } // class
 } // class

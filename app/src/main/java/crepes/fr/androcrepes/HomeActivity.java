@@ -10,7 +10,6 @@ import android.view.View;
 
 import java.util.List;
 
-import crepes.fr.androcrepes.commons.EnumSendWord;
 import crepes.fr.androcrepes.network.Client;
 
 public class HomeActivity extends AppCompatActivity implements Client.ClientCallBack {
@@ -18,10 +17,6 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     private static final String TAG = HomeActivity.class.getSimpleName();
 
     //fixme: deux variables suivantes à changer via le menu settings
-//    public static final String SERVER_IP = "10.0.3.2";
-    public static final String SERVER_IP = "10.0.2.2";
-    public static final int SERVER_PORT = 7777;
-    private Client mClient;
 
     public final static String EXTRA_ACTION = "EXTRA_ACTION";
 
@@ -31,9 +26,6 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        //fixme: définir plan B si serveur hors d'atteinte
-        mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
 
     } // void
 
@@ -59,6 +51,12 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         startSelectedActivity(intent);
     }
 
+    // event associé au bouton btnLogout
+    public void goLogout(View v) {
+        Log.d(TAG, "goLogout");
+        finish();
+    } // void
+
     // démarre l'activity SalleActivity
     //fixme mettre une enum à la plase du paramètre String
     private void startMainActivity(final String pAction) {
@@ -75,22 +73,24 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
     @Override
     public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
-        mClient.send(EnumSendWord.QUANTITE, "");
+        //mClient.send(EnumSendWord.QUANTITE, "");
+        Log.d(TAG, "connectedFromClient");
     }
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
-
+        Log.d(TAG, "singleFromClient");
     } // void
 
     @Override
     public void listeFromClient(List<String> pListData) {
 //fixme: pas utilisé pour le moment pas toucher
+        Log.d(TAG, "listeFromClient");
     }
 
     @Override
     public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
-
+        Log.d(TAG, "quantiteFromClient");
     } // void
 
     @Override

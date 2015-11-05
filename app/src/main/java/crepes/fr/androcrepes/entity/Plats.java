@@ -95,7 +95,8 @@ public class Plats extends ArrayList<Plat> {
         //fixme: a tester containsPlat pas sûr que ça marche
         // on ne veux pas de doubles
         if (!containsPlat(pPlat)) {
-            mInstance.add(pPlat.getId(), pPlat);
+            //mInstance.add(pPlat.getId(), pPlat);
+            mInstance.add(pPlat);
         } // if
     } // void
 

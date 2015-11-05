@@ -105,7 +105,7 @@
                 android:text="Logout"
                 android:layout_gravity="right"
                 android:id="@+id/btnLogout"
-                android:onClick=""
+                android:onClick="goLogout"
                 android:background="#A02828"
                 android:textColor="#F0FFFF" />
 
