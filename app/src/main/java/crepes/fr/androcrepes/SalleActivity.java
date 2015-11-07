@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import crepes.fr.androcrepes.commons.EnumReceiveWord;
+import crepes.fr.androcrepes.commons.EnumSendWord;
 import crepes.fr.androcrepes.commons.Tools;
 import crepes.fr.androcrepes.entity.Plat;
 import crepes.fr.androcrepes.entity.Plats;
@@ -28,25 +30,26 @@ public class SalleActivity extends AppCompatActivity implements Client.ClientCal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salle);
+        //Log.d(TAG, "onCreate");
 
-        mListViewSalle = (ListView) findViewById(R.id.listSalle);
         mPlats = Plats.getInstance();
         mListAdapter = new ListAdapter(this, mPlats);
+
+        mListViewSalle = (ListView) findViewById(R.id.listViewSalle);
         mListViewSalle.setAdapter(mListAdapter);
 
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
-
+        mClient.connect();
+        mClient.send(EnumSendWord.QUANTITE, "");
     } // void
 
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
         Log.d(TAG, "connectedFromClient callback");
-        //mClient.send(EnumSendWord.QUANTITE, "");
+        mClient.send(EnumSendWord.QUANTITE, "");
     }
 
     @Override
@@ -161,7 +164,7 @@ public class SalleActivity extends AppCompatActivity implements Client.ClientCal
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
-        mClient.disconnect();
+//        mClient.disconnect();
         super.onPause();
     }
 
@@ -196,7 +199,8 @@ public class SalleActivity extends AppCompatActivity implements Client.ClientCal
         return super.onOptionsItemSelected(item);
     }
 
-//    public void goHome(View view) {
-//        finish();
-//    }
+    // event associé à imageButtonSalleGoHome
+    public void goHome(View pView) {
+        finish();
+    }
 } // class

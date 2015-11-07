@@ -19,9 +19,10 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/imageButtonCuisineGoHome"
             android:src="@drawable/home"
             android:background="@drawable/roundedbutton"
-            android:onClick="goDeb"/>
+            android:onClick="goHome"/>
 
         <FrameLayout
         android:layout_width="5dp"

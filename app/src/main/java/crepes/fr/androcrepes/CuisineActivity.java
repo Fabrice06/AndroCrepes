@@ -80,8 +80,8 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
         return super.onOptionsItemSelected(item);
     }
 
-    public void goDeb(View view) {
-        Log.d(TAG, "goDeb");
+    // event associé à imageButtonCuisineGoHome
+    public void goHome(View pView) {
         finish();
     }
 

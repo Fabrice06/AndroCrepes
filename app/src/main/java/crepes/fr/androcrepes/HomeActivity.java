@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public static final String SERVER_IP = "10.0.2.2";
     public static final int SERVER_PORT = 7777;
 
-    private static boolean mConnected = false;
+//    private static boolean mConnected = false;
 
     private Button mBtnHomeSalle = null;
     private Button mBtnHomeCuisine = null;
@@ -74,19 +74,18 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     }
 
 
-    // event associé au bouton btnLogClient
+    // event associé au bouton btnHomeLog
     public void goLog(View v) {
         //Log.d(TAG, "goLog");
 
-        if (mConnected) {
+//        if (mConnected) {
+        if (mClient.isRunning()) {
             mClient.disconnect();
 
         } else {
             mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
-            if (! mConnected) {
-                mClient.connect();
-            }
-        }
+            mClient.connect();
+        } // else
     } // void
 
 
@@ -111,13 +110,6 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         updateAfterConnection(false);
     } // void
 
-    private void updateAfterConnection(final boolean pIsConnected) {
-        mConnected = pIsConnected;
-        mBtnHomeLog.setText(pIsConnected ? LOGOUT : LOGON);
-        mBtnHomeSalle.setEnabled(pIsConnected);
-        mBtnHomeCuisine.setEnabled(pIsConnected);
-    } // void
-
     @Override
     public void errorFromClient(String pError) { // callback pour traitement des erreurs
         Log.d(TAG, "notConnectedFromClient");
@@ -126,6 +118,15 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         // ?? pas sûr ??
         //updateAfterConnection(false);
     } // void
+
+    private void updateAfterConnection(final boolean pIsConnected) {
+//        mConnected = pIsConnected;
+        mBtnHomeLog.setText(pIsConnected ? LOGOUT : LOGON);
+        mBtnHomeSalle.setEnabled(pIsConnected);
+        mBtnHomeCuisine.setEnabled(pIsConnected);
+    } // void
+
+
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE

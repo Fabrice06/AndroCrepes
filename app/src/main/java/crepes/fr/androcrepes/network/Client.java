@@ -15,19 +15,20 @@ import crepes.fr.androcrepes.commons.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.EnumSendWord;
 import crepes.fr.androcrepes.commons.Tools;
 
-//fixme voir si singleton opportun et possible
+
 public class Client {
 
     private static final String TAG = Client.class.getSimpleName();
 
     public interface ClientCallBack {
-        void singleFromClient(String pString);
-        void listeFromClient(List<String> pListData);
-        void quantiteFromClient(List<String> pListData);
-        void connectedFromClient();
-        void errorFromClient(String pError);
-        void disconnectedFromClient();
-        } // interface
+        void singleFromClient(String pString); // envoi un callback quand une information est reçue du serveur
+        void listeFromClient(List<String> pListData); // envoi un callback quand des données sont reçues du serveur suite à une requête LISTE
+        void quantiteFromClient(List<String> pListData); // envoi un callback quand des données sont reçues du serveur suite à une requête QUANTITE
+
+        void connectedFromClient(); // envoi un callback quand le client est connecté
+        void errorFromClient(String pError); // envoi un callback pour transmettre un message en cas d'erreur
+        void disconnectedFromClient(); // envoi un callback quand le client est vraiment déconnecté
+    } // interface
 
     private static ClientCallBack mCallBack;
 
@@ -56,7 +57,7 @@ public class Client {
         if (null == mInstance) {
             mInstance = new Client();
 
-            mInstance.mCallBack = pCallback;
+//            mInstance.mCallBack = pCallback;
             mInstance.mIp = pIp;
             mInstance.mPort = pPort;
             mDatas.clear();
@@ -64,16 +65,11 @@ public class Client {
 //            mConnection = new Connection();
 //            mConnection.execute();
         }
-
+        mInstance.mCallBack = pCallback;
+        
         return mInstance;
     } // Plats
 
-//    public Client(final ClientCallBack pCallback, final String pIp, final int pPort) {
-//        this.mCallBack = pCallback;
-//        this.mIp = pIp;
-//        this.mPort = pPort;
-//        mDatas.clear();
-//        } // constructeur
 
     public void connect() {
         if (!isRunning()) {
@@ -85,7 +81,7 @@ public class Client {
 
     public Boolean send(final EnumSendWord pEnumSendWord, final String pMessage) {
         return write(pEnumSendWord, pMessage);
-        } // void
+    } // void
 
     public void test() {
 //write(EnumSendWord.COMMANDE, "10 crepe au jambon");
@@ -115,10 +111,11 @@ public class Client {
 
 
     public Boolean isRunning() {
-        boolean nReturn = false;
+        boolean nReturn = false; // valeur de retour par défaut
+
         if (null != mReadMessages) {
             nReturn = (mReadMessages.getStatus() == AsyncTask.Status.RUNNING);
-        }
+        } // if
         return nReturn;
     } // boolean
 
@@ -169,18 +166,17 @@ public class Client {
         protected void onPreExecute() {
             // ceinture et bretelle: ce cas peut-il arriver ??
             //logout();
-            Log.i("Client Connection", "Connection.onPreExecute");
-            }
+            Log.d(TAG, "Connection.onPreExecute");
+        }
 
         @Override
         protected Boolean doInBackground(Void... pVoid) {
 
-            // valeur de retour par défaut
-            boolean nReturn = false;
+            boolean nReturn = false; // valeur de retour par défaut
 
             try {
                 mSocket = new Socket(mIp, mPort);
-                Log.i("Client Connection", "doInBackground connected");
+                Log.d(TAG, "doInBackground connected");
 
                 mWriter = new PrintWriter(mSocket.getOutputStream(), true);
                 mReader = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
@@ -188,7 +184,7 @@ public class Client {
                 nReturn= true;
 
                 } catch (IOException e) {
-                    Log.i("Client Connection", "doInBackground IOException");
+                    Log.d(TAG, "doInBackground IOException");
                     e.printStackTrace();
                 }
 
@@ -196,12 +192,12 @@ public class Client {
             } // boolean
 
         @Override
-        protected void onPostExecute(Boolean nBoolean) {
+        protected void onPostExecute(Boolean pBoolean) {
 
-            String nLog= nBoolean ? "Connected to server\n" : "Could not connect to server\n";
-            Log.i("Client Connection", "onPostExecute " + nLog);
+            String nLog= pBoolean ? "Connected to server\n" : "Could not connect to server\n";
+            Log.d(TAG, "onPostExecute " + nLog);
 
-            if (nBoolean) {
+            if (pBoolean) {
                 mReadMessages = new ReadMessages();
                 mReadMessages.execute();
 
