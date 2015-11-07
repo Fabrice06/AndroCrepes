@@ -17,6 +17,12 @@ import java.util.List;
 
 import crepes.fr.androcrepes.network.Client;
 
+/**
+ * <b>Classe dédiée à la description de l'ihm Home.</b>
+ * <p>
+ *     Cette ihm constitue l'accueil de l'application.
+ * </p>
+ */
 public class HomeActivity extends AppCompatActivity implements Client.ClientCallBack {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
@@ -66,30 +72,52 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
     } // void
 
-
-    // event associé au bouton btnHomeCuisine
-    public void goCuisine(View v) {
+    /**
+     * Evènement associé au bouton btnHomeCuisine pour naviguer vers l'ihm Cuisine
+     *
+     * @param pView
+     *      Objet de type View
+     *
+     * @see startSelectedActivity
+     */
+    public void goCuisine(View pView) {
         //Log.d(TAG, "goCuisine");
         startSelectedActivity(CuisineActivity.class);
     }
 
-
-    // event associé au bouton btnHomeSalle
-    public void goSalle(View v) {
+    /**
+     * Evènement associé au bouton btnHomeSalle pour naviguer vers l'ihm Salle
+     *
+     * @param pView
+     *      Objet de type View
+     *
+     * @see startSelectedActivity
+     */
+    public void goSalle(View pView) {
         //Log.d(TAG, "goSalle");
         startSelectedActivity(SalleActivity.class);
     }
 
-
-    // event associé au bouton btnHomeAide
-    public void goAide(View view) {
+    /**
+     * Evènement associé au bouton btnHomeAide pour naviguer vers l'ihm Aide
+     *
+     * @param pView
+     *      Objet de type View
+     *
+     * @see startSelectedActivity
+     */
+    public void goAide(View pView) {
         //Log.d(TAG, "goAide");
         startSelectedActivity(AideActivity.class);
     }
 
-
-    // event associé au bouton btnHomeLog
-    public void goLog(View v) {
+    /**
+     * Evènement associé au bouton btnHomeLog pour gérer la connexion au serveur distant
+     *
+     * @param pView
+     *      Objet de type View
+     */
+    public void goLog(View pView) {
         //Log.d(TAG, "goLog");
 
         mProgressDialog.show();
@@ -107,7 +135,12 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         } // else
     } // void
 
-
+    /**
+     * Réalise le lancement de l'activité
+     *
+     * @param pClass
+     *      Activité à lancer de type Class.
+     */
     private void startSelectedActivity(final Class pClass) {
         //Log.d(TAG, "startSelectedActivity");
         Intent nIntent = new Intent(this, pClass);
@@ -118,24 +151,46 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     //******************************************************************************
     // callback Client: connexion
 
+    /**
+     * Implémentation de ClientCallback: la connection est établie.
+     *
+     * @see Client
+     * @see updateAfterConnection
+     */
     @Override
-    public void connectedFromClient() { // callback d'une connexion client si réussite
+    public void connectedFromClient() {
         //Log.d(TAG, "connectedFromClient");
 
         mProgressDialog.hide();
         updateAfterConnection(true);
     } // void
 
+    /**
+     * Implémentation de ClientCallback: la déconnection est effective.
+     *
+     * @see Client
+     * @see updateAfterConnection
+     */
     @Override
-    public void disconnectedFromClient() { // callback d'une déconnexion client
+    public void disconnectedFromClient() {
         //Log.d(TAG, "disconnectedFromClient");
 
         mProgressDialog.hide();
         updateAfterConnection(false);
     } // void
 
+    /**
+     * Implémentation de ClientCallback: une erreur est transmise.
+     *
+     * @param pError
+     *      Message d'erreur à afficher de type String
+     *
+     * @see Client
+     * @see updateAfterConnection
+     * @see toastMessage
+     */
     @Override
-    public void errorFromClient(String pError) { // callback pour traitement des erreurs
+    public void errorFromClient(String pError) {
         //Log.d(TAG, "errorFromClient");
 
         mProgressDialog.hide();
@@ -150,6 +205,12 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     //******************************************************************************
     // callback Client: data
 
+    /**
+     * Implémentation de ClientCallback: réponse reçue du serveur suite à une requête AJOUT ou COMMANDE.
+     *
+     * @param pString
+     *      Réponse de type String
+     */
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
         //Log.d(TAG, "singleFromClient");
@@ -157,6 +218,12 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         mProgressDialog.hide();
     } // void
 
+    /**
+     * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête LISTE.
+     *
+     * @param pListData
+     *      Données sous forme d'une collection de String.
+     */
     @Override
     public void listeFromClient(List<String> pListData) {
         //Log.d(TAG, "listeFromClient");
@@ -164,8 +231,14 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         mProgressDialog.hide();
     }
 
+    /**
+     * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête QUANTITE.
+     *
+     * @param pListData
+     *      Données sous forme d'une collection de String.
+     */
     @Override
-    public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
+    public void quantiteFromClient(List<String> pListData) {
         //Log.d(TAG, "quantiteFromClient");
         //fixme: quantiteFromClient pas utilisé ici pour le moment
         mProgressDialog.hide();
@@ -174,11 +247,22 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     // callback Client: data
     //******************************************************************************
 
-
+    /**
+     * Réalise l'affichage du message passé en paramètre.
+     *
+     * @param pMessage
+     *      Message de type String.
+     */
     public void toastMessage(final String pMessage) {
         Toast.makeText(getApplicationContext(), pMessage, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Réalise la mise à jour de l'affichage
+     *
+     * @param pIsConnected
+     *      Vrai: la connexion est établie et active.
+     */
     private void updateAfterConnection(final boolean pIsConnected) {
         mBtnHomeLog.setText(pIsConnected ? LOGOUT : LOGON);
         mBtnHomeSalle.setEnabled(pIsConnected);
@@ -202,44 +286,5 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    //******************************************************************************
-    // cycle de vie activity
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "onRestart");
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d(TAG, "onPause");
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.d(TAG, "onStop");
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d(TAG, "onDestroy");
-        super.onDestroy();
     }
 } // class

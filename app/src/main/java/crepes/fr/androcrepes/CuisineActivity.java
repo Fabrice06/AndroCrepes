@@ -23,6 +23,9 @@ import crepes.fr.androcrepes.entity.Plat;
 import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
 
+/**
+ * <b>Classe dédiée à la description de l'ihm Cuisine.</b>
+ */
 public class CuisineActivity
         extends AppCompatActivity
         implements Client.ClientCallBack, ListAdapter.ListAdapterCallBack {
@@ -78,6 +81,11 @@ public class CuisineActivity
     //******************************************************************************
     // callback Client: connexion
 
+    /**
+     * Implémentation de ClientCallback: la connection est établie.
+     *
+     * @see Client
+     */
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
         //Log.d(TAG, "connectedFromClient callback");
@@ -85,6 +93,11 @@ public class CuisineActivity
         mClient.send(EnumSendWord.QUANTITE, "");
     }
 
+    /**
+     * Implémentation de ClientCallback: la déconnection est effective.
+     *
+     * @see Client
+     */
     @Override
     public void disconnectedFromClient() { // callback d'une déconnexion client
         //Log.d(TAG, "disconnectedFromClient");
@@ -92,6 +105,15 @@ public class CuisineActivity
         mProgressDialog.hide();
     }
 
+    /**
+     * Implémentation de ClientCallback: une erreur est transmise.
+     *
+     * @param pError
+     *      Message d'erreur à afficher de type String
+     *
+     * @see Client
+     * @see toastMessage
+     */
     @Override
     public void errorFromClient(String pError) { // callback d'une connexion client si réussite
         //Log.d(TAG, "errorFromClient");
@@ -106,8 +128,14 @@ public class CuisineActivity
     //******************************************************************************
     // callback Client: data
 
+    /**
+     * Implémentation de ClientCallback: réponse reçue du serveur suite à une requête AJOUT ou COMMANDE.
+     *
+     * @param pString
+     *      Réponse de type String
+     */
     @Override
-    public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
+    public void singleFromClient(final String pString) {
         Log.d(TAG, "singleFromClient callback: " + pString);
 
         // recherche du dernier mot/chiffre pour identifier la réponse
@@ -139,16 +167,27 @@ public class CuisineActivity
         } // else
     } // void
 
-
+    /**
+     * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête LISTE.
+     *
+     * @param pListData
+     *      Données sous forme d'une collection de String.
+     */
     @Override
     public void listeFromClient(List<String> pListData) {
         //Log.d(TAG, "quantiteFromClient callback");
-
-        //fixme: pas utilisé pour le moment pas toucher
+        //fixme: listeFromClient pas utilisé ici pour le moment
+        mProgressDialog.hide();
     } // void
 
+    /**
+     * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête QUANTITE.
+     *
+     * @param pListData
+     *      Données sous forme d'une collection de String.
+     */
     @Override
-    public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
+    public void quantiteFromClient(List<String> pListData) {
         //Log.d(TAG, "quantiteFromClient callback");
 
         //fixme: le retrait d'un plat de la carte n'est pas pris en compte
@@ -166,7 +205,7 @@ public class CuisineActivity
                 nPlat.setQuantite(nQuantite);
             } // else
 
-            Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
+            //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
         } // for
 
         // maj de l'ihm
@@ -182,6 +221,18 @@ public class CuisineActivity
     //******************************************************************************
     // callback listAdapter
 
+    /**
+     * Implémentation de ListAdapterCallBack: clic sur bouton gauche.
+     * <p>
+     *     Une requête COMMANDE est envoyée au serveur distant.
+     * </p>
+     *
+     * @param pPlat
+     *      Objet de type Plat
+     *
+     * @see Plat
+     * @see EnumSendWord
+     */
     @Override
     public void clicLeftFromListAdapter(Plat pPlat) {
         //Log.d(TAG, "clicLeftFromListAdapter callback");
@@ -189,6 +240,18 @@ public class CuisineActivity
         mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
     } // void
 
+    /**
+     * Implémentation de ListAdapterCallBack: clic sur bouton droit.
+     * <p>
+     *     Une requête AJOUT est envoyée au serveur distant.
+     * </p>
+     *
+     * @param pPlat
+     *      Objet de type Plat
+     *
+     * @see Plat
+     * @see EnumSendWord
+     */
     @Override
     public void clicRightFromListAdapter(Plat pPlat) {
         //Log.d(TAG, "clicRightFromListAdapter callback");
@@ -199,18 +262,33 @@ public class CuisineActivity
     // callback listAdapter
     //******************************************************************************
 
-
+    /**
+     * Réalise l'affichage du message passé en paramètre.
+     *
+     * @param pMessage
+     *      Message de type String.
+     */
     public void toastMessage(final String pMessage) {
         Toast.makeText(getApplicationContext(), pMessage, Toast.LENGTH_SHORT).show();
     }
 
-    // event associé à imageButtonCuisineGoHome
+    /**
+     * Evènement associé au bouton imageButtonCuisineGoHome pour naviguer vers l'ihm Home
+     *
+     * @param pView
+     *      Objet de type View
+     */
     public void goHome(View pView) {
         finish();
     } // void
 
-    // event associé au bouton buttonCuisineAddNewPlat
-    public void addNewPlat(View view) {
+    /**
+     * Evènement associé au bouton buttonCuisineAddNewPlat pour ajouter un nouveau plat
+     *
+     * @param pView
+     *      Objet de type View
+     */
+    public void addNewPlat(View pView) {
 
         String nQuantite = mEditTextQte.getText().toString();
         String nName = mEditTextName.getText().toString().trim();
@@ -218,11 +296,8 @@ public class CuisineActivity
         if (!Tools.isInteger(nQuantite)) { // check si digit
             toastMessage("Merci de préciser une quantité correcte !");
 
-        } else if (0 == nName.length()) { // check si nom valide
+        } else if (0 == nName.length()) { // check si nom plat valide
             toastMessage("Merci de préciser un nom de plat !");
-
-//        } else if (xxxx) { // check si déja dans liste
-//
 
         } else {
             mProgressDialog.show();
@@ -253,45 +328,5 @@ public class CuisineActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    //******************************************************************************
-    // cycle de vie activity
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "onRestart");
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d(TAG, "onPause");
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.d(TAG, "onStop");
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d(TAG, "onDestroy");
-        super.onDestroy();
     }
 } // class

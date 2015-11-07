@@ -21,6 +21,10 @@ import crepes.fr.androcrepes.entity.Plat;
 import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
 
+/**
+ * <b>Classe dédiée à la description de l'ihm Salle.</b>
+ */
+
 public class SalleActivity
         extends AppCompatActivity
         implements Client.ClientCallBack, ListAdapter.ListAdapterCallBack {
@@ -71,22 +75,41 @@ public class SalleActivity
     //******************************************************************************
     // callback client: connexion
 
+    /**
+     * Implémentation de ClientCallback: la connection est établie.
+     *
+     * @see Client
+     */
     @Override
-    public void connectedFromClient() { // callback d'une connexion client si réussite
+    public void connectedFromClient() {
         //Log.d(TAG, "connectedFromClient callback");
         mProgressDialog.show();
         mClient.send(EnumSendWord.QUANTITE, "");
     }
 
+    /**
+     * Implémentation de ClientCallback: la déconnection est effective.
+     *
+     * @see Client
+     */
     @Override
-    public void disconnectedFromClient() { // callback d'une déconnexion
+    public void disconnectedFromClient() {
         //Log.d(TAG, "disconnectedFromClient");
         //fixme: prévenir l'utilisateur ??
         mProgressDialog.hide();
     }
 
+    /**
+     * Implémentation de ClientCallback: une erreur est transmise.
+     *
+     * @param pError
+     *      Message d'erreur à afficher de type String
+     *
+     * @see Client
+     * @see toastMessage
+     */
     @Override
-    public void errorFromClient(String pError) { // callback d'une connexion client si réussite
+    public void errorFromClient(String pError) {
         //Log.d(TAG, "errorFromClient");
         mProgressDialog.hide();
         toastMessage(pError);
@@ -99,6 +122,12 @@ public class SalleActivity
     //******************************************************************************
     // callback client: data
 
+    /**
+     * Implémentation de ClientCallback: réponse reçue du serveur suite à une requête AJOUT ou COMMANDE.
+     *
+     * @param pString
+     *      Réponse de type String
+     */
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
         //Log.d(TAG, "singleFromClient callback: " + pString);
@@ -123,18 +152,25 @@ public class SalleActivity
     } // void
 
 
+    /**
+     * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête LISTE.
+     *
+     * @param pListData
+     *      Données sous forme d'une collection de String.
+     */
     @Override
     public void listeFromClient(List<String> pListData) {
         //Log.d(TAG, "listeFromClient callback");
-
         //fixme: listeFromClient pas utilisé ici pour le moment
-//        for (int nLen = pListData.size(), i = 1; i < nLen; i++) {
-//            String nPlat = pListData.get(i);
-//
-//            Log.d(TAG, "listeFromClient for item " + i + " : " + nPlat);
-//        } // for
+        mProgressDialog.hide();
     } // void
 
+    /**
+     * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête QUANTITE.
+     *
+     * @param pListData
+     *      Données sous forme d'une collection de String.
+     */
     @Override
     public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
         //Log.d(TAG, "quantiteFromClient callback");
@@ -154,7 +190,7 @@ public class SalleActivity
                 nPlat.setQuantite(nQuantite);
             } // else
 
-            Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
+            //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
         } // for
 
         // maj de l'ihm
@@ -170,6 +206,18 @@ public class SalleActivity
     //******************************************************************************
     // callback listAdapter
 
+    /**
+     * Implémentation de ListAdapterCallBack: clic sur bouton gauche.
+     * <p>
+     *     Une requête AJOUT est envoyée au serveur distant.
+     * </p>
+     *
+     * @param pPlat
+     *      Objet de type Plat
+     *
+     * @see Plat
+     * @see EnumSendWord
+     */
     @Override
     public void clicLeftFromListAdapter(Plat pPlat) {
         //Log.d(TAG, "clicLeftFromListAdapter callback");
@@ -177,6 +225,18 @@ public class SalleActivity
         mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
     }
 
+    /**
+     * Implémentation de ListAdapterCallBack: clic sur bouton droit.
+     * <p>
+     *     Une requête COMMANDE est envoyée au serveur distant.
+     * </p>
+     *
+     * @param pPlat
+     *      Objet de type Plat
+     *
+     * @see Plat
+     * @see EnumSendWord
+     */
     @Override
     public void clicRightFromListAdapter(Plat pPlat) {
         //Log.d(TAG, "clicRightFromListAdapter callback");
@@ -187,12 +247,22 @@ public class SalleActivity
     // callback listAdapter
     //******************************************************************************
 
-
+    /**
+     * Réalise l'affichage du message passé en paramètre.
+     *
+     * @param pMessage
+     *      Message de type String.
+     */
     public void toastMessage(final String pMessage) {
         Toast.makeText(getApplicationContext(), pMessage, Toast.LENGTH_SHORT).show();
     }
 
-    // event associé à imageButtonSalleGoHome
+    /**
+     * Evènement associé au bouton imageButtonCuisineGoHome pour naviguer vers l'ihm Home
+     *
+     * @param pView
+     *      Objet de type View
+     */
     public void goHome(View pView) {
         finish();
     }
@@ -214,45 +284,5 @@ public class SalleActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    //******************************************************************************
-    // cycle de vie activity
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.i("SalleActivity", "onRestart");
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d(TAG, "onPause");
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.d(TAG, "onStop");
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d(TAG, "onDestroy");
-        super.onDestroy();
     }
 } // class

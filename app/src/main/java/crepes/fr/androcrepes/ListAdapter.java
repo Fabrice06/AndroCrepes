@@ -11,7 +11,9 @@ import android.widget.TextView;
 import crepes.fr.androcrepes.entity.Plat;
 import crepes.fr.androcrepes.entity.Plats;
 
-
+/**
+ * <b>Cette classe permet la réalisation d'une liste de données scrollable.</b>
+ */
 public class ListAdapter extends ArrayAdapter<Plat> {
 
     public interface ListAdapterCallBack {
