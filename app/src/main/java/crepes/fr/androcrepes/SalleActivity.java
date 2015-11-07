@@ -1,6 +1,10 @@
 package crepes.fr.androcrepes;
 
+<<<<<<< Updated upstream
 import android.graphics.Typeface;
+=======
+import android.app.ProgressDialog;
+>>>>>>> Stashed changes
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,6 +30,10 @@ public class SalleActivity
 
     private static final String TAG = SalleActivity.class.getSimpleName();
 
+    private static final String WAIT = "Thinking...";
+
+    private ProgressDialog mProgressDialog = null;
+
     private ListView mListViewSalle = null;
     private ListAdapter mListAdapter;
 
@@ -38,12 +46,18 @@ public class SalleActivity
         setContentView(R.layout.activity_salle);
         //Log.d(TAG, "onCreate");
 
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(WAIT);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCancelable(false);
+
         mPlats = Plats.getInstance();
         mListAdapter = new ListAdapter(this, mPlats);
 
         mListViewSalle = (ListView) findViewById(R.id.listViewSalle);
         mListViewSalle.setAdapter(mListAdapter);
 
+        mProgressDialog.show();
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
         mClient.connect();
@@ -62,21 +76,22 @@ public class SalleActivity
 
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
-        Log.d(TAG, "connectedFromClient callback");
+        //Log.d(TAG, "connectedFromClient callback");
         mClient.send(EnumSendWord.QUANTITE, "");
     }
 
     @Override
     public void disconnectedFromClient() { // callback d'une déconnexion
-        Log.d(TAG, "notConnectedFromClient");
+        //Log.d(TAG, "notConnectedFromClient");
         //fixme: prévenir l'utilisateur ??
     }
 
     @Override
     public void errorFromClient(String pError) { // callback d'une connexion client si réussite
-        Log.d(TAG, "errorFromClient");
-        //fixme: prévenir l'utilisateur
-        toastErrorMessage(pError);
+        //Log.d(TAG, "errorFromClient");
+
+        mProgressDialog.hide();
+        toastMessage(pError);
     }
 
     // callback client: connexion
@@ -95,14 +110,14 @@ public class SalleActivity
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
             // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            toastErrorMessage(pString + " !");
+            toastMessage(pString + " !");
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {
             mClient.send(EnumSendWord.QUANTITE, "");
 
         } else {
             // cas non répertorié: ceinture et bretelles
-            toastErrorMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
+            toastMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
             //fixme: mettre en place un fichier de log pour ce cas ??
         } // else
     } // void
@@ -174,8 +189,8 @@ public class SalleActivity
     //******************************************************************************
 
 
-    public void toastErrorMessage(String pError) {
-        Toast.makeText(getApplicationContext(), pError, Toast.LENGTH_SHORT).show();
+    public void toastMessage(final String pMessage) {
+        Toast.makeText(getApplicationContext(), pMessage, Toast.LENGTH_SHORT).show();
     }
 
     // event associé à imageButtonSalleGoHome

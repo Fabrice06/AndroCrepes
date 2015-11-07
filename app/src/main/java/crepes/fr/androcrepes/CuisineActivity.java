@@ -1,6 +1,10 @@
 package crepes.fr.androcrepes;
 
+<<<<<<< Updated upstream
 import android.graphics.Typeface;
+=======
+import android.app.ProgressDialog;
+>>>>>>> Stashed changes
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,6 +31,10 @@ public class CuisineActivity
 
     private static final String TAG = CuisineActivity.class.getSimpleName();
 
+    private static final String WAIT = "Thinking...";
+
+    private ProgressDialog mProgressDialog = null;
+
     private ListView mListViewCuisine = null;
     private ListAdapter mListAdapter;
 
@@ -42,6 +50,11 @@ public class CuisineActivity
         setContentView(R.layout.activity_cuisine);
         //Log.d(TAG, "onCreate");
 
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(WAIT);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCancelable(false);
+
         mPlats = Plats.getInstance();
         mListAdapter = new ListAdapter(this, mPlats);
 
@@ -51,6 +64,7 @@ public class CuisineActivity
         mEditTextQte =(EditText) findViewById(R.id.editTextQte);
         mEditTextName =(EditText) findViewById(R.id.editTextPlat);
 
+        mProgressDialog.show();
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
         mClient.connect();
@@ -81,9 +95,9 @@ public class CuisineActivity
 
     @Override
     public void errorFromClient(String pError) { // callback d'une connexion client si réussite
-        Log.d(TAG, "errorFromClient");
-        //fixme: prévenir l'utilisateur
-        toastErrorMessage(pError);
+        //Log.d(TAG, "errorFromClient");
+
+        toastMessage(pError);
     }
 
     // callback Client: connexion
@@ -102,7 +116,7 @@ public class CuisineActivity
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
             // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            toastErrorMessage(pString + " !");
+            toastMessage(pString + " !");
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
             mClient.send(EnumSendWord.QUANTITE, "");
@@ -115,11 +129,11 @@ public class CuisineActivity
 
             // fixme scroll sur le plat ???
 
-            toastErrorMessage("Le plat a été ajouté à la carte !");
+            toastMessage("Le plat a été ajouté à la carte !");
 
         } else {
             // cas non répertorié: ceinture et bretelles
-            toastErrorMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
+            toastMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
             //fixme: mettre en place un fichier de log pour ce cas ??
         } // else
     } // void
@@ -167,14 +181,14 @@ public class CuisineActivity
 
     @Override
     public void clicLeftFromListAdapter(Plat pPlat) {
-        Log.d(TAG, "clicLeftFromListAdapter callback");
+        //Log.d(TAG, "clicLeftFromListAdapter callback");
 
         mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
     } // void
 
     @Override
     public void clicRightFromListAdapter(Plat pPlat) {
-        Log.d(TAG, "clicRightFromListAdapter callback");
+        //Log.d(TAG, "clicRightFromListAdapter callback");
 
         mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
     } // void
@@ -183,8 +197,8 @@ public class CuisineActivity
     //******************************************************************************
 
 
-    public void toastErrorMessage(String pError) {
-        Toast.makeText(getApplicationContext(), pError, Toast.LENGTH_SHORT).show();
+    public void toastMessage(final String pMessage) {
+        Toast.makeText(getApplicationContext(), pMessage, Toast.LENGTH_SHORT).show();
     }
 
     // event associé à imageButtonCuisineGoHome
@@ -199,10 +213,10 @@ public class CuisineActivity
         String nName = mEditTextName.getText().toString().trim();
 
         if (!Tools.isInteger(nQuantite)) { // check si digit
-            toastErrorMessage("Merci de préciser une quantité correcte !");
+            toastMessage("Merci de préciser une quantité correcte !");
 
         } else if (0 == nName.length()) { // check si nom valide
-            toastErrorMessage("Merci de préciser un nom de plat !");
+            toastMessage("Merci de préciser un nom de plat !");
 
 //        } else if (xxxx) { // check si déja dans liste
 //

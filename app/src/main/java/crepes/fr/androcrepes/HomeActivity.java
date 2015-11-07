@@ -1,5 +1,6 @@
 package crepes.fr.androcrepes;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -24,12 +25,14 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 //    public static final String SERVER_IP = "10.0.2.2";
     public static final int SERVER_PORT = 7777;
 
+    private static final String LOGOUT = "logout";
+    private static final String LOGON = "logon";
+    private static final String WAIT = "Thinking...";
+
+    private ProgressDialog mProgressDialog = null;
     private Button mBtnHomeSalle = null;
     private Button mBtnHomeCuisine = null;
     private Button mBtnHomeLog = null;
-
-    private static final String LOGOUT = "logout";
-    private static final String LOGON = "logon";
 
     private Client mClient;
 
@@ -39,12 +42,18 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         setContentView(R.layout.activity_home);
         //Log.d(TAG, "onCreate");
 
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(WAIT);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCancelable(false);
+
         mBtnHomeSalle = (Button) findViewById(R.id.btnHomeSalle);
         mBtnHomeCuisine = (Button) findViewById(R.id.btnHomeCuisine);
         mBtnHomeLog = (Button) findViewById(R.id.btnHomeLog);
 
         updateAfterConnection(false);
 
+        mProgressDialog.show();
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
         mClient.connect();
@@ -105,14 +114,14 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
         //Log.d(TAG, "connectedFromClient");
-
+        mProgressDialog.hide();
         updateAfterConnection(true);
     } // void
 
     @Override
     public void disconnectedFromClient() { // callback d'une déconnexion client
         //Log.d(TAG, "disconnectedFromClient");
-
+        mProgressDialog.hide();
         updateAfterConnection(false);
     } // void
 
@@ -121,6 +130,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         Log.d(TAG, "errorFromClient");
         //fixme: prévenir l'utilisateur
 
+        mProgressDialog.hide();
         // ?? pas sûr ??
         //updateAfterConnection(false);
     } // void
@@ -134,18 +144,23 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
-        Log.d(TAG, "singleFromClient");
+        //Log.d(TAG, "singleFromClient");
+        //fixme: singleFromClient pas utilisé ici pour le moment
+        mProgressDialog.hide();
     } // void
 
     @Override
     public void listeFromClient(List<String> pListData) {
-//fixme: pas utilisé pour le moment pas toucher
-        Log.d(TAG, "listeFromClient");
+        //Log.d(TAG, "listeFromClient");
+        //fixme: listeFromClient pas utilisé ici pour le moment
+        mProgressDialog.hide();
     }
 
     @Override
     public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
-        Log.d(TAG, "quantiteFromClient");
+        //Log.d(TAG, "quantiteFromClient");
+        //fixme: quantiteFromClient pas utilisé ici pour le moment
+        mProgressDialog.hide();
     } // void
 
     // callback Client: data
