@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -17,65 +18,114 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     private static final String TAG = HomeActivity.class.getSimpleName();
 
     //fixme: deux variables suivantes à changer via le menu settings
+//    public static final String SERVER_IP = "10.0.3.2";
+    public static final String SERVER_IP = "10.0.2.2";
+    public static final int SERVER_PORT = 7777;
+
+    private static boolean mConnected = false;
+
+    private Button mBtnHomeSalle = null;
+    private Button mBtnHomeCuisine = null;
+    private Button mBtnHomeLog = null;
+
+    private static final String LOGOUT = "logout";
+    private static final String LOGON = "logon";
+
+    private Client mClient;
 
     public final static String EXTRA_ACTION = "EXTRA_ACTION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        //Log.d(TAG, "onCreate");
 
+        mBtnHomeSalle = (Button) findViewById(R.id.btnHomeSalle);
+        mBtnHomeCuisine = (Button) findViewById(R.id.btnHomeCuisine);
+        mBtnHomeLog = (Button) findViewById(R.id.btnHomeLog);
+
+        updateAfterConnection(false);
+
+        //fixme: définir plan B si serveur hors d'atteinte
+        mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
+        mClient.connect();
     } // void
+
 
     // event associé au bouton btnHomeCuisine
     public void goCuisine(View v) {
-        Log.d(TAG, "goCuisine");
-        Intent intent = new Intent(this, CuisineActivity.class);
-        startSelectedActivity(intent);
-        //startMainActivity("cuisine");
+        //Log.d(TAG, "goCuisine");
+        startSelectedActivity(CuisineActivity.class);
     }
+
 
     // event associé au bouton btnHomeSalle
     public void goSalle(View v) {
-        Log.d(TAG, "goSalle");
-        Intent intent = new Intent(this, SalleActivity.class);
-        startSelectedActivity(intent);
-        //startMainActivity("salle");
-    }
-    
-    public void goAide(View view) {
-        Log.d(TAG, "goAide");
-        Intent intent = new Intent(this, AideActivity.class);
-        startSelectedActivity(intent);
+        //Log.d(TAG, "goSalle");
+        startSelectedActivity(SalleActivity.class);
     }
 
-    // event associé au bouton btnLogout
-    public void goLogout(View v) {
-        Log.d(TAG, "goLogout");
-        finish();
+
+    // event associé au bouton btnHomeAide
+    public void goAide(View view) {
+        //Log.d(TAG, "goAide");
+        startSelectedActivity(AideActivity.class);
+    }
+
+
+    // event associé au bouton btnLogClient
+    public void goLog(View v) {
+        //Log.d(TAG, "goLog");
+
+        if (mConnected) {
+            mClient.disconnect();
+
+        } else {
+            mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
+            if (! mConnected) {
+                mClient.connect();
+            }
+        }
     } // void
 
-    // démarre l'activity SalleActivity
-    //fixme mettre une enum à la plase du paramètre String
-    private void startMainActivity(final String pAction) {
-        Log.d(TAG, "startMainActivity");
-        Intent intent = new Intent(this, SalleActivity.class);
-        intent.putExtra(EXTRA_ACTION, pAction);
-        startActivity(intent);
-    }
 
-    private void startSelectedActivity(Intent intent){
-        Log.d(TAG, "startSelectedActivity");
-        startActivity(intent);
-    }
+    private void startSelectedActivity(final Class pClass) {
+        //Log.d(TAG, "startSelectedActivity");
+        Intent nIntent = new Intent(this, pClass);
+        startActivity(nIntent);
+    } // void
+
 
     @Override
-    public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
-        //mClient.send(EnumSendWord.QUANTITE, "");
-        Log.d(TAG, "connectedFromClient");
-    }
+    public void connectedFromClient() { // callback d'une connexion client si réussite
+        //Log.d(TAG, "connectedFromClient");
+
+        updateAfterConnection(true);
+    } // void
+
+    @Override
+    public void disconnectedFromClient() { // callback d'une déconnexion client
+        //Log.d(TAG, "disconnectFromClient");
+
+        updateAfterConnection(false);
+    } // void
+
+    private void updateAfterConnection(final boolean pIsConnected) {
+        mConnected = pIsConnected;
+        mBtnHomeLog.setText(pIsConnected ? LOGOUT : LOGON);
+        mBtnHomeSalle.setEnabled(pIsConnected);
+        mBtnHomeCuisine.setEnabled(pIsConnected);
+    } // void
+
+    @Override
+    public void errorFromClient(String pError) { // callback pour traitement des erreurs
+        Log.d(TAG, "notConnectedFromClient");
+        //fixme: prévenir l'utilisateur
+
+        // ?? pas sûr ??
+        //updateAfterConnection(false);
+    } // void
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE

@@ -13,7 +13,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import crepes.fr.androcrepes.commons.EnumReceiveWord;
-import crepes.fr.androcrepes.commons.EnumSendWord;
 import crepes.fr.androcrepes.commons.Tools;
 import crepes.fr.androcrepes.entity.Plat;
 import crepes.fr.androcrepes.entity.Plats;
@@ -33,7 +32,7 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
     private EditText mQte;
     private EditText mName;
 
-    private Client mClient;
+//    private Client mClient;
     private Plats mPlats;
 
     @Override
@@ -45,13 +44,15 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
 
         mListViewMain = (ListView) findViewById(R.id.listMain);
         mPlats = Plats.getInstance();
+
         mListAdapter = new ListAdapter(this, mPlats);
         mListViewMain.setAdapter(mListAdapter);
+
         mQte =(EditText) findViewById(R.id.txtEditQte);
         mName =(EditText) findViewById(R.id.txtEditPlat);
 
-        mClient = new Client(this, SERVER_IP, SERVER_PORT);
-        mClient.connect();
+//        mClient = new Client(this, SERVER_IP, SERVER_PORT);
+//        mClient.connect();
 
     }
 
@@ -87,14 +88,14 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
     //    @Override
     public void addFromListAdapter(Plat pPlat) {
 
-        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
+//        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
 
         Log.d(TAG, "addFromListePlat callback");
     } // void
 
     public void addFromListAdapterWithQuantity(int qte, String pPlat) {
 
-        mClient.send(EnumSendWord.AJOUT, qte + " " + pPlat);
+//        mClient.send(EnumSendWord.AJOUT, qte + " " + pPlat);
         // maj de l'ihm
         mListAdapter.notifyDataSetChanged();
 
@@ -105,15 +106,27 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
     //    @Override
     public void removeFromListAdapter(Plat pPlat) {
 
-    mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
+    //mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
 
         Log.d(TAG, "removeFromListePlat callback");
     }
 
     @Override
-    public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
+    public void connectedFromClient() { // callback d'une connexion client si réussite
         Log.d(TAG, "connectedFromClient callback");
-        mClient.send(EnumSendWord.QUANTITE, "");
+//        mClient.send(EnumSendWord.QUANTITE, "");
+    }
+
+    @Override
+    public void disconnectedFromClient() { // callback d'une déconnexion client
+        Log.d(TAG, "disconnectedFromClient");
+        //fixme: prévenir l'utilisateur
+    }
+
+    @Override
+    public void errorFromClient(String pError) { // callback d'une connexion client si réussite
+        Log.d(TAG, "errorFromClient");
+        //fixme: prévenir l'utilisateur
     }
 
     @Override
@@ -195,7 +208,7 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
-        mClient.logout();
+//        mClient.logout();
         super.onPause();
     }
 
@@ -211,6 +224,7 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
         super.onDestroy();
     }
 
+    // event associé au bouton roundedbuttonplus
     public void addNewDish(View view) {
         String qteString = mQte.getText().toString();
         int qte;
@@ -241,5 +255,5 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
 
 
         connectedFromClient();
-    }
-}
+    } // void
+} // class

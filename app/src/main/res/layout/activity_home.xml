@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="aide"
                 android:layout_gravity="left"
-                android:id="@+id/btnAide"
+                android:id="@+id/btnHomeAide"
                 android:onClick="goAide"
                 android:background="#FF5722"
                 android:textColor="#F0FFFF" />
@@ -104,8 +104,8 @@
                 android:layout_height="wrap_content"
                 android:text="Logout"
                 android:layout_gravity="right"
-                android:id="@+id/btnLogout"
-                android:onClick="goLogout"
+                android:id="@+id/btnHomeLog"
+                android:onClick="goLog"
                 android:background="#A02828"
                 android:textColor="#F0FFFF" />
 

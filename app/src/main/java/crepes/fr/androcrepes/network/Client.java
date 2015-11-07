@@ -18,39 +18,69 @@ import crepes.fr.androcrepes.commons.Tools;
 //fixme voir si singleton opportun et possible
 public class Client {
 
+    private static final String TAG = Client.class.getSimpleName();
+
     public interface ClientCallBack {
         void singleFromClient(String pString);
         void listeFromClient(List<String> pListData);
         void quantiteFromClient(List<String> pListData);
         void connectedFromClient();
+        void errorFromClient(String pError);
+        void disconnectedFromClient();
         } // interface
 
-    private ClientCallBack mCallBack;
+    private static ClientCallBack mCallBack;
 
-    private String mIp = "";
-    private int mPort = 0;
+    private static String mIp = "";
+    private static int mPort = 0;
 
-    private List<String> mDatas = new ArrayList<String>();
+    private static List<String> mDatas = new ArrayList<String>();
 
-    private Socket mSocket;
-    private Connection mConnection;
-    private ReadMessages mReadMessages;
+    private static Socket mSocket;
+    private static Connection mConnection;
+    private static ReadMessages mReadMessages;
 
-    private PrintWriter mWriter = new PrintWriter(System.out, true);
-    private BufferedReader mReader = new BufferedReader(new InputStreamReader(System.in));
+    private static PrintWriter mWriter = new PrintWriter(System.out, true);
+    private static BufferedReader mReader = new BufferedReader(new InputStreamReader(System.in));
 
 
-    public Client(final ClientCallBack pCallback, final String pIp, final int pPort) {
-        this.mCallBack = pCallback;
-        this.mIp = pIp;
-        this.mPort = pPort;
-        mDatas.clear();
-        } // constructeur
+    // instance singleton
+    protected static Client mInstance;
+
+    private Client() {
+    } // constructeur privé
+
+
+    public static Client getInstance(final ClientCallBack pCallback, final String pIp, final int pPort) {
+
+        if (null == mInstance) {
+            mInstance = new Client();
+
+            mInstance.mCallBack = pCallback;
+            mInstance.mIp = pIp;
+            mInstance.mPort = pPort;
+            mDatas.clear();
+
+//            mConnection = new Connection();
+//            mConnection.execute();
+        }
+
+        return mInstance;
+    } // Plats
+
+//    public Client(final ClientCallBack pCallback, final String pIp, final int pPort) {
+//        this.mCallBack = pCallback;
+//        this.mIp = pIp;
+//        this.mPort = pPort;
+//        mDatas.clear();
+//        } // constructeur
 
     public void connect() {
-        mConnection = new Connection();
-        mConnection.execute();
-        } // void
+        if (!isRunning()) {
+            mConnection = new Connection();
+            mConnection.execute();
+        } // if
+    } // void
 
 
     public Boolean send(final EnumSendWord pEnumSendWord, final String pMessage) {
@@ -81,7 +111,17 @@ public class Client {
 //write(EnumSendWord.COMMANDE, "crepe au fromage");
 //write(EnumSendWord.LISTE, "");
 //write(EnumSendWord.QUANTITE, "");
-        } // void
+    } // void
+
+
+    public Boolean isRunning() {
+        boolean nReturn = false;
+        if (null != mReadMessages) {
+            nReturn = (mReadMessages.getStatus() == AsyncTask.Status.RUNNING);
+        }
+        return nReturn;
+    } // boolean
+
 
     private Boolean write(final EnumSendWord pEnumSendWord, final String pMessage) {
 
@@ -89,38 +129,41 @@ public class Client {
 
         mDatas.clear();
 
-        if (null != mReadMessages) {
-            if (mReadMessages.getStatus() == AsyncTask.Status.RUNNING) {
+//        if (null != mReadMessages) {
+            if (isRunning()) {
                 String nMessage = pEnumSendWord.getValue();
                 if (!pMessage.isEmpty()) {
                     nMessage = nMessage + " " + pMessage;
-                    }
+                }
                 mWriter.println(nMessage);
                 nReturn = true;
-                } // if
             } // if
-        return nReturn;
-        } // Boolean
+//        } // if
+    return nReturn;
+    } // Boolean
 
 
-    public void logout() {
+    public void disconnect() {
 
         if(write(EnumSendWord.LOGOUT, "")) {
             mReadMessages.cancel(true);
-            }
+        } // if
 
         if (null != mSocket) {
             mWriter.close();
             try {
                 mReader.close();
                 mSocket.close();
-                } catch (IOException e) {
-                e.printStackTrace();
-                }
-            } // if
-        } // void
 
-    private class Connection extends AsyncTask<Void, Void, Boolean> {
+            } catch (IOException e) {
+                e.printStackTrace();
+            } // catch
+        } // if
+
+        mCallBack.disconnectedFromClient();
+    } // void
+
+    private static class Connection extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected void onPreExecute() {
@@ -145,8 +188,8 @@ public class Client {
                 nReturn= true;
 
                 } catch (IOException e) {
-                Log.i("Client Connection", "doInBackground IOException");
-                e.printStackTrace();
+                    Log.i("Client Connection", "doInBackground IOException");
+                    e.printStackTrace();
                 }
 
             return nReturn;
@@ -163,14 +206,15 @@ public class Client {
                 mReadMessages.execute();
 
                 mCallBack.connectedFromClient();
-                } else {
-                //fixme: prévenir l'utilisateur
-                }
-            } // void
-        } // class
+
+            } else {
+                mCallBack.errorFromClient("not connected");
+            } // else
+        } // void
+    } // class
 
 
-    private class ReadMessages extends AsyncTask<Void, String, Void> {
+    private static class ReadMessages extends AsyncTask<Void, String, Void> {
 
         @Override
         protected Void doInBackground(Void... v) {
@@ -180,20 +224,21 @@ public class Client {
 
                     if (!nData.isEmpty()) {
                         publishProgress(nData.trim());
-                        }
+                    } // if
 
-                    } catch (IOException e) {
+                } catch (IOException e) {
                     Log.i("Client ReadMessages", "doInBackground IOException");
                     e.printStackTrace();
+
                     break;
-                    }
-                }
+                } // catch
+            } // while
 
             // remplace ReadMessages.onPostExecute
             //mCallBack.doPostExecute();
 
-            return null;
-            }
+        return null;
+        }
 
         @Override
         protected void onProgressUpdate(String... messages) {
@@ -209,7 +254,7 @@ public class Client {
 
                     mCallBack.singleFromClient(messages[0]);
                     mDatas.clear();
-                }
+                } // else
 
             } else { // c'est une action GET (LISTE ou QUANTITE)
 
@@ -229,8 +274,8 @@ public class Client {
                 } else {
                     //fixme: trouver et checker la taille max
                     mDatas.add(messages[0]);
-                    } // else
                 } // else
-            }
-        } // class
+            } // else
+        } // void
+    } // class
 } // class

@@ -5,27 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import crepes.fr.androcrepes.commons.EnumReceiveWord;
-import crepes.fr.androcrepes.commons.EnumSendWord;
 import crepes.fr.androcrepes.commons.Tools;
 import crepes.fr.androcrepes.entity.Plat;
 import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
-import crepes.fr.androcrepes.network.Client.ClientCallBack;
 
-public class SalleActivity extends AppCompatActivity implements ClientCallBack {
+public class SalleActivity extends AppCompatActivity implements Client.ClientCallBack {
 
     private static final String TAG = SalleActivity.class.getSimpleName();
-
-//    private static final String SERVER_IP = "10.0.3.2";
-    private static final String SERVER_IP = "10.0.2.2";
-    private static final int SERVER_PORT = 7777;
 
     private ListView mListViewSalle = null;
     private ListAdapter mListAdapter;
@@ -45,15 +38,27 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
         mListAdapter = new ListAdapter(this, mPlats);
         mListViewSalle.setAdapter(mListAdapter);
 
-        mClient = new Client(this, SERVER_IP, SERVER_PORT);
-        mClient.connect();
+        //fixme: définir plan B si serveur hors d'atteinte
+        mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
 
     } // void
 
     @Override
-    public void connectedFromClient() { // callback d'une action de type PUT, POST ou DELETE
+    public void connectedFromClient() { // callback d'une connexion client si réussite
         Log.d(TAG, "connectedFromClient callback");
-        mClient.send(EnumSendWord.QUANTITE, "");
+        //mClient.send(EnumSendWord.QUANTITE, "");
+    }
+
+    @Override
+    public void disconnectedFromClient() { // callback d'une déconnexion
+        Log.d(TAG, "notConnectedFromClient");
+        //fixme: prévenir l'utilisateur
+    }
+
+    @Override
+    public void errorFromClient(String pError) { // callback d'une connexion client si réussite
+        Log.d(TAG, "errorFromClient");
+        //fixme: prévenir l'utilisateur
     }
 
     @Override
@@ -156,7 +161,7 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
-        mClient.logout();
+        mClient.disconnect();
         super.onPause();
     }
 
@@ -191,7 +196,7 @@ public class SalleActivity extends AppCompatActivity implements ClientCallBack {
         return super.onOptionsItemSelected(item);
     }
 
-    public void goHome(View view) {
-        finish();
-    }
+//    public void goHome(View view) {
+//        finish();
+//    }
 } // class
