@@ -28,8 +28,8 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     private static final String TAG = HomeActivity.class.getSimpleName();
 
     //fixme: deux variables suivantes à changer via le menu settings
-    public static final String SERVER_IP = "10.0.3.2";
-//    public static final String SERVER_IP = "10.0.2.2";
+//    public static final String SERVER_IP = "10.0.3.2";
+    public static final String SERVER_IP = "10.0.2.2";
     public static final int SERVER_PORT = 7777;
 
     private static final String LOGOUT = "logout";
@@ -52,7 +52,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage(WAIT);
         mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setCancelable(false);
+        mProgressDialog.setCancelable(true);
         mProgressDialog.show();
 
         TextView myTextView = (TextView) findViewById(R.id.laBonneCrepe);

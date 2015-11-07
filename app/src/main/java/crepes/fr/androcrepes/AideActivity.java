@@ -10,6 +10,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+/**
+ * <b>Classe dédiée à la description de l'ihm Aide.</b>
+ */
 public class AideActivity extends AppCompatActivity {
 
     private static final String TAG = AideActivity.class.getSimpleName();
@@ -67,8 +70,14 @@ public class AideActivity extends AppCompatActivity {
         webwiew.setWebViewClient(new WebViewClient());
     }
 
-    public void goRetour(View view) {
-        //Log.d(TAG, "goRetour");
+    /**
+     * Evènement associé au bouton aide_imageButtonGoHome pour naviguer vers l'ihm Home
+     *
+     * @param pView
+     *      Objet de type View
+     */
+    public void goHome(View view) {
+        //Log.d(TAG, "goHome");
         finish();
     }
 }

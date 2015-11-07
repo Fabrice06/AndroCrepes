@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/home"
             android:background="@drawable/roundedbutton"
-            android:onClick="goRetour"/>
+            android:id="@+id/aide_imageButtonGoHome"
+            android:onClick="goHome"/>
 
         <FrameLayout
             android:layout_width="5dp"

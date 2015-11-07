@@ -129,161 +129,34 @@
     <favorites_list name="AndroCrepes" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="HomeActivity.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="24" selection-end-column="3" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="docComment;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#goCuisine#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#goSalle#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#goAide#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#goLog#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#startSelectedActivity#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#connectedFromClient#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#disconnectedFromClient#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#errorFromClient#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#singleFromClient#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#listeFromClient#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#quantiteFromClient#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#toastMessage#0;class#HomeActivity#0" expanded="true" />
-                    <element signature="docComment;method#updateAfterConnection#0;class#HomeActivity#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.21978022">
-                  <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="22" selection-end-column="3" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="docComment;class#Client#0" expanded="true" />
-                    <element signature="docComment;class#ClientCallBack#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#singleFromClient#0;class#ClientCallBack#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#listeFromClient#0;class#ClientCallBack#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#quantiteFromClient#0;class#ClientCallBack#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#connectedFromClient#0;class#ClientCallBack#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#errorFromClient#0;class#ClientCallBack#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#disconnectedFromClient#0;class#ClientCallBack#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;field#mIp#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;field#mPort#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;field#mDatas#0;class#Client#0" expanded="true" />
-                    <element signature="e#3418#3426#0" expanded="true" />
-                    <element signature="docComment;field#mInstance#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#Client#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#getInstance#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#connect#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#isRunning#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#send#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#disconnect#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;class#Connection#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#doInBackground#0;class#Connection#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#onPostExecute#0;class#Connection#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;class#ReadMessages#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#doInBackground#0;class#ReadMessages#0;class#Client#0" expanded="true" />
-                    <element signature="docComment;method#onProgressUpdate#0;class#ReadMessages#0;class#Client#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="CuisineActivity.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/CuisineActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="284" column="0" selection-start-line="284" selection-start-column="0" selection-end-line="289" selection-end-column="7" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="docComment;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#connectedFromClient#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#disconnectedFromClient#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#errorFromClient#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#singleFromClient#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#listeFromClient#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#quantiteFromClient#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#clicLeftFromListAdapter#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#clicRightFromListAdapter#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#toastMessage#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#goHome#0;class#CuisineActivity#0" expanded="true" />
-                    <element signature="docComment;method#addNewPlat#0;class#CuisineActivity#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SalleActivity.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/SalleActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <marker date="1446927315000" expanded="true" signature="2615:2669" placeholder="//..." />
-                    <marker date="1446927315000" expanded="true" signature="2928:3019" placeholder="//..." />
-                    <marker date="1446927315000" expanded="true" signature="3338:3379" placeholder="//..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="SalleActivity.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/SalleActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="286" column="5" selection-start-line="286" selection-start-column="5" selection-end-line="286" selection-end-column="5" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="docComment;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#connectedFromClient#0;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#disconnectedFromClient#0;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#errorFromClient#0;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#singleFromClient#0;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#listeFromClient#0;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#quantiteFromClient#0;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#clicLeftFromListAdapter#0;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#clicRightFromListAdapter#0;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#toastMessage#0;class#SalleActivity#0" expanded="true" />
-                    <element signature="docComment;method#goHome#0;class#SalleActivity#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ListAdapter.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/ListAdapter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AideActivity.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/AideActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2747253">
-                  <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="HomeActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.24725275">
+              <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#goCuisine#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#goSalle#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#goAide#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#goLog#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#startSelectedActivity#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#connectedFromClient#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#disconnectedFromClient#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#errorFromClient#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#singleFromClient#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#listeFromClient#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#quantiteFromClient#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#toastMessage#0;class#HomeActivity#0" expanded="true" />
+                <element signature="docComment;method#updateAfterConnection#0;class#HomeActivity#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1774,22 +1647,22 @@
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/Tools.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/AideActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plat.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumSendWord.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumReceiveWord.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_aide.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_salle.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/row_plat.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/row_plat_ajout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_cuisine.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plats.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/CuisineActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/SalleActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/ListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/AideActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_aide.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java" />
       </list>
     </option>
   </component>
@@ -1806,7 +1679,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-216" />
     <option name="y" value="-1027" />
-    <option name="width" value="1678" />
+    <option name="width" value="1101" />
     <option name="height" value="1024" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -2074,6 +1947,24 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroCrepes" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
@@ -2094,72 +1985,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="androcrepes" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AndroCrepes" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="androcrepes" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="network" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AndroCrepes" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="androcrepes" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AndroCrepes" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="androcrepes" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -2414,7 +2239,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-216" y="-1027" width="1678" height="1024" extended-state="0" />
+    <frame x="-216" y="-1027" width="1101" height="1024" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2423,7 +2248,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32829046" sideWeight="0.4943274" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.94743276" sideWeight="0.88006485" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.94711995" sideWeight="0.88006485" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32931355" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39939487" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -2437,7 +2262,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24953617" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2096577" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20963173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16740088" sideWeight="0.4910859" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32931727" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" x="1235" y="847" width="519" height="435" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2523,9 +2348,17 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1446927315000" expanded="true" signature="2615:2669" placeholder="//..." />
-            <marker date="1446927315000" expanded="true" signature="2928:3019" placeholder="//..." />
-            <marker date="1446927315000" expanded="true" signature="3338:3379" placeholder="//..." />
+            <element signature="docComment;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#connectedFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#disconnectedFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#errorFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#singleFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#listeFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#quantiteFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#clicLeftFromListAdapter#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#clicRightFromListAdapter#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#toastMessage#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#goHome#0;class#SalleActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2743,17 +2576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_aide.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.793103">
-          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_salle.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29494712">
@@ -2795,17 +2617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.09400705">
           <caret line="36" column="67" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cuisine.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32902467">
-          <caret line="98" column="43" selection-start-line="98" selection-start-column="43" selection-end-line="98" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -2888,61 +2699,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/CuisineActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="284" column="0" selection-start-line="284" selection-start-column="0" selection-end-line="289" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#connectedFromClient#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#disconnectedFromClient#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#errorFromClient#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#singleFromClient#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#listeFromClient#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#quantiteFromClient#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#clicLeftFromListAdapter#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#clicRightFromListAdapter#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#toastMessage#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#goHome#0;class#CuisineActivity#0" expanded="true" />
-            <element signature="docComment;method#addNewPlat#0;class#CuisineActivity#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/SalleActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+          <caret line="286" column="5" selection-start-line="286" selection-start-column="5" selection-end-line="286" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1446927315000" expanded="true" signature="2615:2669" placeholder="//..." />
-            <marker date="1446927315000" expanded="true" signature="2928:3019" placeholder="//..." />
-            <marker date="1446927315000" expanded="true" signature="3338:3379" placeholder="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="24" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#goCuisine#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#goSalle#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#goAide#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#goLog#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#startSelectedActivity#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#connectedFromClient#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#disconnectedFromClient#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#errorFromClient#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#singleFromClient#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#listeFromClient#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#quantiteFromClient#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#toastMessage#0;class#HomeActivity#0" expanded="true" />
-            <element signature="docComment;method#updateAfterConnection#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#connectedFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#disconnectedFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#errorFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#singleFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#listeFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#quantiteFromClient#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#clicLeftFromListAdapter#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#clicRightFromListAdapter#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#toastMessage#0;class#SalleActivity#0" expanded="true" />
+            <element signature="docComment;method#goHome#0;class#SalleActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2955,20 +2728,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/AideActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2747253">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21978022">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="22" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.054945055">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="docComment;class#Client#0" expanded="true" />
             <element signature="docComment;class#ClientCallBack#0;class#Client#0" expanded="true" />
             <element signature="docComment;method#singleFromClient#0;class#ClientCallBack#0;class#Client#0" expanded="true" />
@@ -2994,6 +2758,84 @@
             <element signature="docComment;class#ReadMessages#0;class#Client#0" expanded="true" />
             <element signature="docComment;method#doInBackground#0;class#ReadMessages#0;class#Client#0" expanded="true" />
             <element signature="docComment;method#onProgressUpdate#0;class#ReadMessages#0;class#Client#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/CuisineActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47802198">
+          <caret line="280" column="22" selection-start-line="280" selection-start-column="16" selection-end-line="280" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#connectedFromClient#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#disconnectedFromClient#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#errorFromClient#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#singleFromClient#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#listeFromClient#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#quantiteFromClient#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#clicLeftFromListAdapter#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#clicRightFromListAdapter#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#toastMessage#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#goHome#0;class#CuisineActivity#0" expanded="true" />
+            <element signature="docComment;method#addNewPlat#0;class#CuisineActivity#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_aide.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5722461">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cuisine.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48640916">
+          <caret line="115" column="16" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/AideActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6043956">
+          <caret line="73" column="57" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="57" />
+          <folding>
+            <element signature="docComment;class#AideActivity#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24725275">
+          <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#goCuisine#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#goSalle#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#goAide#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#goLog#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#startSelectedActivity#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#connectedFromClient#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#disconnectedFromClient#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#errorFromClient#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#singleFromClient#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#listeFromClient#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#quantiteFromClient#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#toastMessage#0;class#HomeActivity#0" expanded="true" />
+            <element signature="docComment;method#updateAfterConnection#0;class#HomeActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
