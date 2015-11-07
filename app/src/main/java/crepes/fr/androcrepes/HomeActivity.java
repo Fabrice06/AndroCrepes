@@ -1,6 +1,7 @@
 package crepes.fr.androcrepes;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -18,8 +20,8 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     private static final String TAG = HomeActivity.class.getSimpleName();
 
     //fixme: deux variables suivantes à changer via le menu settings
-//    public static final String SERVER_IP = "10.0.3.2";
-    public static final String SERVER_IP = "10.0.2.2";
+    public static final String SERVER_IP = "10.0.3.2";
+//    public static final String SERVER_IP = "10.0.2.2";
     public static final int SERVER_PORT = 7777;
 
     private Button mBtnHomeSalle = null;
@@ -46,6 +48,12 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
         mClient.connect();
+
+        TextView myTextView = (TextView) findViewById(R.id.laBonneCrepe);
+        Typeface myFont = Typeface.createFromAsset(getAssets(), "Rakoon.ttf");
+        myTextView.setTypeface(myFont);
+        myTextView.setTextSize(30);
+
     } // void
 
 
