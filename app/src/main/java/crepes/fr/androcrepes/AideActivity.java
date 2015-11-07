@@ -30,7 +30,7 @@ public class AideActivity extends AppCompatActivity {
 
         TextView myTextView = (TextView) findViewById(R.id.textAide);
         Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
-        myTextView.setTypeface(myFont, Typeface.BOLD);
+        myTextView.setTypeface(myFont);
         myTextView.setTextSize(30);
     }
 

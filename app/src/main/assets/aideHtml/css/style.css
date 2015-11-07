@@ -6,6 +6,7 @@
 html, body{
     font-size: 100%;
 	background:	#FFE0B2;
+    background-image:linear-gradient(#FFBB33, #FFCC80);
 }
 body {
     font-size: 100%;
@@ -29,4 +30,8 @@ h1, h3{
 }
 #principal {
     text-align: center;
+}
+#titre{
+    background: #FFBB33
+;
 }
