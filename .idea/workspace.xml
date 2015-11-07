@@ -159,8 +159,8 @@
           <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.52272725">
-                  <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+                <state vertical-scroll-proportion="0.45454547">
+                  <caret line="35" column="80" selection-start-line="35" selection-start-column="80" selection-end-line="35" selection-end-column="80" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="docComment;class#Client#0" expanded="true" />
@@ -2898,8 +2898,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52272725">
-          <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.45454547">
+          <caret line="35" column="80" selection-start-line="35" selection-start-column="80" selection-end-line="35" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#Client#0" expanded="true" />
