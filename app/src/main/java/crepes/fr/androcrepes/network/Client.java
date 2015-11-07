@@ -66,7 +66,7 @@ public class Client {
 //            mConnection.execute();
         }
         mInstance.mCallBack = pCallback;
-        
+
         return mInstance;
     } // Plats
 

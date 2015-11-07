@@ -80,7 +80,7 @@
                 ></FrameLayout>
 
             <EditText
-                android:id="@+id/txtEditQte"
+                android:id="@+id/editTextQte"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorText"
@@ -89,7 +89,7 @@
                 />
 
             <EditText
-                android:id="@+id/txtEditPlat"
+                android:id="@+id/editTextPlat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorText"
@@ -128,7 +128,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listMain"
+        android:id="@+id/listViewCuisine"
         android:layout_gravity="center_horizontal"
         android:layout_weight="90"
         android:divider="@android:color/transparent"

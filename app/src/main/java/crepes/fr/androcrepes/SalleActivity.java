@@ -18,7 +18,9 @@ import crepes.fr.androcrepes.entity.Plat;
 import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
 
-public class SalleActivity extends AppCompatActivity implements Client.ClientCallBack {
+public class SalleActivity
+        extends AppCompatActivity
+        implements Client.ClientCallBack, ListAdapter.ListAdapterCallBack {
 
     private static final String TAG = SalleActivity.class.getSimpleName();
 
@@ -44,7 +46,12 @@ public class SalleActivity extends AppCompatActivity implements Client.ClientCal
         mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
         mClient.connect();
         mClient.send(EnumSendWord.QUANTITE, "");
+
     } // void
+
+
+    //******************************************************************************
+    // callback client: connexion
 
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
@@ -63,6 +70,13 @@ public class SalleActivity extends AppCompatActivity implements Client.ClientCal
         Log.d(TAG, "errorFromClient");
         //fixme: prévenir l'utilisateur
     }
+
+    // callback client: connexion
+    //******************************************************************************
+
+
+    //******************************************************************************
+    // callback client: data
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
@@ -96,7 +110,6 @@ public class SalleActivity extends AppCompatActivity implements Client.ClientCal
         } // for
     }
 
-
     @Override
     public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
         Log.d(TAG, "quantiteFromClient callback");
@@ -128,19 +141,25 @@ public class SalleActivity extends AppCompatActivity implements Client.ClientCal
 
     } // void
 
+    // callback client: data
+    //******************************************************************************
 
-//    @Override
+
+    //******************************************************************************
+    // callback listAdapter
+
+    @Override
     public void addFromListAdapter(Plat pPlat) {
-
-        Log.d(TAG, "addFromListePlat callback");
-    } // void
-
-
-//    @Override
-    public void removeFromListAdapter(Plat pPlat) {
-
-        Log.d(TAG, "removeFromListePlat callback");
+        Log.d(TAG, "addFromListAdapter callback");
     }
+
+    @Override
+    public void removeFromListAdapter(Plat pPlat) {
+        Log.d(TAG, "removeFromListAdapter callback");
+    }
+
+    // callback listAdapter
+    //******************************************************************************
 
 
     @Override
@@ -164,7 +183,6 @@ public class SalleActivity extends AppCompatActivity implements Client.ClientCal
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
-//        mClient.disconnect();
         super.onPause();
     }
 

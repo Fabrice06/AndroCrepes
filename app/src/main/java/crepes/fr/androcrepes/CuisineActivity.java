@@ -13,108 +13,57 @@ import android.widget.Toast;
 import java.util.List;
 
 import crepes.fr.androcrepes.commons.EnumReceiveWord;
+import crepes.fr.androcrepes.commons.EnumSendWord;
 import crepes.fr.androcrepes.commons.Tools;
 import crepes.fr.androcrepes.entity.Plat;
 import crepes.fr.androcrepes.entity.Plats;
 import crepes.fr.androcrepes.network.Client;
 
-public class CuisineActivity extends AppCompatActivity implements Client.ClientCallBack {
+public class CuisineActivity
+        extends AppCompatActivity
+        implements Client.ClientCallBack, ListAdapter.ListAdapterCallBack {
 
     private static final String TAG = CuisineActivity.class.getSimpleName();
 
-    private static final String SERVER_IP = "10.0.3.2";
-//    private static final String SERVER_IP = "10.0.2.2";
-    private static final int SERVER_PORT = 7777;
-
-    private ListView mListViewMain = null;
+    private ListView mListViewCuisine = null;
     private ListAdapter mListAdapter;
 
-    private EditText mQte;
-    private EditText mName;
+    private EditText mEditTextQte;
+    private EditText mEditTextName;
 
-//    private Client mClient;
+    private Client mClient;
     private Plats mPlats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cuisine);
+        //Log.d(TAG, "onCreate");
 
-        mListViewMain = (ListView) findViewById(R.id.listMain);
         mPlats = Plats.getInstance();
-
         mListAdapter = new ListAdapter(this, mPlats);
-        mListViewMain.setAdapter(mListAdapter);
+//        mListAdapter.setCallback(this);
 
-        mQte =(EditText) findViewById(R.id.txtEditQte);
-        mName =(EditText) findViewById(R.id.txtEditPlat);
+        mListViewCuisine = (ListView) findViewById(R.id.listViewCuisine);
+        mListViewCuisine.setAdapter(mListAdapter);
 
-//        mClient = new Client(this, SERVER_IP, SERVER_PORT);
-//        mClient.connect();
+        mEditTextQte =(EditText) findViewById(R.id.editTextQte);
+        mEditTextName =(EditText) findViewById(R.id.editTextPlat);
 
-    }
+        //fixme: définir plan B si serveur hors d'atteinte
+        mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
+        mClient.connect();
+        mClient.send(EnumSendWord.QUANTITE, "");
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(TAG, "onCreateOptionsMenu");
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_cuisine, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected");
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    // event associé à imageButtonCuisineGoHome
-    public void goHome(View pView) {
-        finish();
-    }
-
-    //    @Override
-    public void addFromListAdapter(Plat pPlat) {
-
-//        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
-
-        Log.d(TAG, "addFromListePlat callback");
     } // void
 
-    public void addFromListAdapterWithQuantity(int qte, String pPlat) {
-
-//        mClient.send(EnumSendWord.AJOUT, qte + " " + pPlat);
-        // maj de l'ihm
-        mListAdapter.notifyDataSetChanged();
-
-        Log.d(TAG, "addFromListePlatWithQuantity callback");
-    } // void
-
-
-    //    @Override
-    public void removeFromListAdapter(Plat pPlat) {
-
-    //mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
-
-        Log.d(TAG, "removeFromListePlat callback");
-    }
+    //******************************************************************************
+    // callback client: connexion
 
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
         Log.d(TAG, "connectedFromClient callback");
-//        mClient.send(EnumSendWord.QUANTITE, "");
+        mClient.send(EnumSendWord.QUANTITE, "");
     }
 
     @Override
@@ -128,6 +77,13 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
         Log.d(TAG, "errorFromClient");
         //fixme: prévenir l'utilisateur
     }
+
+    // callback client: connexion
+    //******************************************************************************
+
+
+    //******************************************************************************
+    // callback client: data
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
@@ -187,6 +143,85 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
         mListAdapter.notifyDataSetChanged();
     } // void
 
+    // callback client: data
+    //******************************************************************************
+
+    //******************************************************************************
+    // callback listAdapter
+
+    @Override
+    public void addFromListAdapter(Plat pPlat) {
+        Log.d(TAG, "addFromListAdapter callback");
+    }
+
+    @Override
+    public void removeFromListAdapter(Plat pPlat) {
+        Log.d(TAG, "removeFromListAdapter callback");
+    }
+
+    // callback listAdapter
+    //******************************************************************************
+
+    // event associé au bouton roundedbuttonplus
+    public void addNewDish(View view) {
+        String qteString = mEditTextQte.getText().toString();
+        int qte;
+
+        if (qteString.length() != 0) {
+
+            qte = Integer.parseInt(qteString);
+            String nomPlat = mEditTextName.getText().toString();
+
+
+            Log.d(TAG, "addNewDish " + qte + " " + nomPlat);
+
+//        if ((null != nomPlat) || ("" != nomPlat) || "plat" != nomPlat) {
+
+            if (nomPlat.length() != 0) {
+                if (1 >= qte) {
+                    qte = 1;
+                }
+
+//                addFromListAdapterWithQuantity(qte, nomPlat);
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Renseigner le nom du plat pour valider", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "Renseigner la quantité pour valider", Toast.LENGTH_SHORT).show();
+        }
+
+
+        connectedFromClient();
+    } // void
+
+//    //    @Override
+//    public void addFromListAdapter(Plat pPlat) {
+//
+////        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
+//
+//        Log.d(TAG, "addFromListePlat callback");
+//    } // void
+//
+//    public void addFromListAdapterWithQuantity(int qte, String pPlat) {
+//
+////        mClient.send(EnumSendWord.AJOUT, qte + " " + pPlat);
+//        // maj de l'ihm
+//        mListAdapter.notifyDataSetChanged();
+//
+//        Log.d(TAG, "addFromListePlatWithQuantity callback");
+//    } // void
+
+//    //    @Override
+//    public void removeFromListAdapter(Plat pPlat) {
+//
+//    //mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
+//
+//        Log.d(TAG, "removeFromListePlat callback");
+//    }
+
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -202,13 +237,12 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i("SalleActivity", "onRestart");
+        Log.d(TAG, "onRestart");
     }
 
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
-//        mClient.logout();
         super.onPause();
     }
 
@@ -224,36 +258,33 @@ public class CuisineActivity extends AppCompatActivity implements Client.ClientC
         super.onDestroy();
     }
 
-    // event associé au bouton roundedbuttonplus
-    public void addNewDish(View view) {
-        String qteString = mQte.getText().toString();
-        int qte;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d(TAG, "onCreateOptionsMenu");
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_cuisine, menu);
+        return true;
+    }
 
-        if (qteString.length() != 0) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected");
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-            qte = Integer.parseInt(qteString);
-            String nomPlat = mName.getText().toString();
-
-
-            Log.d(TAG, "addNewDish " + qte + " " + nomPlat);
-
-//        if ((null != nomPlat) || ("" != nomPlat) || "plat" != nomPlat) {
-
-            if (nomPlat.length() != 0) {
-                if (1 >= qte) {
-                    qte = 1;
-                }
-
-                addFromListAdapterWithQuantity(qte, nomPlat);
-
-            } else {
-                Toast.makeText(getApplicationContext(), "Renseigner le nom du plat pour valider", Toast.LENGTH_SHORT).show();
-            }
-        }else{
-            Toast.makeText(getApplicationContext(), "Renseigner la quantité pour valider", Toast.LENGTH_SHORT).show();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
 
+        return super.onOptionsItemSelected(item);
+    }
 
-        connectedFromClient();
+    // event associé à imageButtonCuisineGoHome
+    public void goHome(View pView) {
+        finish();
     } // void
+
 } // class

@@ -15,24 +15,28 @@ import crepes.fr.androcrepes.entity.Plats;
 
 public class ListAdapter extends ArrayAdapter<Plat> {
 
-//    public interface ListAdapterCallBack {
-//        void addFromListAdapter(Plat pPlat);
-//        void removeFromListAdapter(Plat pPlat);
-//    } // interface
-//
-//    private ListAdapterCallBack mCallBack;
+    public interface ListAdapterCallBack {
+        void addFromListAdapter(Plat pPlat);
+        void removeFromListAdapter(Plat pPlat);
+    } // interface
+
+    private ListAdapterCallBack mCallBack;
 
     private static final String TAG = ListAdapter.class.getSimpleName();
 
-    private Context mContext;
+//    private Context mContext;
 
     private LayoutInflater mInflater = null;
 
     public ListAdapter(final Context pContext, Plats pPlats) {
         super(pContext, 0, pPlats);
-        this.mContext = pContext;
+//        this.mContext = pContext;
+        this.mCallBack = (ListAdapterCallBack) pContext;
     } // constructeur
 
+//    public void setCallback(final ListAdapterCallBack pCallback) {
+//        mCallBack = pCallback;
+//    }
 
     @Override
     public View getView(final int pPosition, final View pConvertView, final ViewGroup pParent) {
@@ -56,16 +60,16 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 nBtnRemove.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
-                        if(mContext instanceof CuisineActivity){
-                            ((CuisineActivity)mContext).removeFromListAdapter(nPlat);
-                        }
+//                        if(mContext instanceof CuisineActivity){
+//                            ((CuisineActivity)mContext).removePlat(nPlat);
+//                        }
+//
+//                        if(mContext instanceof SalleActivity){
+//                            ((SalleActivity)mContext).removePlat(nPlat);
+//                        }
 
-                        if(mContext instanceof SalleActivity){
-                            ((SalleActivity)mContext).removeFromListAdapter(nPlat);
-                        }
-
-//                        mCallBack.removeFromListAdapter(nPlat);
-                        Log.i("SalleActivity", "nBtnRemove click " + nPlat.getId());
+                        Log.d(TAG, "nBtnRemove click " + nPlat.getId());
+                        mCallBack.removeFromListAdapter(nPlat);
                     }
                 });
 
@@ -75,15 +79,16 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 nBtnAdd.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
-                        if(mContext instanceof CuisineActivity){
-                            ((CuisineActivity)mContext).addFromListAdapter(nPlat);
-                        }
+//                        if(mContext instanceof CuisineActivity){
+//                            ((CuisineActivity)mContext).addFromListAdapter(nPlat);
+//                        }
+//
+//                        if(mContext instanceof SalleActivity){
+//                            ((SalleActivity)mContext).addFromListAdapter(nPlat);
+//                        }
 
-                        if(mContext instanceof SalleActivity){
-                            ((SalleActivity)mContext).addFromListAdapter(nPlat);
-                        }
-//                        mCallBack.addFromListAdapter(nPlat);
-                        Log.i("SalleActivity", "nBtnAdd click " + nPlat.getId());
+                        Log.d(TAG, "nBtnAdd click " + nPlat.getId());
+                        mCallBack.addFromListAdapter(nPlat);
                     }
                 });
 

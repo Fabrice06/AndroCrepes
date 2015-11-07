@@ -22,8 +22,6 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public static final String SERVER_IP = "10.0.2.2";
     public static final int SERVER_PORT = 7777;
 
-//    private static boolean mConnected = false;
-
     private Button mBtnHomeSalle = null;
     private Button mBtnHomeCuisine = null;
     private Button mBtnHomeLog = null;
