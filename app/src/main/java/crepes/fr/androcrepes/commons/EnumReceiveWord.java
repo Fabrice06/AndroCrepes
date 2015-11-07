@@ -43,7 +43,4 @@ public enum EnumReceiveWord {
         return mValue;
     }
 
-//    public String toString(){
-//        return mValue;
-//    }
 } // enum

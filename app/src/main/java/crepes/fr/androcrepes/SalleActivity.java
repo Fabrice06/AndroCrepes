@@ -62,13 +62,14 @@ public class SalleActivity
     @Override
     public void disconnectedFromClient() { // callback d'une déconnexion
         Log.d(TAG, "notConnectedFromClient");
-        //fixme: prévenir l'utilisateur
+        //fixme: prévenir l'utilisateur ??
     }
 
     @Override
     public void errorFromClient(String pError) { // callback d'une connexion client si réussite
         Log.d(TAG, "errorFromClient");
         //fixme: prévenir l'utilisateur
+        toastErrorMessage(pError);
     }
 
     // callback client: connexion
@@ -80,40 +81,43 @@ public class SalleActivity
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
-
         Log.d(TAG, "singleFromClient callback: " + pString);
+
         // recherche du dernier mot/chiffre pour identifier la réponse
         String nReponse = pString.substring(pString.lastIndexOf(" ")+1);
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
-        // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            Toast.makeText(getApplicationContext(), pString, Toast.LENGTH_SHORT).show();
-//fixme: afficher popup message: pString + " !"
+            // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
+            toastErrorMessage(pString + " !");
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {
 
         } else {
             // cas non répertorié: ceinture et bretelles
-        //fixme: afficher popup message: prévenir l'administrateur
-        }
+            toastErrorMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
+            //fixme: mettre en place un fichier de log pour ce cas ??
+        } // else
     } // void
 
 
     @Override
     public void listeFromClient(List<String> pListData) {
         Log.d(TAG, "listeFromClient callback");
-//fixme: pas utilisé pour le moment pas toucher
-        for (int nLen = pListData.size(), i = 1; i < nLen; i++) {
-            String nPlat = pListData.get(i);
 
-            Log.d(TAG, "listeFromClient for item " + i + " : " + nPlat);
-        } // for
-    }
+        //fixme: pas utilisé pour le moment pas toucher
+
+//        for (int nLen = pListData.size(), i = 1; i < nLen; i++) {
+//            String nPlat = pListData.get(i);
+//
+//            Log.d(TAG, "listeFromClient for item " + i + " : " + nPlat);
+//        } // for
+    } // void
 
     @Override
     public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
-        Log.d(TAG, "quantiteFromClient callback");
+        //Log.d(TAG, "quantiteFromClient callback");
 
+        //fixme: le retrait d'un plat de la carte n'est pas pris en compte
         for (int nLen = pListData.size(), i = 1; i < (nLen-1); i+=2) {
             String nNom = pListData.get(i);
             int nQuantite = Integer.parseInt(pListData.get(i + 1));
@@ -128,17 +132,13 @@ public class SalleActivity
             } else { // update quantité
                 Log.d(TAG, "quantiteFromClient callback esle plat ");
                 nPlat.setQuantite(nQuantite);
-            }
+            } // else
 
-            // maj de l'ihm
-            //mListAdapter.notifyDataSetChanged();
-
-            Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
-        }
+            //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
+        } // for
 
         // maj de l'ihm
         mListAdapter.notifyDataSetChanged();
-
     } // void
 
     // callback client: data
@@ -151,16 +151,52 @@ public class SalleActivity
     @Override
     public void addFromListAdapter(Plat pPlat) {
         Log.d(TAG, "addFromListAdapter callback");
+
+        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
     }
 
     @Override
     public void removeFromListAdapter(Plat pPlat) {
         Log.d(TAG, "removeFromListAdapter callback");
+
+        mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
     }
 
     // callback listAdapter
     //******************************************************************************
 
+
+    public void toastErrorMessage(String pError) {
+        Toast.makeText(getApplicationContext(), pError, Toast.LENGTH_SHORT).show();
+    }
+
+    // event associé à imageButtonSalleGoHome
+    public void goHome(View pView) {
+        finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d(TAG, "onCreateOptionMenu");
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected");
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    //******************************************************************************
+    // cycle de vie activity
 
     @Override
     protected void onStart() {
@@ -196,29 +232,5 @@ public class SalleActivity
     protected void onDestroy() {
         Log.d(TAG, "onDestroy");
         super.onDestroy();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(TAG, "onCreateOptionMenu");
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected");
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    // event associé à imageButtonSalleGoHome
-    public void goHome(View pView) {
-        finish();
     }
 } // class

@@ -42,7 +42,6 @@ public class CuisineActivity
 
         mPlats = Plats.getInstance();
         mListAdapter = new ListAdapter(this, mPlats);
-//        mListAdapter.setCallback(this);
 
         mListViewCuisine = (ListView) findViewById(R.id.listViewCuisine);
         mListViewCuisine.setAdapter(mListAdapter);
@@ -58,7 +57,7 @@ public class CuisineActivity
     } // void
 
     //******************************************************************************
-    // callback client: connexion
+    // callback Client: connexion
 
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
@@ -69,54 +68,56 @@ public class CuisineActivity
     @Override
     public void disconnectedFromClient() { // callback d'une déconnexion client
         Log.d(TAG, "disconnectedFromClient");
-        //fixme: prévenir l'utilisateur
+        //fixme: prévenir l'utilisateur ??
     }
 
     @Override
     public void errorFromClient(String pError) { // callback d'une connexion client si réussite
         Log.d(TAG, "errorFromClient");
         //fixme: prévenir l'utilisateur
+        toastErrorMessage(pError);
     }
 
-    // callback client: connexion
+    // callback Client: connexion
     //******************************************************************************
 
 
     //******************************************************************************
-    // callback client: data
+    // callback Client: data
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
-
         Log.d(TAG, "singleFromClient callback: " + pString);
+
         // recherche du dernier mot/chiffre pour identifier la réponse
         String nReponse = pString.substring(pString.lastIndexOf(" ")+1);
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
             // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            Toast.makeText(getApplicationContext(), pString, Toast.LENGTH_SHORT).show();
-//fixme: afficher popup message: pString + " !"
+            toastErrorMessage(pString + " !");
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {
 
         } else {
             // cas non répertorié: ceinture et bretelles
-            //fixme: afficher popup message: prévenir l'administrateur
-        }
+            toastErrorMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
+            //fixme: mettre en place un fichier de log pour ce cas ??
+        } // else
     } // void
+
 
     @Override
     public void listeFromClient(List<String> pListData) {
-        Log.d(TAG, "quantiteFromClient callback");
+        //Log.d(TAG, "quantiteFromClient callback");
 
-
-//fixme: pas utilisé pour le moment pas toucher
-    }
+        //fixme: pas utilisé pour le moment pas toucher
+    } // void
 
     @Override
     public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
-        Log.d(TAG, "quantiteFromClient callback");
+        //Log.d(TAG, "quantiteFromClient callback");
 
+        //fixme: le retrait d'un plat de la carte n'est pas pris en compte
         for (int nLen = pListData.size(), i = 1; i < (nLen-1); i+=2) {
             String nNom = pListData.get(i);
             int nQuantite = Integer.parseInt(pListData.get(i + 1));
@@ -124,20 +125,15 @@ public class CuisineActivity
             Plat nPlat = mPlats.getPlat(nNom);
             // nouveau plat
             if (null == nPlat) {
-                Log.d(TAG, "quantiteFromClient callback if plat ");
                 nPlat= new Plat(nNom, nQuantite);
                 mPlats.addPlat(nPlat);
 
             } else { // update quantité
-                Log.d(TAG, "quantiteFromClient callback esle plat ");
                 nPlat.setQuantite(nQuantite);
-            }
+            } // else
 
-            // maj de l'ihm
-            //mListAdapter.notifyDataSetChanged();
-
-            Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
-        }
+            //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
+        } // for
 
         // maj de l'ihm
         mListAdapter.notifyDataSetChanged();
@@ -146,21 +142,45 @@ public class CuisineActivity
     // callback client: data
     //******************************************************************************
 
+
     //******************************************************************************
     // callback listAdapter
 
     @Override
     public void addFromListAdapter(Plat pPlat) {
         Log.d(TAG, "addFromListAdapter callback");
-    }
+
+        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
+    } // void
 
     @Override
     public void removeFromListAdapter(Plat pPlat) {
         Log.d(TAG, "removeFromListAdapter callback");
-    }
+
+        mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
+    } // void
+
+    //    public void addFromListAdapterWithQuantity(int qte, String pPlat) {
+//
+////        mClient.send(EnumSendWord.AJOUT, qte + " " + pPlat);
+//        // maj de l'ihm
+//        mListAdapter.notifyDataSetChanged();
+//
+//        Log.d(TAG, "addFromListePlatWithQuantity callback");
+//    } // void
 
     // callback listAdapter
     //******************************************************************************
+
+
+    public void toastErrorMessage(String pError) {
+        Toast.makeText(getApplicationContext(), pError, Toast.LENGTH_SHORT).show();
+    }
+
+    // event associé à imageButtonCuisineGoHome
+    public void goHome(View pView) {
+        finish();
+    } // void
 
     // event associé au bouton roundedbuttonplus
     public void addNewDish(View view) {
@@ -195,32 +215,34 @@ public class CuisineActivity
         connectedFromClient();
     } // void
 
-//    //    @Override
-//    public void addFromListAdapter(Plat pPlat) {
-//
-////        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
-//
-//        Log.d(TAG, "addFromListePlat callback");
-//    } // void
-//
-//    public void addFromListAdapterWithQuantity(int qte, String pPlat) {
-//
-////        mClient.send(EnumSendWord.AJOUT, qte + " " + pPlat);
-//        // maj de l'ihm
-//        mListAdapter.notifyDataSetChanged();
-//
-//        Log.d(TAG, "addFromListePlatWithQuantity callback");
-//    } // void
 
-//    //    @Override
-//    public void removeFromListAdapter(Plat pPlat) {
-//
-//    //mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
-//
-//        Log.d(TAG, "removeFromListePlat callback");
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Log.d(TAG, "onCreateOptionsMenu");
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_cuisine, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Log.d(TAG, "onOptionsItemSelected");
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
+    //******************************************************************************
+    // cycle de vie activity
 
     @Override
     protected void onStart() {
@@ -257,34 +279,4 @@ public class CuisineActivity
         Log.d(TAG, "onDestroy");
         super.onDestroy();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(TAG, "onCreateOptionsMenu");
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_cuisine, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected");
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    // event associé à imageButtonCuisineGoHome
-    public void goHome(View pView) {
-        finish();
-    } // void
-
 } // class

@@ -24,23 +24,15 @@ public class ListAdapter extends ArrayAdapter<Plat> {
 
     private static final String TAG = ListAdapter.class.getSimpleName();
 
-//    private Context mContext;
-
     private LayoutInflater mInflater = null;
 
     public ListAdapter(final Context pContext, Plats pPlats) {
         super(pContext, 0, pPlats);
-//        this.mContext = pContext;
         this.mCallBack = (ListAdapterCallBack) pContext;
     } // constructeur
 
-//    public void setCallback(final ListAdapterCallBack pCallback) {
-//        mCallBack = pCallback;
-//    }
-
     @Override
     public View getView(final int pPosition, final View pConvertView, final ViewGroup pParent) {
-
         Log.d(TAG, "getView");
 
         View nView = pConvertView;
@@ -59,16 +51,8 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 final Button nBtnRemove = (Button) nView.findViewById(R.id.btnRowRemove);
                 nBtnRemove.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+                        //Log.d(TAG, "nBtnRemove click " + nPlat.getId());
 
-//                        if(mContext instanceof CuisineActivity){
-//                            ((CuisineActivity)mContext).removePlat(nPlat);
-//                        }
-//
-//                        if(mContext instanceof SalleActivity){
-//                            ((SalleActivity)mContext).removePlat(nPlat);
-//                        }
-
-                        Log.d(TAG, "nBtnRemove click " + nPlat.getId());
                         mCallBack.removeFromListAdapter(nPlat);
                     }
                 });
@@ -78,16 +62,8 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 final Button nBtnAdd = (Button) nView.findViewById(R.id.btnRowAdd);
                 nBtnAdd.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+                        //Log.d(TAG, "nBtnAdd click " + nPlat.getId());
 
-//                        if(mContext instanceof CuisineActivity){
-//                            ((CuisineActivity)mContext).addFromListAdapter(nPlat);
-//                        }
-//
-//                        if(mContext instanceof SalleActivity){
-//                            ((SalleActivity)mContext).addFromListAdapter(nPlat);
-//                        }
-
-                        Log.d(TAG, "nBtnAdd click " + nPlat.getId());
                         mCallBack.addFromListAdapter(nPlat);
                     }
                 });
@@ -98,14 +74,3 @@ public class ListAdapter extends ArrayAdapter<Plat> {
         return nView;
     } // View
 } // class
-
-/*
-private ProgressBar progressBar;
- private int progressStatus = 0;
-progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-  textView = (TextView) findViewById(R.id.textView1);
-  progressBar.setProgress(progressStatus);
-  textView.setText(progressStatus+"/"+progressBar.getMax());
-
-
- */

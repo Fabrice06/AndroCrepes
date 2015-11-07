@@ -129,96 +129,7 @@
     <favorites_list name="AndroCrepes" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.5550725">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="HomeActivity.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.3821656">
-                  <caret line="74" column="41" selection-start-line="74" selection-start-column="41" selection-end-line="74" selection-end-column="41" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="CuisineActivity.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/CuisineActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="239" column="32" selection-start-line="239" selection-start-column="32" selection-end-line="239" selection-end-column="32" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#5313#5314#0" expanded="true" />
-                    <element signature="e#5370#5371#0" expanded="true" />
-                    <element signature="e#5437#5438#0" expanded="true" />
-                    <element signature="e#5497#5498#0" expanded="true" />
-                    <element signature="e#8901#8902#0" expanded="true" />
-                    <element signature="e#8925#8926#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="22" column="35" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="35" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SalleActivity.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/SalleActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#5206#5207#0" expanded="true" />
-                    <element signature="e#5263#5264#0" expanded="true" />
-                    <element signature="e#5330#5331#0" expanded="true" />
-                    <element signature="e#5390#5391#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="CuisineActivity.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/CuisineActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="49" column="20" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="20" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#8062#8063#0" expanded="true" />
-                    <element signature="e#8275#8276#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ListAdapter.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/ListAdapter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="3.217158">
-                  <caret line="71" column="63" selection-start-line="71" selection-start-column="63" selection-end-line="71" selection-end-column="63" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1703,28 +1614,28 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout-xlarge-land/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/roundedbuttonplus.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/roundedbuttonmoins.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/AideActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_aide.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-land/activity_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumSendWord.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumReceiveWord.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/row_plat_ajout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/row_plat.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/Tools.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plat.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plats.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_salle.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_cuisine.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/ListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/AideActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/SalleActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/CuisineActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plat.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumSendWord.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumReceiveWord.java" />
       </list>
     </option>
   </component>
@@ -2368,7 +2279,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-216" y="-1027" width="1108" height="1024" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2455,20 +2366,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java</url>
-          <line>258</line>
+          <line>255</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java</url>
-          <line>264</line>
+          <line>261</line>
           <properties />
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plat.java</url>
-          <line>3</line>
-          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -2485,10 +2391,8 @@
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5206#5207#0" expanded="true" />
-            <element signature="e#5263#5264#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
-            <element signature="e#5390#5391#0" expanded="true" />
+            <element signature="e#5961#5962#0" expanded="true" />
+            <element signature="e#5985#5986#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2524,10 +2428,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5206#5207#0" expanded="true" />
-            <element signature="e#5263#5264#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
-            <element signature="e#5390#5391#0" expanded="true" />
+            <element signature="e#5961#5962#0" expanded="true" />
+            <element signature="e#5985#5986#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2558,10 +2460,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5206#5207#0" expanded="true" />
-            <element signature="e#5263#5264#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
-            <element signature="e#5390#5391#0" expanded="true" />
+            <element signature="e#5961#5962#0" expanded="true" />
+            <element signature="e#5985#5986#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2737,13 +2637,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/AideActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="73" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row_plat.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7713951">
@@ -2773,50 +2666,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumSendWord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.38314176">
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plats.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0695102">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="33" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/Tools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5687204">
-          <caret line="18" column="35" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumReceiveWord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18957347">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="19" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/roundedbutton.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5260989">
-          <caret line="39" column="15" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="31" />
-          <folding>
-            <element signature="docComment;class#Plat#0" expanded="true" />
-            <element signature="docComment;field#mCount#0;class#Plat#0" expanded="true" />
-            <element signature="docComment;field#mNom#0;class#Plat#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2853,59 +2706,106 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="35" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="35" />
+          <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="171" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/network/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6136364">
+          <caret line="262" column="29" selection-start-line="262" selection-start-column="29" selection-end-line="262" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/ListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.217158">
-          <caret line="71" column="63" selection-start-line="71" selection-start-column="63" selection-end-line="71" selection-end-column="63" />
-          <folding />
+        <state vertical-scroll-proportion="1.4772727">
+          <caret line="75" column="10" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
+          <folding>
+            <element signature="e#1616#1874#0" expanded="true" />
+            <element signature="e#1873#1874#0" expanded="true" />
+            <element signature="e#2056#2308#0" expanded="true" />
+            <element signature="e#2307#2308#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/SalleActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/AideActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5206#5207#0" expanded="true" />
-            <element signature="e#5263#5264#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
-            <element signature="e#5390#5391#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.54545456">
+          <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/CuisineActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="239" column="32" selection-start-line="239" selection-start-column="32" selection-end-line="239" selection-end-column="32" />
+          <caret line="112" column="55" selection-start-line="112" selection-start-column="55" selection-end-line="112" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5313#5314#0" expanded="true" />
-            <element signature="e#5370#5371#0" expanded="true" />
-            <element signature="e#5437#5438#0" expanded="true" />
-            <element signature="e#5497#5498#0" expanded="true" />
-            <element signature="e#8901#8902#0" expanded="true" />
-            <element signature="e#8925#8926#0" expanded="true" />
+            <element signature="e#6192#6193#0" expanded="true" />
+            <element signature="e#6216#6217#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/HomeActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/SalleActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3821656">
-          <caret line="74" column="41" selection-start-line="74" selection-start-column="41" selection-end-line="74" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5961#5962#0" expanded="true" />
+            <element signature="e#5985#5986#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="33" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/entity/Plat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="15" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/Tools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumSendWord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/crepes/fr/androcrepes/commons/EnumReceiveWord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45454547">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

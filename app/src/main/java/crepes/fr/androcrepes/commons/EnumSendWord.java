@@ -45,7 +45,4 @@ public enum EnumSendWord {
         return mValue;
     }
 
-//    public String toString(){
-//        return mValue;
-//    }
 } // enum

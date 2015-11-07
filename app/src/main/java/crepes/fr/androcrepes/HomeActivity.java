@@ -31,8 +31,6 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
     private Client mClient;
 
-    public final static String EXTRA_ACTION = "EXTRA_ACTION";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +74,6 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public void goLog(View v) {
         //Log.d(TAG, "goLog");
 
-//        if (mConnected) {
         if (mClient.isRunning()) {
             mClient.disconnect();
 
@@ -94,6 +91,9 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     } // void
 
 
+    //******************************************************************************
+    // callback Client: connexion
+
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
         //Log.d(TAG, "connectedFromClient");
@@ -103,28 +103,26 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
     @Override
     public void disconnectedFromClient() { // callback d'une déconnexion client
-        //Log.d(TAG, "disconnectFromClient");
+        //Log.d(TAG, "disconnectedFromClient");
 
         updateAfterConnection(false);
     } // void
 
     @Override
     public void errorFromClient(String pError) { // callback pour traitement des erreurs
-        Log.d(TAG, "notConnectedFromClient");
+        Log.d(TAG, "errorFromClient");
         //fixme: prévenir l'utilisateur
 
         // ?? pas sûr ??
         //updateAfterConnection(false);
     } // void
 
-    private void updateAfterConnection(final boolean pIsConnected) {
-//        mConnected = pIsConnected;
-        mBtnHomeLog.setText(pIsConnected ? LOGOUT : LOGON);
-        mBtnHomeSalle.setEnabled(pIsConnected);
-        mBtnHomeCuisine.setEnabled(pIsConnected);
-    } // void
+    // callback Client: connexion
+    //******************************************************************************
 
 
+    //******************************************************************************
+    // callback Client: data
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
@@ -141,6 +139,37 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public void quantiteFromClient(List<String> pListData) { // callback d'une action de type GET (LISTE ou QUANTITE)
         Log.d(TAG, "quantiteFromClient");
     } // void
+
+    // callback Client: data
+    //******************************************************************************
+
+    private void updateAfterConnection(final boolean pIsConnected) {
+        mBtnHomeLog.setText(pIsConnected ? LOGOUT : LOGON);
+        mBtnHomeSalle.setEnabled(pIsConnected);
+        mBtnHomeCuisine.setEnabled(pIsConnected);
+    } // void
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d(TAG, "onCreateOptionMenu");
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected");
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    //******************************************************************************
+    // cycle de vie activity
 
     @Override
     protected void onStart() {
@@ -176,24 +205,5 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     protected void onDestroy() {
         Log.d(TAG, "onDestroy");
         super.onDestroy();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(TAG, "onCreateOptionMenu");
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected");
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 } // class

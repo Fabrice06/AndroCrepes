@@ -57,17 +57,14 @@ public class Client {
         if (null == mInstance) {
             mInstance = new Client();
 
-//            mInstance.mCallBack = pCallback;
             mInstance.mIp = pIp;
             mInstance.mPort = pPort;
             mDatas.clear();
+        } // if
 
-//            mConnection = new Connection();
-//            mConnection.execute();
-        }
         mInstance.mCallBack = pCallback;
 
-        return mInstance;
+    return mInstance;
     } // Plats
 
 
@@ -116,7 +113,8 @@ public class Client {
         if (null != mReadMessages) {
             nReturn = (mReadMessages.getStatus() == AsyncTask.Status.RUNNING);
         } // if
-        return nReturn;
+
+    return nReturn;
     } // boolean
 
 
@@ -126,16 +124,15 @@ public class Client {
 
         mDatas.clear();
 
-//        if (null != mReadMessages) {
-            if (isRunning()) {
-                String nMessage = pEnumSendWord.getValue();
-                if (!pMessage.isEmpty()) {
-                    nMessage = nMessage + " " + pMessage;
-                }
-                mWriter.println(nMessage);
-                nReturn = true;
-            } // if
-//        } // if
+        if (isRunning()) {
+            String nMessage = pEnumSendWord.getValue();
+            if (!pMessage.isEmpty()) {
+                nMessage = nMessage + " " + pMessage;
+            }
+            mWriter.println(nMessage);
+            nReturn = true;
+        } // if
+
     return nReturn;
     } // Boolean
 
@@ -160,13 +157,15 @@ public class Client {
         mCallBack.disconnectedFromClient();
     } // void
 
+
     private static class Connection extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected void onPreExecute() {
-            // ceinture et bretelle: ce cas peut-il arriver ??
+            //Log.d(TAG, "Connection.onPreExecute");
+
+            //fixme ceinture et bretelle: ce cas peut-il arriver ??
             //logout();
-            Log.d(TAG, "Connection.onPreExecute");
         }
 
         @Override
@@ -183,19 +182,16 @@ public class Client {
 
                 nReturn= true;
 
-                } catch (IOException e) {
-                    Log.d(TAG, "doInBackground IOException");
-                    e.printStackTrace();
-                }
+            } catch (IOException e) {
+                Log.d(TAG, "doInBackground IOException");
+                e.printStackTrace();
+            } // catch
 
-            return nReturn;
-            } // boolean
+        return nReturn;
+        } // boolean
 
         @Override
         protected void onPostExecute(Boolean pBoolean) {
-
-            String nLog= pBoolean ? "Connected to server\n" : "Could not connect to server\n";
-            Log.d(TAG, "onPostExecute " + nLog);
 
             if (pBoolean) {
                 mReadMessages = new ReadMessages();
@@ -204,10 +200,11 @@ public class Client {
                 mCallBack.connectedFromClient();
 
             } else {
-                mCallBack.errorFromClient("not connected");
+                //fixme donner à l'utilisateur les piste pour résoudre son pb
+                mCallBack.errorFromClient("Impossible de se connecter au serveur !");
             } // else
         } // void
-    } // class
+    } // private class --------------------------------------------------------------
 
 
     private static class ReadMessages extends AsyncTask<Void, String, Void> {
@@ -223,7 +220,7 @@ public class Client {
                     } // if
 
                 } catch (IOException e) {
-                    Log.i("Client ReadMessages", "doInBackground IOException");
+                    Log.d(TAG, "doInBackground IOException");
                     e.printStackTrace();
 
                     break;
@@ -263,7 +260,7 @@ public class Client {
                     } else {
                         mDatas.set(0, EnumSendWord.LISTE.getValue());
                         mCallBack.listeFromClient(mDatas);
-                    }
+                    } // else
 
                     mDatas.clear();
 
@@ -273,5 +270,5 @@ public class Client {
                 } // else
             } // else
         } // void
-    } // class
+    } // private class --------------------------------------------------------------
 } // class

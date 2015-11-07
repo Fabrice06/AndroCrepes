@@ -63,11 +63,6 @@ public class Plat {
         return mNom;
     } // String
 
-
-//    public void setNom(final String pNom) {
-//        this.mNom = pNom;
-//    } // void
-
     /**
      * Retourne l'identifiant unique du plat.
      *
@@ -86,9 +81,5 @@ public class Plat {
     public void setQuantite(final int pQuantite) {
         this.mQuantite = pQuantite;
     } // void
-
-//    public int getQuantite() {
-//        return mQuantite;
-//    } // int
 
 } // class

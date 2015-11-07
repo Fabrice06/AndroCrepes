@@ -1,9 +1,7 @@
 package crepes.fr.androcrepes;
 
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,15 +19,16 @@ public class AideActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aide);
+        //Log.d(TAG, "onCreate");
+
         webwiew = (WebView) findViewById(R.id.webwiew);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(TAG, "onCreateOptionMenu");
+        //Log.d(TAG, "onCreateOptionMenu");
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_aide, menu);
         return true;
@@ -37,7 +36,7 @@ public class AideActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected");
+        //Log.d(TAG, "onOptionsItemSelected");
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -53,17 +52,15 @@ public class AideActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        Log.d(TAG, "onStart");
         super.onStart();
+        //Log.d(TAG, "onStart");
 
         webwiew.loadUrl(uri);
-
         webwiew.setWebViewClient(new WebViewClient());
-
     }
 
     public void goRetour(View view) {
-        Log.d(TAG, "goRetour");
+        //Log.d(TAG, "goRetour");
         finish();
     }
 }
