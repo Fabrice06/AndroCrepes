@@ -4,15 +4,15 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">Accueil</string>
     <string name="Logo">Logo</string>
-    <string name="title_activity_cuisine">AndroCrepes : Cuisine</string>
-    <string name="title_activity_salle">AndroCrepes : Salle</string>
+    <string name="title_activity_cuisine">AndroCrepes Cuisine</string>
+    <string name="title_activity_salle">AndroCrepes Salle</string>
 
     <string name="btnAjouter">Ajouter</string>
 
     <color name="colorText">#181870</color>
     <color name="colorBtnValid">#FFE0B2</color>
-    <string name="title_activity_aide">Aide</string>
+    <string name="title_activity_aide">AndroCrepes Aide</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="listePlats">Liste des plats</string>
 
 </resources>

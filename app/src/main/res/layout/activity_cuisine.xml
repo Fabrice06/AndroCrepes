@@ -34,9 +34,10 @@
             android:layout_gravity="center_vertical">
 
             <TextView
+                android:id="@+id/textListeCuisine"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Cuisine"
+                android:text="@string/listePlats"
                 android:gravity="center"
                 android:textSize="20dp"
                 android:textStyle="bold"
