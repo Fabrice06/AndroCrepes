@@ -16,6 +16,7 @@ public class AideActivity extends AppCompatActivity {
 
     //Uri uri = Uri.parse("http://www.google.fr");
     String uri = "http://www.google.fr";
+    String local = "file:///android_asset/aideHtml/html/index.html";
 
     private WebView webwiew;
 
@@ -62,7 +63,7 @@ public class AideActivity extends AppCompatActivity {
         super.onStart();
         //Log.d(TAG, "onStart");
 
-        webwiew.loadUrl(uri);
+        webwiew.loadUrl(local);
         webwiew.setWebViewClient(new WebViewClient());
     }
 
