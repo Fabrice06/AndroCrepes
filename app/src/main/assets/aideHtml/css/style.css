@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Vollkorn-Regular';
+    src:url(../fonts/Vollkorn-Regular.ttf) format('truetype');
+}
+
+html, body{
+    font-size: 100%;
+	background:	#FFE0B2;
+}
+body {
+    font-size: 100%;
+    font-family: 'Vollkorn-Regular';
+    
+    min-height: 921px;
+    padding:0;
+}
+p{
+	margin:5;
+    padding: 5;
+}
+h1, h3{
+    margin: 10;
+    color: blue
+}
+.image {
+    padding:10px;
+    margin: 10px;
+    
+}
+#principal {
+    text-align: center;
+}
