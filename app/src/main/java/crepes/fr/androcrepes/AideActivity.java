@@ -1,5 +1,6 @@
 package crepes.fr.androcrepes;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -7,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 public class AideActivity extends AppCompatActivity {
 
@@ -24,6 +26,11 @@ public class AideActivity extends AppCompatActivity {
         //Log.d(TAG, "onCreate");
 
         webwiew = (WebView) findViewById(R.id.webwiew);
+
+        TextView myTextView = (TextView) findViewById(R.id.textAide);
+        Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
+        myTextView.setTypeface(myFont, Typeface.BOLD);
+        myTextView.setTextSize(30);
     }
 
     @Override

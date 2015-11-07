@@ -58,8 +58,8 @@ public class CuisineActivity
 
 
         TextView myTextView = (TextView) findViewById(R.id.textListeCuisine);
-        Typeface myFont = Typeface.createFromAsset(getAssets(), "riesling.ttf");
-        myTextView.setTypeface(myFont, Typeface.BOLD);
+        Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
+        myTextView.setTypeface(myFont);
         myTextView.setTextSize(30);
 
     } // void
