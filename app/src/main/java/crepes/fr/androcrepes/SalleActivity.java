@@ -91,6 +91,7 @@ public class SalleActivity
             toastErrorMessage(pString + " !");
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {
+            mClient.send(EnumSendWord.QUANTITE, "");
 
         } else {
             // cas non répertorié: ceinture et bretelles
@@ -130,11 +131,11 @@ public class SalleActivity
                 mPlats.addPlat(nPlat);
 
             } else { // update quantité
-                Log.d(TAG, "quantiteFromClient callback esle plat ");
+                Log.d(TAG, "quantiteFromClient callback else plat ");
                 nPlat.setQuantite(nQuantite);
             } // else
 
-            //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
+            Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
         } // for
 
         // maj de l'ihm
@@ -149,15 +150,15 @@ public class SalleActivity
     // callback listAdapter
 
     @Override
-    public void addFromListAdapter(Plat pPlat) {
-        Log.d(TAG, "addFromListAdapter callback");
+    public void clicLeftFromListAdapter(Plat pPlat) {
+        Log.d(TAG, "clicLeftFromListAdapter callback");
 
         mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
     }
 
     @Override
-    public void removeFromListAdapter(Plat pPlat) {
-        Log.d(TAG, "removeFromListAdapter callback");
+    public void clicRightFromListAdapter(Plat pPlat) {
+        Log.d(TAG, "clicRightFromListAdapter callback");
 
         mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
     }

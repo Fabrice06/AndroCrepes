@@ -1,7 +1,6 @@
 package crepes.fr.androcrepes;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,8 @@ import crepes.fr.androcrepes.entity.Plats;
 public class ListAdapter extends ArrayAdapter<Plat> {
 
     public interface ListAdapterCallBack {
-        void addFromListAdapter(Plat pPlat);
-        void removeFromListAdapter(Plat pPlat);
+        void clicLeftFromListAdapter(Plat pPlat);
+        void clicRightFromListAdapter(Plat pPlat);
     } // interface
 
     private ListAdapterCallBack mCallBack;
@@ -26,14 +25,18 @@ public class ListAdapter extends ArrayAdapter<Plat> {
 
     private LayoutInflater mInflater = null;
 
+    private boolean mIsCuisine = false;
+
     public ListAdapter(final Context pContext, Plats pPlats) {
         super(pContext, 0, pPlats);
         this.mCallBack = (ListAdapterCallBack) pContext;
+
+        mIsCuisine = (pContext instanceof CuisineActivity);
     } // constructeur
 
     @Override
     public View getView(final int pPosition, final View pConvertView, final ViewGroup pParent) {
-        Log.d(TAG, "getView");
+        //Log.d(TAG, "getView");
 
         View nView = pConvertView;
 
@@ -45,32 +48,33 @@ public class ListAdapter extends ArrayAdapter<Plat> {
         final Plat nPlat = getItem(pPosition);
 
         if (null != nPlat) {
-            final TextView nTxtInfo = (TextView) nView.findViewById(R.id.txtRowInfo);
+            final TextView nTextViewListAdapterInfo = (TextView) nView.findViewById(R.id.textViewListAdapterInfo);
 
-            if (nTxtInfo != null) {
-                final Button nBtnRemove = (Button) nView.findViewById(R.id.btnRowRemove);
-                nBtnRemove.setOnClickListener(new View.OnClickListener() {
+            if (nTextViewListAdapterInfo != null) {
+                final Button nButtonListAdapterLeft = (Button) nView.findViewById(R.id.buttonListAdapterLeft);
+                nButtonListAdapterLeft.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         //Log.d(TAG, "nBtnRemove click " + nPlat.getId());
 
-                        mCallBack.removeFromListAdapter(nPlat);
+                        mCallBack.clicLeftFromListAdapter(nPlat);
                     }
                 });
 
-                nTxtInfo.setText(nPlat.getNom());
+                nTextViewListAdapterInfo.setText(nPlat.getNom());
 
-                final Button nBtnAdd = (Button) nView.findViewById(R.id.btnRowAdd);
-                nBtnAdd.setOnClickListener(new View.OnClickListener() {
+                final Button nButtonListAdapterRight = (Button) nView.findViewById(R.id.buttonListAdapterRight);
+                nButtonListAdapterRight.setText(mIsCuisine ? "ajouter" : "commander");
+                nButtonListAdapterRight.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         //Log.d(TAG, "nBtnAdd click " + nPlat.getId());
 
-                        mCallBack.addFromListAdapter(nPlat);
+                        mCallBack.clicRightFromListAdapter(nPlat);
                     }
                 });
 
             } // if
         } // if
 
-        return nView;
+    return nView;
     } // View
 } // class

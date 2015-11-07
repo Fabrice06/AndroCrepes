@@ -96,7 +96,18 @@ public class CuisineActivity
             // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
             toastErrorMessage(pString + " !");
 
-        } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {
+        } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
+            mClient.send(EnumSendWord.QUANTITE, "");
+
+        } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
+            mClient.send(EnumSendWord.QUANTITE, "");
+
+            mEditTextQte.setText("");
+            mEditTextName.setText("");
+
+            // fixme scroll sur le plat ???
+
+            toastErrorMessage("Le plat a été ajouté à la carte !");
 
         } else {
             // cas non répertorié: ceinture et bretelles
@@ -132,7 +143,7 @@ public class CuisineActivity
                 nPlat.setQuantite(nQuantite);
             } // else
 
-            //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
+            Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
         } // for
 
         // maj de l'ihm
@@ -147,27 +158,18 @@ public class CuisineActivity
     // callback listAdapter
 
     @Override
-    public void addFromListAdapter(Plat pPlat) {
-        Log.d(TAG, "addFromListAdapter callback");
-
-        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
-    } // void
-
-    @Override
-    public void removeFromListAdapter(Plat pPlat) {
-        Log.d(TAG, "removeFromListAdapter callback");
+    public void clicLeftFromListAdapter(Plat pPlat) {
+        Log.d(TAG, "clicLeftFromListAdapter callback");
 
         mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
     } // void
 
-    //    public void addFromListAdapterWithQuantity(int qte, String pPlat) {
-//
-////        mClient.send(EnumSendWord.AJOUT, qte + " " + pPlat);
-//        // maj de l'ihm
-//        mListAdapter.notifyDataSetChanged();
-//
-//        Log.d(TAG, "addFromListePlatWithQuantity callback");
-//    } // void
+    @Override
+    public void clicRightFromListAdapter(Plat pPlat) {
+        Log.d(TAG, "clicRightFromListAdapter callback");
+
+        mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
+    } // void
 
     // callback listAdapter
     //******************************************************************************
@@ -182,37 +184,24 @@ public class CuisineActivity
         finish();
     } // void
 
-    // event associé au bouton roundedbuttonplus
-    public void addNewDish(View view) {
-        String qteString = mEditTextQte.getText().toString();
-        int qte;
+    // event associé au bouton buttonCuisineAddNewPlat
+    public void addNewPlat(View view) {
 
-        if (qteString.length() != 0) {
+        String nQuantite = mEditTextQte.getText().toString();
+        String nName = mEditTextName.getText().toString().trim();
 
-            qte = Integer.parseInt(qteString);
-            String nomPlat = mEditTextName.getText().toString();
+        if (!Tools.isInteger(nQuantite)) { // check si digit
+            toastErrorMessage("Merci de préciser une quantité correcte !");
 
+        } else if (0 == nName.length()) { // check si nom valide
+            toastErrorMessage("Merci de préciser un nom de plat !");
 
-            Log.d(TAG, "addNewDish " + qte + " " + nomPlat);
+//        } else if (xxxx) { // check si déja dans liste
+//
 
-//        if ((null != nomPlat) || ("" != nomPlat) || "plat" != nomPlat) {
-
-            if (nomPlat.length() != 0) {
-                if (1 >= qte) {
-                    qte = 1;
-                }
-
-//                addFromListAdapterWithQuantity(qte, nomPlat);
-
-            } else {
-                Toast.makeText(getApplicationContext(), "Renseigner le nom du plat pour valider", Toast.LENGTH_SHORT).show();
-            }
-        }else{
-            Toast.makeText(getApplicationContext(), "Renseigner la quantité pour valider", Toast.LENGTH_SHORT).show();
-        }
-
-
-        connectedFromClient();
+        } else {
+            mClient.send(EnumSendWord.AJOUT, nQuantite + " " + nName);
+        } // else
     } // void
 
 

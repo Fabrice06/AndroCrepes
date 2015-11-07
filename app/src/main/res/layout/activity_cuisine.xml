@@ -111,11 +111,11 @@
                 android:layout_width="100dp"
                 android:layout_height="25dp"
                 android:text="Ajouter"
-                android:id="@+id/btnPlatAdd"
+                android:id="@+id/buttonCuisineAddNewPlat"
                 android:layout_gravity="right"
                 android:background="@drawable/roundedbuttonplus"
                 android:textColor="#F0FFFF"
-                android:onClick="addNewDish"/>
+                android:onClick="addNewPlat"/>
 
         </FrameLayout>
 

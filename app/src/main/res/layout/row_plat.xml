@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="XXX"
-            android:id="@+id/txtRowInfo"
+            android:id="@+id/textViewListAdapterInfo"
             android:textColor="@color/colorText"
             android:textSize="20dp"
             />
@@ -54,8 +54,8 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="25dp"
-            android:text="Annuller"
-            android:id="@+id/btnRowAdd"
+            android:text="Annuler"
+            android:id="@+id/buttonListAdapterLeft"
             android:layout_gravity="left"
             android:background="@drawable/roundedbuttonmoins"
             android:textColor="#F0FFFF"/>
@@ -69,7 +69,7 @@
             android:layout_width="100dp"
             android:layout_height="25dp"
             android:text="Commander"
-            android:id="@+id/btnRowRemove"
+            android:id="@+id/buttonListAdapterRight"
             android:background="@drawable/roundedbuttonplus"
             android:textColor="#F0FFFF"/>
 
