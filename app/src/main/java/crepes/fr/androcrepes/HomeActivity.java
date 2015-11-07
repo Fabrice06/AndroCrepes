@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,8 +22,8 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     private static final String TAG = HomeActivity.class.getSimpleName();
 
     //fixme: deux variables suivantes à changer via le menu settings
-    public static final String SERVER_IP = "10.0.3.2";
-//    public static final String SERVER_IP = "10.0.2.2";
+//    public static final String SERVER_IP = "10.0.3.2";
+    public static final String SERVER_IP = "10.0.2.2";
     public static final int SERVER_PORT = 7777;
 
     private static final String LOGOUT = "logout";
@@ -46,6 +47,12 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         mProgressDialog.setMessage(WAIT);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+
+        TextView myTextView = (TextView) findViewById(R.id.laBonneCrepe);
+        Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
+        myTextView.setTypeface(myFont);
+        myTextView.setTextSize(30);
 
         mBtnHomeSalle = (Button) findViewById(R.id.btnHomeSalle);
         mBtnHomeCuisine = (Button) findViewById(R.id.btnHomeCuisine);
@@ -53,15 +60,9 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
         updateAfterConnection(false);
 
-        mProgressDialog.show();
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
         mClient.connect();
-
-        TextView myTextView = (TextView) findViewById(R.id.laBonneCrepe);
-        Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
-        myTextView.setTypeface(myFont);
-        myTextView.setTextSize(30);
 
     } // void
 
@@ -91,8 +92,14 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public void goLog(View v) {
         //Log.d(TAG, "goLog");
 
+        mProgressDialog.show();
+
         if (mClient.isRunning()) {
             mClient.disconnect();
+
+            //fixme pour palier au bug: pas de callback disconnectedFromClient ???
+            mProgressDialog.hide();
+            updateAfterConnection(false);
 
         } else {
             mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
@@ -114,6 +121,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
         //Log.d(TAG, "connectedFromClient");
+
         mProgressDialog.hide();
         updateAfterConnection(true);
     } // void
@@ -121,18 +129,18 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     @Override
     public void disconnectedFromClient() { // callback d'une déconnexion client
         //Log.d(TAG, "disconnectedFromClient");
+
         mProgressDialog.hide();
         updateAfterConnection(false);
     } // void
 
     @Override
     public void errorFromClient(String pError) { // callback pour traitement des erreurs
-        Log.d(TAG, "errorFromClient");
-        //fixme: prévenir l'utilisateur
+        //Log.d(TAG, "errorFromClient");
 
         mProgressDialog.hide();
-        // ?? pas sûr ??
-        //updateAfterConnection(false);
+        updateAfterConnection(false);
+        toastMessage(pError);
     } // void
 
     // callback Client: connexion
@@ -166,6 +174,11 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     // callback Client: data
     //******************************************************************************
 
+
+    public void toastMessage(final String pMessage) {
+        Toast.makeText(getApplicationContext(), pMessage, Toast.LENGTH_SHORT).show();
+    }
+
     private void updateAfterConnection(final boolean pIsConnected) {
         mBtnHomeLog.setText(pIsConnected ? LOGOUT : LOGON);
         mBtnHomeSalle.setEnabled(pIsConnected);
@@ -174,14 +187,14 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(TAG, "onCreateOptionMenu");
+        //Log.d(TAG, "onCreateOptionMenu");
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected");
+        //Log.d(TAG, "onOptionsItemSelected");
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {

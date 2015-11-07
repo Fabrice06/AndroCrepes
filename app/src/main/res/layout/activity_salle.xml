@@ -30,15 +30,15 @@
             android:layout_gravity="center_vertical">
 
             <TextView
-                android:id="@+id/textListeSalle"
+                android:id="@+id/salle_textViewInfoId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/listePlats"
+                android:text="@string/salle_textViewInfoText"
                 android:gravity="center"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:typeface="serif"
-                android:textColor="@color/colorText" />
+                android:textColor="@color/salle_textViewInfoColor" />
         </FrameLayout>
 
     </LinearLayout>

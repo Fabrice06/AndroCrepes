@@ -48,7 +48,7 @@ public class ListAdapter extends ArrayAdapter<Plat> {
         final Plat nPlat = getItem(pPosition);
 
         if (null != nPlat) {
-            final TextView nTextViewListAdapterInfo = (TextView) nView.findViewById(R.id.textViewListAdapterInfo);
+            final TextView nTextViewListAdapterInfo = (TextView) nView.findViewById(R.id.listadapter_textViewInfoId);
 
             if (nTextViewListAdapterInfo != null) {
                 final Button nButtonListAdapterLeft = (Button) nView.findViewById(R.id.buttonListAdapterLeft);

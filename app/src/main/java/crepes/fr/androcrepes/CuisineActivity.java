@@ -1,10 +1,8 @@
 package crepes.fr.androcrepes;
 
-<<<<<<< Updated upstream
-import android.graphics.Typeface;
-=======
+
 import android.app.ProgressDialog;
->>>>>>> Stashed changes
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -54,6 +52,12 @@ public class CuisineActivity
         mProgressDialog.setMessage(WAIT);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+
+        TextView nTextViewInfo = (TextView) findViewById(R.id.cuisine_textViewInfoId);
+        Typeface nFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
+        nTextViewInfo.setTypeface(nFont);
+        nTextViewInfo.setTextSize(30);
 
         mPlats = Plats.getInstance();
         mListAdapter = new ListAdapter(this, mPlats);
@@ -61,20 +65,13 @@ public class CuisineActivity
         mListViewCuisine = (ListView) findViewById(R.id.listViewCuisine);
         mListViewCuisine.setAdapter(mListAdapter);
 
-        mEditTextQte =(EditText) findViewById(R.id.editTextQte);
-        mEditTextName =(EditText) findViewById(R.id.editTextPlat);
+        mEditTextQte = (EditText) findViewById(R.id.cuisine_editTextQuantiteId);
+        mEditTextName = (EditText) findViewById(R.id.cuisine_editTextPlatId);
 
-        mProgressDialog.show();
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
         mClient.connect();
         mClient.send(EnumSendWord.QUANTITE, "");
-
-
-        TextView myTextView = (TextView) findViewById(R.id.textListeCuisine);
-        Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
-        myTextView.setTypeface(myFont);
-        myTextView.setTextSize(30);
 
     } // void
 
@@ -83,20 +80,22 @@ public class CuisineActivity
 
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
-        Log.d(TAG, "connectedFromClient callback");
+        //Log.d(TAG, "connectedFromClient callback");
+        mProgressDialog.show();
         mClient.send(EnumSendWord.QUANTITE, "");
     }
 
     @Override
     public void disconnectedFromClient() { // callback d'une déconnexion client
-        Log.d(TAG, "disconnectedFromClient");
+        //Log.d(TAG, "disconnectedFromClient");
         //fixme: prévenir l'utilisateur ??
+        mProgressDialog.hide();
     }
 
     @Override
     public void errorFromClient(String pError) { // callback d'une connexion client si réussite
         //Log.d(TAG, "errorFromClient");
-
+        mProgressDialog.hide();
         toastMessage(pError);
     }
 
@@ -116,6 +115,7 @@ public class CuisineActivity
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
             // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
+            mProgressDialog.hide();
             toastMessage(pString + " !");
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
@@ -124,15 +124,16 @@ public class CuisineActivity
         } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
             mClient.send(EnumSendWord.QUANTITE, "");
 
-            mEditTextQte.setText("");
+            mEditTextQte.setText("1");
             mEditTextName.setText("");
 
             // fixme scroll sur le plat ???
-
+            mProgressDialog.hide();
             toastMessage("Le plat a été ajouté à la carte !");
 
         } else {
             // cas non répertorié: ceinture et bretelles
+            mProgressDialog.hide();
             toastMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
             //fixme: mettre en place un fichier de log pour ce cas ??
         } // else
@@ -170,6 +171,8 @@ public class CuisineActivity
 
         // maj de l'ihm
         mListAdapter.notifyDataSetChanged();
+
+        mProgressDialog.hide();
     } // void
 
     // callback client: data
@@ -182,14 +185,14 @@ public class CuisineActivity
     @Override
     public void clicLeftFromListAdapter(Plat pPlat) {
         //Log.d(TAG, "clicLeftFromListAdapter callback");
-
+        mProgressDialog.show();
         mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
     } // void
 
     @Override
     public void clicRightFromListAdapter(Plat pPlat) {
         //Log.d(TAG, "clicRightFromListAdapter callback");
-
+        mProgressDialog.show();
         mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
     } // void
 
@@ -222,6 +225,7 @@ public class CuisineActivity
 //
 
         } else {
+            mProgressDialog.show();
             mClient.send(EnumSendWord.AJOUT, nQuantite + " " + nName);
         } // else
     } // void

@@ -1,10 +1,7 @@
 package crepes.fr.androcrepes;
 
-<<<<<<< Updated upstream
-import android.graphics.Typeface;
-=======
 import android.app.ProgressDialog;
->>>>>>> Stashed changes
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -50,6 +47,12 @@ public class SalleActivity
         mProgressDialog.setMessage(WAIT);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+
+        TextView nTextViewInfo = (TextView) findViewById(R.id.salle_textViewInfoId);
+        Typeface nFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
+        nTextViewInfo.setTypeface(nFont);
+        nTextViewInfo.setTextSize(30);
 
         mPlats = Plats.getInstance();
         mListAdapter = new ListAdapter(this, mPlats);
@@ -57,16 +60,10 @@ public class SalleActivity
         mListViewSalle = (ListView) findViewById(R.id.listViewSalle);
         mListViewSalle.setAdapter(mListAdapter);
 
-        mProgressDialog.show();
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
         mClient.connect();
         mClient.send(EnumSendWord.QUANTITE, "");
-
-        TextView myTextView = (TextView) findViewById(R.id.textListeSalle);
-        Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
-        myTextView.setTypeface(myFont);
-        myTextView.setTextSize(30);
 
     } // void
 
@@ -77,19 +74,20 @@ public class SalleActivity
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
         //Log.d(TAG, "connectedFromClient callback");
+        mProgressDialog.show();
         mClient.send(EnumSendWord.QUANTITE, "");
     }
 
     @Override
     public void disconnectedFromClient() { // callback d'une déconnexion
-        //Log.d(TAG, "notConnectedFromClient");
+        //Log.d(TAG, "disconnectedFromClient");
         //fixme: prévenir l'utilisateur ??
+        mProgressDialog.hide();
     }
 
     @Override
     public void errorFromClient(String pError) { // callback d'une connexion client si réussite
         //Log.d(TAG, "errorFromClient");
-
         mProgressDialog.hide();
         toastMessage(pError);
     }
@@ -103,13 +101,14 @@ public class SalleActivity
 
     @Override
     public void singleFromClient(final String pString) { // callback d'une action de type PUT, POST ou DELETE
-        Log.d(TAG, "singleFromClient callback: " + pString);
+        //Log.d(TAG, "singleFromClient callback: " + pString);
 
         // recherche du dernier mot/chiffre pour identifier la réponse
         String nReponse = pString.substring(pString.lastIndexOf(" ")+1);
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
             // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
+            mProgressDialog.hide();
             toastMessage(pString + " !");
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {
@@ -117,6 +116,7 @@ public class SalleActivity
 
         } else {
             // cas non répertorié: ceinture et bretelles
+            mProgressDialog.hide();
             toastMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
             //fixme: mettre en place un fichier de log pour ce cas ??
         } // else
@@ -125,10 +125,9 @@ public class SalleActivity
 
     @Override
     public void listeFromClient(List<String> pListData) {
-        Log.d(TAG, "listeFromClient callback");
+        //Log.d(TAG, "listeFromClient callback");
 
-        //fixme: pas utilisé pour le moment pas toucher
-
+        //fixme: listeFromClient pas utilisé ici pour le moment
 //        for (int nLen = pListData.size(), i = 1; i < nLen; i++) {
 //            String nPlat = pListData.get(i);
 //
@@ -148,12 +147,10 @@ public class SalleActivity
             Plat nPlat = mPlats.getPlat(nNom);
             // nouveau plat
             if (null == nPlat) {
-                Log.d(TAG, "quantiteFromClient callback if plat ");
                 nPlat= new Plat(nNom, nQuantite);
                 mPlats.addPlat(nPlat);
 
             } else { // update quantité
-                Log.d(TAG, "quantiteFromClient callback else plat ");
                 nPlat.setQuantite(nQuantite);
             } // else
 
@@ -162,6 +159,8 @@ public class SalleActivity
 
         // maj de l'ihm
         mListAdapter.notifyDataSetChanged();
+
+        mProgressDialog.hide();
     } // void
 
     // callback client: data
@@ -173,15 +172,15 @@ public class SalleActivity
 
     @Override
     public void clicLeftFromListAdapter(Plat pPlat) {
-        Log.d(TAG, "clicLeftFromListAdapter callback");
-
+        //Log.d(TAG, "clicLeftFromListAdapter callback");
+        mProgressDialog.show();
         mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
     }
 
     @Override
     public void clicRightFromListAdapter(Plat pPlat) {
-        Log.d(TAG, "clicRightFromListAdapter callback");
-
+        //Log.d(TAG, "clicRightFromListAdapter callback");
+        mProgressDialog.show();
         mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
     }
 
@@ -200,14 +199,14 @@ public class SalleActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(TAG, "onCreateOptionMenu");
+        //Log.d(TAG, "onCreateOptionMenu");
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected");
+        //Log.d(TAG, "onOptionsItemSelected");
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {

@@ -1,18 +1,23 @@
 <resources>
     <string name="app_name">AndroCrepes</string>
-
     <string name="action_settings">Settings</string>
-    <string name="title_activity_home">Accueil</string>
     <string name="Logo">Logo</string>
-    <string name="title_activity_cuisine">AndroCrepes   Cuisine</string>
-    <string name="title_activity_salle">AndroCrepes   Salle</string>
+    <string name="title_activity_cuisine">AndroCrepes - Cuisine</string>
+    <string name="title_activity_salle">AndroCrepes - Salle</string>
+    <string name="title_activity_aide">AndroCrepes - Aide</string>
 
-    <string name="btnAjouter">Ajouter</string>
+    <color name="help_textViewInfoColor">#181870</color>
+    <color name="cuisine_editTextQuantiteColor">#181870</color>
+    <color name="cuisine_editTextPlatColor">#181870</color>
+    <color name="salle_textViewInfoColor">#181870</color>
+    <color name="listadapter_textViewInfoColor">#181870</color>
+    <color name="editTextQuantiteColor">#181870</color>
+    <color name="editTextPlatColor">#181870</color>
 
-    <color name="colorText">#181870</color>
+
     <color name="colorBtnValid">#FFE0B2</color>
-    <string name="title_activity_aide">AndroCrepes   Aide</string>
 
-    <string name="listePlats">Liste des plats</string>
 
+    <string name="cuisine_textViewInfoText">Liste des plats</string>
+    <string name="salle_textViewInfoText">Liste des plats</string>
 </resources>

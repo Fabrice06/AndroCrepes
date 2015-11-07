@@ -1,7 +1,6 @@
 package crepes.fr.androcrepes.network;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -75,10 +74,10 @@ public class Client {
         } // if
     } // void
 
-
-    public Boolean send(final EnumSendWord pEnumSendWord, final String pMessage) {
-        return write(pEnumSendWord, pMessage);
-    } // void
+//
+//    public Boolean send(final EnumSendWord pEnumSendWord, final String pMessage) {
+//        return write(pEnumSendWord, pMessage);
+//    } // void
 
     public void test() {
 //write(EnumSendWord.COMMANDE, "10 crepe au jambon");
@@ -118,8 +117,7 @@ public class Client {
     } // boolean
 
 
-    private Boolean write(final EnumSendWord pEnumSendWord, final String pMessage) {
-
+    public Boolean send(final EnumSendWord pEnumSendWord, final String pMessage) {
         Boolean nReturn = false; // valeur de retour par défaut
 
         mDatas.clear();
@@ -139,13 +137,13 @@ public class Client {
 
     public void disconnect() {
 
-        if(write(EnumSendWord.LOGOUT, "")) {
+        if(send(EnumSendWord.LOGOUT, "")) {
             mReadMessages.cancel(true);
         } // if
 
         if (null != mSocket) {
-            mWriter.close();
             try {
+                mWriter.close();
                 mReader.close();
                 mSocket.close();
 
@@ -170,12 +168,10 @@ public class Client {
 
         @Override
         protected Boolean doInBackground(Void... pVoid) {
-
             boolean nReturn = false; // valeur de retour par défaut
 
             try {
                 mSocket = new Socket(mIp, mPort);
-                Log.d(TAG, "doInBackground connected");
 
                 mWriter = new PrintWriter(mSocket.getOutputStream(), true);
                 mReader = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
@@ -183,7 +179,6 @@ public class Client {
                 nReturn= true;
 
             } catch (IOException e) {
-                Log.d(TAG, "doInBackground IOException");
                 e.printStackTrace();
             } // catch
 
@@ -220,7 +215,6 @@ public class Client {
                     } // if
 
                 } catch (IOException e) {
-                    Log.d(TAG, "doInBackground IOException");
                     e.printStackTrace();
 
                     break;
