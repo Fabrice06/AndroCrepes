@@ -50,8 +50,8 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         mClient.connect();
 
         TextView myTextView = (TextView) findViewById(R.id.laBonneCrepe);
-        Typeface myFont = Typeface.createFromAsset(getAssets(), "Rakoon.ttf");
-        myTextView.setTypeface(myFont);
+        Typeface myFont = Typeface.createFromAsset(getAssets(), "riesling.ttf");
+        myTextView.setTypeface(myFont, Typeface.BOLD);
         myTextView.setTextSize(30);
 
     } // void
