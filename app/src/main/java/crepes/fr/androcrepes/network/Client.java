@@ -14,11 +14,30 @@ import crepes.fr.androcrepes.commons.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.EnumSendWord;
 import crepes.fr.androcrepes.commons.Tools;
 
-
+/**
+ * <b>Cette classe centralise la communication avec le serveur.</b>
+ * <p>
+ *     Le pattern design singleton est appliqué à cette classe.
+ * </p>
+ */
 public class Client {
 
     private static final String TAG = Client.class.getSimpleName();
 
+    /**
+     * <b>ClientCallBack est une interface.</b>
+     * <p>
+     *     Cette interface comporte 6 callback pour communiquer avec les activities:
+     *     <ul>
+     *         <li>singleFromClient(String pString): une information est reçue du serveur</li>
+     *         <li>listeFromClient(List<String> pListData): des données sont reçues du serveur suite à une requête LISTE</li>
+     *         <li>quantiteFromClient(List<String> pListData): des données sont reçues du serveur suite à une requête QUANTITE</li>
+     *         <li>connectedFromClient(): la connection est établie</li>
+     *         <li>errorFromClient(String pError): une erreur est transmise</li>
+     *         <li>disconnectedFromClient(): la déconnection est effective</li>
+     *     </ul>
+     * </p>
+     */
     public interface ClientCallBack {
         void singleFromClient(String pString); // envoi un callback quand une information est reçue du serveur
         void listeFromClient(List<String> pListData); // envoi un callback quand des données sont reçues du serveur suite à une requête LISTE

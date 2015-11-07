@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * <p>
  *     Le pattern design singleton est appliqué à cette classe.
  * </p>
- * * <p><b>Attention:</b><br>
+ * <p><b>Attention:</b><br>
  *     La taille de la collection n'est pas vérifiée en fonction des capacités de stockage du device.
  *     On suppose que le nom du plat est unique, mais aucun contrôle n'a été mis en oeuvre en ce sens.
  * </p>
@@ -85,8 +85,16 @@ public class Plats extends ArrayList<Plat> {
     } // Plat
 
     /**
+     * Ajoute le plat dans la collection
+     *
+     * <p><b>Attention:</b><br>
+     *     Si le plat est déjà présent, il n'est pas ajouté.
+     * </p>
      *
      * @param pPlat
+     *      Un objet de type Plat
+     *
+     * @see Plat
      */
     public void addPlat(final Plat pPlat) {
 
@@ -101,19 +109,22 @@ public class Plats extends ArrayList<Plat> {
     } // void
 
     /**
+     * Retourne la taille de la collection
      *
-     * @return
+     * @return La taille de la collection de type int
      */
     public int getSize() {
         return mInstance.size();
     } // int
 
     /**
+     * Détermine si le plat est déjà présent dans la collection
      *
      * @param pPlat
-     * @return
+     *      Un objet de type Plat
+     *
+     * @return Vrai, si le plat est présent dans la collection.
      */
-    //fixme: a tester containsPlat pas sûr que ça marche
     public boolean containsPlat(final Plat pPlat) {
         return mInstance.contains(pPlat);
     } // boolean
