@@ -13,7 +13,6 @@ import java.util.List;
 import crepes.fr.androcrepes.commons.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.EnumSendWord;
 import crepes.fr.androcrepes.commons.Tools;
-import crepes.fr.androcrepes.entity.Plat;
 
 /**
  * <b>Cette classe centralise la communication avec le serveur distant.</b>

@@ -105,7 +105,7 @@
 <li>android.support.v7.app.AppCompatActivity</li>
 <li>
 <ul class="inheritance">
-<li>crepes.fr.androcrepes.CuisineActivity</li>
+<li>crepes.fr.androcrepes.view.CuisineActivity</li>
 </ul>
 </li>
 </ul>
@@ -206,13 +206,13 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../crepes/fr/androcrepes/CuisineActivity.html#clicLeftFromListAdapter(crepes.fr.androcrepes.entity.Plat)">clicLeftFromListAdapter</a></strong>(<a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.entity">Plat</a>&nbsp;pPlat)</code>
+<td class="colLast"><code><strong><a href="../../../crepes/fr/androcrepes/CuisineActivity.html#clicLeftFromListAdapter(crepes.fr.androcrepes.entity.Plat)">clicLeftFromListAdapter</a></strong>(<a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.model">Plat</a>&nbsp;pPlat)</code>
 <div class="block">Implémentation de ListAdapterCallBack: clic sur bouton gauche.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../crepes/fr/androcrepes/CuisineActivity.html#clicRightFromListAdapter(crepes.fr.androcrepes.entity.Plat)">clicRightFromListAdapter</a></strong>(<a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.entity">Plat</a>&nbsp;pPlat)</code>
+<td class="colLast"><code><strong><a href="../../../crepes/fr/androcrepes/CuisineActivity.html#clicRightFromListAdapter(crepes.fr.androcrepes.entity.Plat)">clicRightFromListAdapter</a></strong>(<a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.model">Plat</a>&nbsp;pPlat)</code>
 <div class="block">Implémentation de ListAdapterCallBack: clic sur bouton droit.</div>
 </td>
 </tr>
@@ -455,13 +455,13 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 <dt><span class="strong">Parameters:</span></dt><dd><code>pListData</code> - Données sous forme d'une collection de String.</dd></dl>
 </li>
 </ul>
-<a name="clicLeftFromListAdapter(crepes.fr.androcrepes.entity.Plat)">
+<a name="clicLeftFromListAdapter(crepes.fr.androcrepes.model.Plat)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>clicLeftFromListAdapter</h4>
-<pre>public&nbsp;void&nbsp;clicLeftFromListAdapter(<a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.entity">Plat</a>&nbsp;pPlat)</pre>
+<pre>public&nbsp;void&nbsp;clicLeftFromListAdapter(<a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.model">Plat</a>&nbsp;pPlat)</pre>
 <div class="block">Implémentation de ListAdapterCallBack: clic sur bouton gauche.
  <p>
      Une requête COMMANDE est envoyée au serveur distant.
@@ -469,17 +469,17 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../crepes/fr/androcrepes/ListAdapter.ListAdapterCallBack.html#clicLeftFromListAdapter(crepes.fr.androcrepes.entity.Plat)">clicLeftFromListAdapter</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/ListAdapter.ListAdapterCallBack.html" title="interface in crepes.fr.androcrepes">ListAdapter.ListAdapterCallBack</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>pPlat</code> - Objet de type Plat</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.entity"><code>Plat</code></a>, 
+<dt><span class="strong">Parameters:</span></dt><dd><code>pPlat</code> - Objet de type Plat</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.model"><code>Plat</code></a>,
 <a href="../../../crepes/fr/androcrepes/commons/EnumSendWord.html" title="enum in crepes.fr.androcrepes.commons"><code>EnumSendWord</code></a></dd></dl>
 </li>
 </ul>
-<a name="clicRightFromListAdapter(crepes.fr.androcrepes.entity.Plat)">
+<a name="clicRightFromListAdapter(crepes.fr.androcrepes.model.Plat)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>clicRightFromListAdapter</h4>
-<pre>public&nbsp;void&nbsp;clicRightFromListAdapter(<a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.entity">Plat</a>&nbsp;pPlat)</pre>
+<pre>public&nbsp;void&nbsp;clicRightFromListAdapter(<a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.model">Plat</a>&nbsp;pPlat)</pre>
 <div class="block">Implémentation de ListAdapterCallBack: clic sur bouton droit.
  <p>
      Une requête AJOUT est envoyée au serveur distant.
@@ -487,7 +487,7 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../crepes/fr/androcrepes/ListAdapter.ListAdapterCallBack.html#clicRightFromListAdapter(crepes.fr.androcrepes.entity.Plat)">clicRightFromListAdapter</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/ListAdapter.ListAdapterCallBack.html" title="interface in crepes.fr.androcrepes">ListAdapter.ListAdapterCallBack</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>pPlat</code> - Objet de type Plat</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.entity"><code>Plat</code></a>, 
+<dt><span class="strong">Parameters:</span></dt><dd><code>pPlat</code> - Objet de type Plat</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/entity/Plat.html" title="class in crepes.fr.androcrepes.model"><code>Plat</code></a>,
 <a href="../../../crepes/fr/androcrepes/commons/EnumSendWord.html" title="enum in crepes.fr.androcrepes.commons"><code>EnumSendWord</code></a></dd></dl>
 </li>
 </ul>
