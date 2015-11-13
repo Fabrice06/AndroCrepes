@@ -1,4 +1,4 @@
-package crepes.fr.androcrepes.commons;
+package crepes.fr.androcrepes.commons.java;
 
 /**
  * <b>EnumSendWord est un type énuméré.</b>

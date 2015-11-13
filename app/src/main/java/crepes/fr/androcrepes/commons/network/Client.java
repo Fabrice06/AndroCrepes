@@ -1,4 +1,4 @@
-package crepes.fr.androcrepes.network;
+package crepes.fr.androcrepes.commons.network;
 
 import android.os.AsyncTask;
 
@@ -10,9 +10,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import crepes.fr.androcrepes.commons.EnumReceiveWord;
-import crepes.fr.androcrepes.commons.EnumSendWord;
-import crepes.fr.androcrepes.commons.Tools;
+import crepes.fr.androcrepes.commons.java.EnumReceiveWord;
+import crepes.fr.androcrepes.commons.java.EnumSendWord;
+import crepes.fr.androcrepes.commons.java.Tools;
 
 /**
  * <b>Cette classe centralise la communication avec le serveur distant.</b>

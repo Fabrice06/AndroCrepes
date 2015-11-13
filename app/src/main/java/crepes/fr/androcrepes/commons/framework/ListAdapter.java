@@ -1,4 +1,4 @@
-package crepes.fr.androcrepes.view;
+package crepes.fr.androcrepes.commons.framework;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import crepes.fr.androcrepes.R;
 import crepes.fr.androcrepes.model.Plat;
 import crepes.fr.androcrepes.model.Plats;
+import crepes.fr.androcrepes.view.CuisineActivity;
 
 /**
  * <b>Cette classe permet la réalisation d'une liste de données scrollable.</b>

@@ -15,7 +15,8 @@ import android.widget.Toast;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
-import crepes.fr.androcrepes.network.Client;
+import crepes.fr.androcrepes.controller.Controller;
+import crepes.fr.androcrepes.commons.network.Client;
 
 /**
  * <b>Classe dédiée à la description de l'ihm Home.</b>
@@ -26,15 +27,6 @@ import crepes.fr.androcrepes.network.Client;
 public class HomeActivity extends AppCompatActivity implements Client.ClientCallBack {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
-
-    //fixme: deux variables suivantes à changer via le menu settings
-//    public static final String SERVER_IP = "10.0.3.2";
-    public static final String SERVER_IP = "10.0.2.2";
-    public static final int SERVER_PORT = 7777;
-
-    private static final String LOGOUT = "logout";
-    private static final String LOGON = "logon";
-    private static final String WAIT = "Thinking...";
 
     private ProgressDialog mProgressDialog = null;
     private Button mBtnHomeSalle = null;
@@ -50,7 +42,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         //Log.d(TAG, "onCreate");
 
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage(WAIT);
+        mProgressDialog.setMessage(Controller.WAIT);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(true);
         mProgressDialog.show();
@@ -67,7 +59,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         updateAfterConnection(false);
 
         //fixme: définir plan B si serveur hors d'atteinte
-        mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
+        mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
         mClient.connect();
 
     } // void
@@ -130,7 +122,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
             updateAfterConnection(false);
 
         } else {
-            mClient = Client.getInstance(this, SERVER_IP, SERVER_PORT);
+            mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
             mClient.connect();
         } // else
     } // void
@@ -264,7 +256,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
      *      Vrai: la connexion est établie et active.
      */
     private void updateAfterConnection(final boolean pIsConnected) {
-        mBtnHomeLog.setText(pIsConnected ? LOGOUT : LOGON);
+        mBtnHomeLog.setText(pIsConnected ? Controller.LOGOUT : Controller.LOGON);
         mBtnHomeSalle.setEnabled(pIsConnected);
         mBtnHomeCuisine.setEnabled(pIsConnected);
     } // void

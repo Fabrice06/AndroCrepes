@@ -1,4 +1,4 @@
-package crepes.fr.androcrepes.commons;
+package crepes.fr.androcrepes.commons.java;
 
 /**
  * <b>Tools regroupe l'ensemble des outils utilisés dans l'application.</b>

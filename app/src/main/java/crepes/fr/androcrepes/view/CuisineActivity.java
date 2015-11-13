@@ -17,13 +17,14 @@ import android.widget.Toast;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
-import crepes.fr.androcrepes.commons.EnumReceiveWord;
-import crepes.fr.androcrepes.commons.EnumSendWord;
-import crepes.fr.androcrepes.commons.Tools;
+import crepes.fr.androcrepes.commons.framework.ListAdapter;
+import crepes.fr.androcrepes.commons.java.EnumReceiveWord;
+import crepes.fr.androcrepes.commons.java.EnumSendWord;
+import crepes.fr.androcrepes.commons.java.Tools;
 import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.model.Plat;
 import crepes.fr.androcrepes.model.Plats;
-import crepes.fr.androcrepes.network.Client;
+import crepes.fr.androcrepes.commons.network.Client;
 
 /**
  * <b>Classe dédiée à la description de l'ihm Cuisine.</b>

@@ -126,13 +126,13 @@
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd>android.content.ComponentCallbacks, android.content.ComponentCallbacks2, android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback, android.support.v4.app.ActivityCompatApi23.RequestPermissionsRequestCodeValidator, android.support.v4.app.TaskStackBuilder.SupportParentable, android.support.v7.app.ActionBarDrawerToggle.DelegateProvider, android.support.v7.app.AppCompatCallback, android.view.KeyEvent.Callback, android.view.LayoutInflater.Factory, android.view.LayoutInflater.Factory2, android.view.View.OnCreateContextMenuListener, android.view.Window.Callback, <a href="../../../crepes/fr/androcrepes/ListAdapter.ListAdapterCallBack.html" title="interface in crepes.fr.androcrepes">ListAdapter.ListAdapterCallBack</a>, <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.network">Client.ClientCallBack</a></dd>
+<dd>android.content.ComponentCallbacks, android.content.ComponentCallbacks2, android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback, android.support.v4.app.ActivityCompatApi23.RequestPermissionsRequestCodeValidator, android.support.v4.app.TaskStackBuilder.SupportParentable, android.support.v7.app.ActionBarDrawerToggle.DelegateProvider, android.support.v7.app.AppCompatCallback, android.view.KeyEvent.Callback, android.view.LayoutInflater.Factory, android.view.LayoutInflater.Factory2, android.view.View.OnCreateContextMenuListener, android.view.Window.Callback, <a href="../../../crepes/fr/androcrepes/ListAdapter.ListAdapterCallBack.html" title="interface in crepes.fr.androcrepes">ListAdapter.ListAdapterCallBack</a>, <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.commons.network">Client.ClientCallBack</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="strong">CuisineActivity</span>
 extends android.support.v7.app.AppCompatActivity
-implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.network">Client.ClientCallBack</a>, <a href="../../../crepes/fr/androcrepes/ListAdapter.ListAdapterCallBack.html" title="interface in crepes.fr.androcrepes">ListAdapter.ListAdapterCallBack</a></pre>
+implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.commons.network">Client.ClientCallBack</a>, <a href="../../../crepes/fr/androcrepes/ListAdapter.ListAdapterCallBack.html" title="interface in crepes.fr.androcrepes">ListAdapter.ListAdapterCallBack</a></pre>
 <div class="block"><b>Classe dédiée à la description de l'ihm Cuisine.</b></div>
 </li>
 </ul>
@@ -380,8 +380,8 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 <div class="block">Implémentation de ClientCallback: la connection est établie.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#connectedFromClient()">connectedFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.network">Client.ClientCallBack</a></code></dd>
-<dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/network/Client.html" title="class in crepes.fr.androcrepes.network"><code>Client</code></a></dd></dl>
+<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#connectedFromClient()">connectedFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.commons.network">Client.ClientCallBack</a></code></dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/network/Client.html" title="class in crepes.fr.androcrepes.commons.network"><code>Client</code></a></dd></dl>
 </li>
 </ul>
 <a name="disconnectedFromClient()">
@@ -394,8 +394,8 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 <div class="block">Implémentation de ClientCallback: la déconnection est effective.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#disconnectedFromClient()">disconnectedFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.network">Client.ClientCallBack</a></code></dd>
-<dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/network/Client.html" title="class in crepes.fr.androcrepes.network"><code>Client</code></a></dd></dl>
+<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#disconnectedFromClient()">disconnectedFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.commons.network">Client.ClientCallBack</a></code></dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/network/Client.html" title="class in crepes.fr.androcrepes.commons.network"><code>Client</code></a></dd></dl>
 </li>
 </ul>
 <a name="errorFromClient(java.lang.String)">
@@ -408,8 +408,8 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 <div class="block">Implémentation de ClientCallback: une erreur est transmise.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#errorFromClient(java.lang.String)">errorFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.network">Client.ClientCallBack</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>pError</code> - Message d'erreur à afficher de type String</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/network/Client.html" title="class in crepes.fr.androcrepes.network"><code>Client</code></a>, 
+<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#errorFromClient(java.lang.String)">errorFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.commons.network">Client.ClientCallBack</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>pError</code> - Message d'erreur à afficher de type String</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../crepes/fr/androcrepes/network/Client.html" title="class in crepes.fr.androcrepes.commons.network"><code>Client</code></a>,
 <code>toastMessage</code></dd></dl>
 </li>
 </ul>
@@ -423,7 +423,7 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 <div class="block">Implémentation de ClientCallback: réponse reçue du serveur suite à une requête AJOUT ou COMMANDE.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#singleFromClient(java.lang.String)">singleFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.network">Client.ClientCallBack</a></code></dd>
+<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#singleFromClient(java.lang.String)">singleFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.commons.network">Client.ClientCallBack</a></code></dd>
 <dt><span class="strong">Parameters:</span></dt><dd><code>pString</code> - Réponse de type String</dd></dl>
 </li>
 </ul>
@@ -437,7 +437,7 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 <div class="block">Implémentation de ClientCallback: données sont reçues du serveur suite à une requête LISTE.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#listeFromClient(java.util.List)">listeFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.network">Client.ClientCallBack</a></code></dd>
+<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#listeFromClient(java.util.List)">listeFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.commons.network">Client.ClientCallBack</a></code></dd>
 <dt><span class="strong">Parameters:</span></dt><dd><code>pListData</code> - Données sous forme d'une collection de String.</dd></dl>
 </li>
 </ul>
@@ -451,7 +451,7 @@ implements <a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack
 <div class="block">Implémentation de ClientCallback: données sont reçues du serveur suite à une requête QUANTITE.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#quantiteFromClient(java.util.List)">quantiteFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.network">Client.ClientCallBack</a></code></dd>
+<dd><code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html#quantiteFromClient(java.util.List)">quantiteFromClient</a></code>&nbsp;in interface&nbsp;<code><a href="../../../crepes/fr/androcrepes/network/Client.ClientCallBack.html" title="interface in crepes.fr.androcrepes.commons.network">Client.ClientCallBack</a></code></dd>
 <dt><span class="strong">Parameters:</span></dt><dd><code>pListData</code> - Données sous forme d'une collection de String.</dd></dl>
 </li>
 </ul>
