@@ -1,0 +1,62 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@android:color/holo_orange_light">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButtonSalleGoHome"
+            android:src="@drawable/home"
+            android:background="@drawable/roundedbutton"
+            android:onClick="goHome"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/salle_textViewInfoId"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/salle_textViewInfoText"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="serif"
+                android:textColor="@color/salle_textViewInfoColor" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="10dp"></FrameLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listViewSalle"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="90"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0px"/>
+
+
+</LinearLayout>
+
+
