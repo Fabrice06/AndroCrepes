@@ -1,5 +1,7 @@
 package crepes.fr.androcrepes.commons.network;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -13,6 +15,7 @@ import java.util.List;
 import crepes.fr.androcrepes.commons.java.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
 import crepes.fr.androcrepes.commons.java.Tools;
+import crepes.fr.androcrepes.controller.Controller;
 
 /**
  * <b>Cette classe centralise la communication avec le serveur distant.</b>
@@ -110,6 +113,7 @@ public class Client {
 
     private static PrintWriter mWriter = new PrintWriter(System.out, true);
     private static BufferedReader mReader = new BufferedReader(new InputStreamReader(System.in));
+
 
     /**
      * Instance singleton
@@ -259,6 +263,7 @@ public class Client {
      * </p>
      */
     private static class Connection extends AsyncTask<Void, Void, Boolean> {
+
 
         /**
          * Réalise l'implémentation des objets nécessaires à la connexion:

@@ -1,7 +1,9 @@
 package crepes.fr.androcrepes.controller;
 
 import android.app.Application;
+import android.content.Context;
 
+import crepes.fr.androcrepes.commons.framework.CustomProgressDialog;
 import crepes.fr.androcrepes.model.Commandes;
 import crepes.fr.androcrepes.model.Plats;
 
@@ -24,6 +26,8 @@ public class Controller extends Application {
 
     private Commandes mCommandes = new Commandes();
 
+    private CustomProgressDialog mProgressDialog;
+
 //    private ModelCart myCart = new ModelCart();
 
 //    public ModelProducts getProducts(int pPosition) {
@@ -40,11 +44,19 @@ public class Controller extends Application {
 
     public Plats getPlats() {
         return mPlats;
-    }
+    } // Plats
 
     public Commandes getCommandes() {
         return mCommandes;
-    }
+    } // Commandes
+
+
+    public CustomProgressDialog getProgressDialog(final Context context) {
+        mProgressDialog.setMessage(Controller.WAIT);
+        //mProgressDialog.setIndeterminate(true);
+        //mProgressDialog.setCancelable(false);
+        return mProgressDialog;
+    } // CustomProgressDialog
 
 //    public int getProductsArraylistSize() {
 //        return myProducts.size();

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
+import crepes.fr.androcrepes.commons.framework.CustomProgressDialog;
 import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.commons.network.Client;
 
@@ -28,7 +29,8 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
 
     private static final String TAG = HomeActivity.class.getSimpleName();
 
-    private ProgressDialog mProgressDialog = null;
+    private CustomProgressDialog mProgressDialog = null;
+    
     private Button mBtnHomeSalle = null;
     private Button mBtnHomeCuisine = null;
     private Button mBtnHomeLog = null;
@@ -41,11 +43,9 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         setContentView(R.layout.activity_home);
         //Log.d(TAG, "onCreate");
 
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage(Controller.WAIT);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setCancelable(true);
-        mProgressDialog.show();
+        mProgressDialog = nController.getProgressDialog(this);
+        mProgressDialog.showMessage(Controller.WAIT, true);
+
 
         TextView myTextView = (TextView) findViewById(R.id.laBonneCrepe);
         Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");

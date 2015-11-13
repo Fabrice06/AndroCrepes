@@ -17,14 +17,15 @@ import android.widget.Toast;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
+import crepes.fr.androcrepes.commons.framework.CustomProgressDialog;
 import crepes.fr.androcrepes.commons.framework.ListAdapter;
 import crepes.fr.androcrepes.commons.java.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
 import crepes.fr.androcrepes.commons.java.Tools;
+import crepes.fr.androcrepes.commons.network.Client;
 import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.model.Plat;
 import crepes.fr.androcrepes.model.Plats;
-import crepes.fr.androcrepes.commons.network.Client;
 
 /**
  * <b>Classe dédiée à la description de l'ihm Cuisine.</b>
@@ -37,7 +38,7 @@ public class CuisineActivity
 
     private static final String WAIT = "Thinking...";
 
-    private ProgressDialog mProgressDialog = null;
+    private CustomProgressDialog mProgressDialog = null;
 
     private ListView mListViewCuisine = null;
     private ListAdapter mListAdapter;
@@ -57,11 +58,8 @@ public class CuisineActivity
         //Get Global Controller Class object (see application tag in AndroidManifest.xml)
         final Controller nController = (Controller) getApplicationContext();
 
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage(WAIT);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setCancelable(false);
-        mProgressDialog.show();
+        mProgressDialog = nController.getProgressDialog(this);
+        mProgressDialog.showMessage(Controller.WAIT, false);
 
         TextView nTextViewInfo = (TextView) findViewById(R.id.cuisine_textViewInfoId);
         Typeface nFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
@@ -79,7 +77,7 @@ public class CuisineActivity
         mEditTextName = (EditText) findViewById(R.id.cuisine_editTextPlatId);
 
         //fixme: définir plan B si serveur hors d'atteinte
-        mClient = Client.getInstance(this, HomeActivity.SERVER_IP, HomeActivity.SERVER_PORT);
+        mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
         mClient.connect();
         mClient.send(EnumSendWord.QUANTITE, "");
 
@@ -96,7 +94,7 @@ public class CuisineActivity
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
         //Log.d(TAG, "connectedFromClient callback");
-        mProgressDialog.show();
+        mProgressDialog.hide();
         mClient.send(EnumSendWord.QUANTITE, "");
     }
 
@@ -243,7 +241,7 @@ public class CuisineActivity
     @Override
     public void clicLeftFromListAdapter(Plat pPlat) {
         //Log.d(TAG, "clicLeftFromListAdapter callback");
-        mProgressDialog.show();
+        mProgressDialog.showMessage(Controller.WAIT, true);
         mClient.send(EnumSendWord.COMMANDE, pPlat.getNom());
     } // void
 
@@ -262,7 +260,7 @@ public class CuisineActivity
     @Override
     public void clicRightFromListAdapter(Plat pPlat) {
         //Log.d(TAG, "clicRightFromListAdapter callback");
-        mProgressDialog.show();
+        mProgressDialog.showMessage(Controller.WAIT, true);
         mClient.send(EnumSendWord.AJOUT, "1 " + pPlat.getNom());
     } // void
 

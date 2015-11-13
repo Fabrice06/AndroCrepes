@@ -15,4 +15,9 @@
         <item name="android:windowBackground">@drawable/crepe</item>
     </style>
 
+    <style name="CustomProgressBar" parent="@style/android:Theme.Holo">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">#000000</item>
+    </style>
+
 </resources>
