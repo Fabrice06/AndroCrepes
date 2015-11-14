@@ -1,4 +1,4 @@
-package crepes.fr.androcrepes.view;
+package crepes.fr.androcrepes.commons.framework;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -14,9 +14,9 @@ import android.widget.Toast;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
-import crepes.fr.androcrepes.commons.framework.CustomProgressDialog;
-import crepes.fr.androcrepes.commons.framework.ListAdapter;
+import crepes.fr.androcrepes.commons.java.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
+import crepes.fr.androcrepes.commons.java.Tools;
 import crepes.fr.androcrepes.commons.network.Client;
 import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.model.Plat;
@@ -41,6 +41,8 @@ public abstract class CustomActivity
     protected abstract int getTextViewInfoResourceId();
     protected abstract int getListViewResourceId();
     protected abstract int getMenuResourceId();
+
+    protected abstract void updateAfterClientAjout();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +86,7 @@ public abstract class CustomActivity
         //Log.d(TAG, "connectedFromClient callback");
         mProgressDialog.hideMessage();
         mClient.send(EnumSendWord.QUANTITE, "");
-    }
+    } // void
 
     /**
      * Implémentation de ClientCallback: la déconnection est effective.
@@ -96,7 +98,7 @@ public abstract class CustomActivity
         //Log.d(TAG, "disconnectedFromClient");
         //fixme: prévenir l'utilisateur ??
         mProgressDialog.hideMessage();
-    }
+    } // void
 
     /**
      * Implémentation de ClientCallback: une erreur est transmise.
@@ -127,7 +129,27 @@ public abstract class CustomActivity
      *      Réponse de type String
      */
     @Override
-    public abstract void singleFromClient(final String pString);
+    public void singleFromClient(final String pString) {
+        Log.d(TAG, "singleFromClient callback: " + pString);
+
+        // recherche du dernier mot/chiffre pour identifier la réponse
+        String nReponse = pString.substring(pString.lastIndexOf(" ")+1);
+
+        if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
+            // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
+            toastMessage(pString + " !", true);
+
+        } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
+            clientSendQuantity();
+
+        } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
+            updateAfterClientAjout();
+
+        } else {
+            // cas non répertorié: ceinture et bretelles
+            toastMessage("Erreur inconnue: merci de prévenir l'administrateur !", true);
+        } // else
+    } // void
 
 
     /**

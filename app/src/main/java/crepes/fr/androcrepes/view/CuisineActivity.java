@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import crepes.fr.androcrepes.R;
+import crepes.fr.androcrepes.commons.framework.CustomActivity;
 import crepes.fr.androcrepes.commons.java.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
 import crepes.fr.androcrepes.commons.java.Tools;
@@ -45,6 +46,17 @@ public class CuisineActivity
 
     } // void
 
+    protected void updateAfterClientAjout() {
+        super.clientSendQuantity();
+
+        mEditTextQte.setText("1");
+        mEditTextName.setText("");
+
+        // fixme scroll seulement sur un nouveau plat ???
+
+        // fixme affichage seulement sur un nouveau plat ???
+        super.toastMessage("Le plat a été ajouté à la carte !", true);
+    } // void
 
     //******************************************************************************
     // callback Client: data
