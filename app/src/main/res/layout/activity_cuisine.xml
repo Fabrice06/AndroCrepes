@@ -130,7 +130,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listViewCuisine"
+        android:id="@+id/cuisine_listView"
         android:layout_gravity="center_horizontal"
         android:layout_weight="90"
         android:divider="@android:color/transparent"
