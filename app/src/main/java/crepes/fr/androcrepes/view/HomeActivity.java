@@ -1,10 +1,10 @@
 package crepes.fr.androcrepes.view;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +16,8 @@ import java.util.List;
 
 import crepes.fr.androcrepes.R;
 import crepes.fr.androcrepes.commons.framework.CustomProgressDialog;
-import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.commons.network.Client;
+import crepes.fr.androcrepes.controller.Controller;
 
 /**
  * <b>Classe dédiée à la description de l'ihm Home.</b>
@@ -43,7 +43,7 @@ public class HomeActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        //Log.d(TAG, "onCreate");
+        Log.d(TAG, "onCreate");
 
         //Get Global Controller Class object (see application tag in AndroidManifest.xml)
         final Controller nController = (Controller) getApplicationContext();
@@ -114,7 +114,7 @@ public class HomeActivity
      *      Objet de type View
      */
     public void goLog(View pView) {
-        //Log.d(TAG, "goLog");
+        Log.d(TAG, "goLog");
 
         mProgressDialog.showMessage(Controller.WAIT, true);
 
@@ -138,7 +138,7 @@ public class HomeActivity
      *      Activité à lancer de type Class.
      */
     private void startSelectedActivity(final Class pClass) {
-        //Log.d(TAG, "startSelectedActivity");
+        Log.d(TAG, "startSelectedActivity");
         Intent nIntent = new Intent(this, pClass);
         startActivity(nIntent);
     } // void
@@ -155,7 +155,7 @@ public class HomeActivity
      */
     @Override
     public void connectedFromClient() {
-        //Log.d(TAG, "connectedFromClient");
+        Log.d(TAG, "connectedFromClient");
 
         mProgressDialog.hideMessage();
         updateAfterConnection(true);
@@ -169,7 +169,7 @@ public class HomeActivity
      */
     @Override
     public void disconnectedFromClient() {
-        //Log.d(TAG, "disconnectedFromClient");
+        Log.d(TAG, "disconnectedFromClient");
 
         mProgressDialog.hideMessage();
         updateAfterConnection(false);
@@ -283,4 +283,67 @@ public class HomeActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+    //******************************************************************************
+    // cycle de vie activity
+
+//    lancement appli
+//    HomeActivity: onCreate
+//    HomeActivity: onStart
+//    HomeActivity: onResume
+
+//    home -> salle
+//    HomeActivity: onPause
+//    SalleActivity: onCreate
+//    SalleActivity: onStart
+//    SalleActivity: onResume
+//    HomeActivity: onStop
+
+//    salle -> home
+//    SalleActivity: onPause
+//    HomeActivity: onRestart
+//    HomeActivity: onStart
+//    HomeActivity: onResume
+//    SalleActivity: onStop
+//    SalleActivity: onDestroy
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart");
+
+        // retour de cuisine ou de salle via finish
+        mClient.setCallBack(this);
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(TAG, "onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(TAG, "onStop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "onDestroy");
+        super.onDestroy();
+    }
+
 } // class

@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/classes-5b8822272c76404754b1037aa588433506c84137.jar" />
+    </item>
+    <item
         jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
@@ -16,13 +23,6 @@
         <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-6b8dabdd0793e6497b1e142c1b659c9a9a9cd727.jar" />
     </item>
     <item
-        jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-f99014d97181f402dca66b8236782e00597de643.jar" />
-    </item>
-    <item
         jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
@@ -30,11 +30,11 @@
         <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/classes-6446e1484db8d2319b45c1aacc8df65fff82fa5c.jar" />
     </item>
     <item
-        jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
+        jar="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
-        <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/classes-5b8822272c76404754b1037aa588433506c84137.jar" />
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/vince/Documents/AndroidStudio/androCrepe/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-f99014d97181f402dca66b8236782e00597de643.jar" />
     </item>
 
 </items>

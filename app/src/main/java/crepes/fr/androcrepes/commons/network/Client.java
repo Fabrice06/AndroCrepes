@@ -128,6 +128,7 @@ public class Client {
     private Client() {
     } // constructeur
 
+
     /**
      * Retourne une instance unique de la classe Client.
      *
@@ -149,13 +150,18 @@ public class Client {
 
             mInstance.mIp = pIp;
             mInstance.mPort = pPort;
+
             mDatas.clear();
         } // if
 
         mInstance.mCallBack = pCallback;
 
     return mInstance;
-    } // Plats
+    } // Client
+
+    public static void setCallBack(final ClientCallBack pCallBack) {
+        mInstance.mCallBack = pCallBack;
+    } // void
 
     /**
      * Réalise la connexion avec le serveur, si elle n'est pas déjà établie et active.

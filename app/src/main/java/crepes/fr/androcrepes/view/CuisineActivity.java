@@ -76,7 +76,6 @@ public class CuisineActivity
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
         mClient.connect();
-        mClient.send(EnumSendWord.QUANTITE, "");
 
     } // void
 

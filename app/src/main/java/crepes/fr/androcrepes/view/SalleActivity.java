@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,7 +49,7 @@ public class SalleActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salle);
-        //Log.d(TAG, "onCreate");
+        Log.d(TAG, "onCreate");
 
         //Get Global Controller Class object (see application tag in AndroidManifest.xml)
         final Controller nController = (Controller) getApplicationContext();
@@ -70,8 +71,6 @@ public class SalleActivity
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
         mClient.connect();
-        mClient.send(EnumSendWord.QUANTITE, "");
-
     } // void
 
 
@@ -99,7 +98,7 @@ public class SalleActivity
     public void disconnectedFromClient() {
         //Log.d(TAG, "disconnectedFromClient");
         //fixme: prévenir l'utilisateur ??
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
     }
 
     /**
@@ -287,5 +286,44 @@ public class SalleActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //******************************************************************************
+    // cycle de vie activity
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart");
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(TAG, "onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(TAG, "onStop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "onDestroy");
+        super.onDestroy();
     }
 } // class
