@@ -19,4 +19,8 @@ public class CustomProgressDialog extends ProgressDialog {
         setMessage(pMessage);
         setCancelable(pCancelable);
     } // void
+
+    public void hideMessage() {
+        dismiss();
+    }
 } // class

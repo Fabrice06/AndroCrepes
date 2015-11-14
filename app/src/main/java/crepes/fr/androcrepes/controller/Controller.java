@@ -26,7 +26,7 @@ public class Controller extends Application {
 
     private Commandes mCommandes = new Commandes();
 
-    private CustomProgressDialog mProgressDialog;
+//    private CustomProgressDialog mProgressDialog;
 
 //    private ModelCart myCart = new ModelCart();
 
@@ -51,11 +51,14 @@ public class Controller extends Application {
     } // Commandes
 
 
-    public CustomProgressDialog getProgressDialog(final Context context) {
-        mProgressDialog.setMessage(Controller.WAIT);
+    public CustomProgressDialog getProgressDialog(final Context pContext) {
+//        mProgressDialog = new CustomProgressDialog(pContext);
+//        mProgressDialog.setMessage(Controller.WAIT);
         //mProgressDialog.setIndeterminate(true);
         //mProgressDialog.setCancelable(false);
-        return mProgressDialog;
+//        return mProgressDialog;
+
+        return new CustomProgressDialog(pContext);
     } // CustomProgressDialog
 
 //    public int getProductsArraylistSize() {

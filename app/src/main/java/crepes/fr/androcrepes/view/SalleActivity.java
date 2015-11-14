@@ -86,7 +86,7 @@ public class SalleActivity
     @Override
     public void connectedFromClient() {
         //Log.d(TAG, "connectedFromClient callback");
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
         mClient.send(EnumSendWord.QUANTITE, "");
     }
 
@@ -114,7 +114,7 @@ public class SalleActivity
     @Override
     public void errorFromClient(String pError) {
         //Log.d(TAG, "errorFromClient");
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
         toastMessage(pError);
     }
 
@@ -140,7 +140,7 @@ public class SalleActivity
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
             // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            mProgressDialog.hide();
+            mProgressDialog.hideMessage();
             toastMessage(pString + " !");
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue()) || Tools.isInteger(nReponse)) {
@@ -148,7 +148,7 @@ public class SalleActivity
 
         } else {
             // cas non répertorié: ceinture et bretelles
-            mProgressDialog.hide();
+            mProgressDialog.hideMessage();
             toastMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
             //fixme: mettre en place un fichier de log pour ce cas ??
         } // else
@@ -165,7 +165,7 @@ public class SalleActivity
     public void listeFromClient(List<String> pListData) {
         //Log.d(TAG, "listeFromClient callback");
         //fixme: listeFromClient pas utilisé ici pour le moment
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
     } // void
 
     /**
@@ -199,7 +199,7 @@ public class SalleActivity
         // maj de l'ihm
         mListAdapter.notifyDataSetChanged();
 
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
     } // void
 
     // callback client: data

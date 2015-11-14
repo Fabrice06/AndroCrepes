@@ -25,7 +25,9 @@ import crepes.fr.androcrepes.commons.network.Client;
  *     Cette ihm constitue l'accueil de l'application.
  * </p>
  */
-public class HomeActivity extends AppCompatActivity implements Client.ClientCallBack {
+public class HomeActivity
+        extends AppCompatActivity
+        implements Client.ClientCallBack {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
 
@@ -43,9 +45,11 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
         setContentView(R.layout.activity_home);
         //Log.d(TAG, "onCreate");
 
+        //Get Global Controller Class object (see application tag in AndroidManifest.xml)
+        final Controller nController = (Controller) getApplicationContext();
+
         mProgressDialog = nController.getProgressDialog(this);
         mProgressDialog.showMessage(Controller.WAIT, true);
-
 
         TextView myTextView = (TextView) findViewById(R.id.laBonneCrepe);
         Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
@@ -112,14 +116,14 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public void goLog(View pView) {
         //Log.d(TAG, "goLog");
 
-        mProgressDialog.show();
+        mProgressDialog.showMessage(Controller.WAIT, true);
 
         if (mClient.isRunning()) {
             mClient.disconnect();
 
             //fixme pour palier au bug: pas de callback disconnectedFromClient ???
-            mProgressDialog.hide();
-            updateAfterConnection(false);
+//            mProgressDialog.hide();
+//            updateAfterConnection(false);
 
         } else {
             mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
@@ -153,7 +157,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public void connectedFromClient() {
         //Log.d(TAG, "connectedFromClient");
 
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
         updateAfterConnection(true);
     } // void
 
@@ -167,7 +171,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public void disconnectedFromClient() {
         //Log.d(TAG, "disconnectedFromClient");
 
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
         updateAfterConnection(false);
     } // void
 
@@ -185,7 +189,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public void errorFromClient(String pError) {
         //Log.d(TAG, "errorFromClient");
 
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
         updateAfterConnection(false);
         toastMessage(pError);
     } // void
@@ -220,7 +224,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public void listeFromClient(List<String> pListData) {
         //Log.d(TAG, "listeFromClient");
         //fixme: listeFromClient pas utilisé ici pour le moment
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
     }
 
     /**
@@ -233,7 +237,7 @@ public class HomeActivity extends AppCompatActivity implements Client.ClientCall
     public void quantiteFromClient(List<String> pListData) {
         //Log.d(TAG, "quantiteFromClient");
         //fixme: quantiteFromClient pas utilisé ici pour le moment
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
     } // void
 
     // callback Client: data

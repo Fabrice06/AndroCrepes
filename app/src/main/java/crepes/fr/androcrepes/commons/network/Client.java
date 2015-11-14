@@ -163,7 +163,11 @@ public class Client {
      * @see isRunning
      */
     public void connect() {
-        if (!isRunning()) {
+
+        if (isRunning()) {
+            mCallBack.connectedFromClient();
+
+        } else {
             mConnection = new Connection();
             mConnection.execute();
         } // if
@@ -228,6 +232,9 @@ public class Client {
             mReadMessages.cancel(true);
         } // if
 
+        // envoi du message de fin de connexion
+        mCallBack.disconnectedFromClient();
+
         // fin propre
         if (null != mSocket) {
 //            try {
@@ -251,8 +258,6 @@ public class Client {
             }
         } // if
 
-        // envoi du message de fin de connexion
-        mCallBack.disconnectedFromClient();
     } // void
 
     /**

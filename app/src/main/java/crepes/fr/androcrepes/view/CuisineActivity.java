@@ -36,8 +36,6 @@ public class CuisineActivity
 
     private static final String TAG = CuisineActivity.class.getSimpleName();
 
-    private static final String WAIT = "Thinking...";
-
     private CustomProgressDialog mProgressDialog = null;
 
     private ListView mListViewCuisine = null;
@@ -66,7 +64,6 @@ public class CuisineActivity
         nTextViewInfo.setTypeface(nFont);
         nTextViewInfo.setTextSize(30);
 
-//        mPlats = Plats.getInstance();
         mPlats = nController.getPlats();
         mListAdapter = new ListAdapter(this, mPlats);
 
@@ -94,7 +91,7 @@ public class CuisineActivity
     @Override
     public void connectedFromClient() { // callback d'une connexion client si réussite
         //Log.d(TAG, "connectedFromClient callback");
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
         mClient.send(EnumSendWord.QUANTITE, "");
     }
 
@@ -107,7 +104,7 @@ public class CuisineActivity
     public void disconnectedFromClient() { // callback d'une déconnexion client
         //Log.d(TAG, "disconnectedFromClient");
         //fixme: prévenir l'utilisateur ??
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
     }
 
     /**
@@ -122,7 +119,7 @@ public class CuisineActivity
     @Override
     public void errorFromClient(String pError) { // callback d'une connexion client si réussite
         //Log.d(TAG, "errorFromClient");
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
         toastMessage(pError);
     }
 
@@ -148,7 +145,7 @@ public class CuisineActivity
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
             // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            mProgressDialog.hide();
+            mProgressDialog.hideMessage();
             toastMessage(pString + " !");
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
@@ -160,13 +157,16 @@ public class CuisineActivity
             mEditTextQte.setText("1");
             mEditTextName.setText("");
 
-            // fixme scroll sur le plat ???
-            mProgressDialog.hide();
+            mProgressDialog.hideMessage();
+
+            // fixme scroll seulement sur un nouveau plat ???
+
+            // fixme affichage seulement sur un nouveau plat ???
             toastMessage("Le plat a été ajouté à la carte !");
 
         } else {
             // cas non répertorié: ceinture et bretelles
-            mProgressDialog.hide();
+            mProgressDialog.hideMessage();
             toastMessage(pString + "Erreur inconnue: merci de prévenir l'administrateur !");
             //fixme: mettre en place un fichier de log pour ce cas ??
         } // else
@@ -182,7 +182,7 @@ public class CuisineActivity
     public void listeFromClient(List<String> pListData) {
         //Log.d(TAG, "quantiteFromClient callback");
         //fixme: listeFromClient pas utilisé ici pour le moment
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
     } // void
 
     /**
@@ -216,7 +216,7 @@ public class CuisineActivity
         // maj de l'ihm
         mListAdapter.notifyDataSetChanged();
 
-        mProgressDialog.hide();
+        mProgressDialog.hideMessage();
     } // void
 
     // callback client: data
@@ -305,7 +305,7 @@ public class CuisineActivity
             toastMessage("Merci de préciser un nom de plat !");
 
         } else {
-            mProgressDialog.show();
+            mProgressDialog.showMessage(Controller.WAIT, true);
             mClient.send(EnumSendWord.AJOUT, nQuantite + " " + nName);
         } // else
     } // void
