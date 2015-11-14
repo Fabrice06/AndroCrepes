@@ -1,6 +1,7 @@
 package crepes.fr.androcrepes.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * <b>Collection des différents plats disponibles en cuisine.</b>
@@ -57,11 +58,20 @@ public class Plats extends ArrayList<Plat> {
 
         Plat nReturn = null;
 
-        for (Plat nItem : this) {
-            if (pId == nItem.getId()) {
-                nReturn = nItem;
+        Iterator<Plat> nIterator = this.iterator();
+        while (nIterator.hasNext()) {
+            Plat nPlat = nIterator.next();
+            if (pId == nPlat.getId()) {
+                nReturn = nPlat;
+                break;
             } // if
-        } // for
+        } // while
+
+//        for (Plat nItem : this) {
+//            if (pId == nItem.getId()) {
+//                nReturn = nItem;
+//            } // if
+//        } // for
         return nReturn;
     } // Plat
 
@@ -79,11 +89,20 @@ public class Plats extends ArrayList<Plat> {
 
         Plat nReturn = null;
 
-        for (Plat nItem : this) {
-            if (nItem.getNom().equals(pNom)) {
-                nReturn = nItem;
+        Iterator<Plat> nIterator = this.iterator();
+        while (nIterator.hasNext()) {
+            Plat nPlat = nIterator.next();
+            if (nPlat.getNom().equals(pNom)) {
+                nReturn = nPlat;
+                break;
             } // if
-        } // for
+        } // while
+
+//        for (Plat nItem : this) {
+//            if (nItem.getNom().equals(pNom)) {
+//                nReturn = nItem;
+//            } // if
+//        } // for
         return nReturn;
     } // Plat
 

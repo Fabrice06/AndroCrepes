@@ -31,6 +31,8 @@ public class ListAdapter extends ArrayAdapter<Plat> {
 
     private boolean mIsCuisine = false;
 
+    //private int mCount = 0;
+
     public ListAdapter(final Context pContext, Plats pPlats) {
         super(pContext, 0, pPlats);
         this.mCallBack = (ListAdapterCallBack) pContext;
@@ -58,6 +60,8 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 final Button nButtonListAdapterLeft = (Button) nView.findViewById(R.id.buttonListAdapterLeft);
                 nButtonListAdapterLeft.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+                        //mCount--;
+                        //Log.d(TAG, "nBtnRemove click " + mCount);
                         //Log.d(TAG, "nBtnRemove click " + nPlat.getId());
 
                         mCallBack.clicLeftFromListAdapter(nPlat);
@@ -70,7 +74,8 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                 nButtonListAdapterRight.setText(mIsCuisine ? "ajouter" : "commander");
                 nButtonListAdapterRight.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        //Log.d(TAG, "nBtnAdd click " + nPlat.getId());
+                        //mCount++;
+                        //Log.d(TAG, "nBtnAdd click " + mCount);
 
                         mCallBack.clicRightFromListAdapter(nPlat);
                     }

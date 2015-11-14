@@ -11,6 +11,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
@@ -42,7 +45,7 @@ public abstract class CustomActivity
     protected abstract int getListViewResourceId();
     protected abstract int getMenuResourceId();
 
-    protected abstract void updateAfterClientAjout();
+    protected abstract void updateAfterClientAjout(final boolean pIsNewPlat);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +146,23 @@ public abstract class CustomActivity
             clientSendQuantity();
 
         } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
-            updateAfterClientAjout();
+
+            boolean nIsNewPlat = true;
+//            Iterator<Plat> nIterator = mPlats.iterator();
+//            while (nIterator.hasNext()) {
+//                String nString = nIterator.next().getNom().toLowerCase();
+//                Log.d(TAG, "listeFromClient callback" + pString.toLowerCase());
+//                Log.d(TAG, "listeFromClient callback" + nString);
+////                if (nIterator.next().getNom().toLowerCase().contains(pString.toLowerCase())) {
+//                if (pString.toLowerCase().indexOf(nString) >= 0) {
+//                    Log.d(TAG, "listeFromClient indexOf");
+//                    nIsNewPlat = false;
+//                    break;
+//                } // if
+//                Log.d(TAG, "listeFromClient ! indexOf");
+//            } // while
+
+            updateAfterClientAjout(nIsNewPlat);
 
         } else {
             // cas non répertorié: ceinture et bretelles
@@ -175,16 +194,23 @@ public abstract class CustomActivity
     public void quantiteFromClient(List<String> pListData) {
         //Log.d(TAG, "quantiteFromClient callback");
 
+        boolean nIsNewPlat = false;
+
         //fixme: le retrait d'un plat de la carte n'est pas pris en compte
         for (int nLen = pListData.size(), i = 1; i < (nLen-1); i+=2) {
             String nNom = pListData.get(i);
             int nQuantite = Integer.parseInt(pListData.get(i + 1));
 
             Plat nPlat = mPlats.getPlat(nNom);
+
             // nouveau plat
             if (null == nPlat) {
                 nPlat= new Plat(nNom, nQuantite);
                 mPlats.addPlat(nPlat);
+
+                if (!nIsNewPlat) {
+                    nIsNewPlat = true;
+                }
 
             } else { // update quantité
                 nPlat.setQuantite(nQuantite);
@@ -192,6 +218,17 @@ public abstract class CustomActivity
 
             //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
         } // for
+
+        // tri par nom de plat si nouvel ajout
+        if (nIsNewPlat) {
+            Collections.sort(mPlats, new Comparator<Plat>() {
+                @Override
+                public int compare(Plat pPlatA, Plat pPlatB) {
+
+                    return pPlatA.getNom().compareTo(pPlatB.getNom());
+                }
+            });
+        } // if
 
         // maj de l'ihm
         mListAdapter.notifyDataSetChanged();
