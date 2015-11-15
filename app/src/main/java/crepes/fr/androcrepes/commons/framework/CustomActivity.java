@@ -11,8 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,7 +32,7 @@ public abstract class CustomActivity
 
     private CustomProgressDialog mProgressDialog = null;
 
-    private ListView mListViewSalle = null;
+    private ListView mListView = null;
     private ListAdapter mListAdapter;
 
     private Client mClient;
@@ -45,7 +43,7 @@ public abstract class CustomActivity
     protected abstract int getListViewResourceId();
     protected abstract int getMenuResourceId();
 
-    protected abstract void updateAfterClientAjout(final boolean pIsNewPlat);
+    protected abstract void updateAfterClientAjout(final String pNewPlatName);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +65,8 @@ public abstract class CustomActivity
         mPlats = nController.getPlats();
         mListAdapter = new ListAdapter(this, mPlats);
 
-        mListViewSalle = (ListView) findViewById(getListViewResourceId());
-        mListViewSalle.setAdapter(mListAdapter);
+        mListView = (ListView) findViewById(getListViewResourceId());
+        mListView.setAdapter(mListAdapter);
 
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
@@ -128,19 +126,19 @@ public abstract class CustomActivity
     /**
      * Implémentation de ClientCallback: réponse reçue du serveur suite à une requête AJOUT ou COMMANDE.
      *
-     * @param pString
+     * @param pResponseFromServer
      *      Réponse de type String
      */
     @Override
-    public void singleFromClient(final String pString) {
-        Log.d(TAG, "singleFromClient callback: " + pString);
+    public void singleFromClient(final String pResponseFromServer) {
+        Log.d(TAG, "singleFromClient callback: " + pResponseFromServer);
 
         // recherche du dernier mot/chiffre pour identifier la réponse
-        String nReponse = pString.substring(pString.lastIndexOf(" ")+1);
+        String nReponse = pResponseFromServer.substring(pResponseFromServer.lastIndexOf(" ")+1);
 
         if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
             // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            toastMessage(pString + " !", true);
+            toastMessage(pResponseFromServer + " !", true);
 
         } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
             clientSendQuantity();
@@ -148,21 +146,32 @@ public abstract class CustomActivity
         } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
 
             boolean nIsNewPlat = true;
-//            Iterator<Plat> nIterator = mPlats.iterator();
-//            while (nIterator.hasNext()) {
-//                String nString = nIterator.next().getNom().toLowerCase();
-//                Log.d(TAG, "listeFromClient callback" + pString.toLowerCase());
-//                Log.d(TAG, "listeFromClient callback" + nString);
-////                if (nIterator.next().getNom().toLowerCase().contains(pString.toLowerCase())) {
-//                if (pString.toLowerCase().indexOf(nString) >= 0) {
-//                    Log.d(TAG, "listeFromClient indexOf");
-//                    nIsNewPlat = false;
-//                    break;
-//                } // if
-//                Log.d(TAG, "listeFromClient ! indexOf");
-//            } // while
+            Iterator<Plat> nIterator = mPlats.iterator();
+            while (nIterator.hasNext()) {
+                String nStringToFind = EnumReceiveWord.AJOUTLEFT.getValue();
+                nStringToFind = nStringToFind + nIterator.next().getNom();
+                nStringToFind = nStringToFind + EnumReceiveWord.AJOUTRIGHT.getValue();
 
-            updateAfterClientAjout(nIsNewPlat);
+                if (pResponseFromServer.toLowerCase().indexOf(nStringToFind.toLowerCase()) >= 0) {
+                    nIsNewPlat = false;
+                    break;
+                } // if
+            } // while
+
+            String nNomPlat = "";
+            if (nIsNewPlat) {
+                int nSplitString = EnumReceiveWord.AJOUTLEFT.getValue().length();
+                nNomPlat = pResponseFromServer.substring(nSplitString);
+
+                nSplitString = nNomPlat.toLowerCase().indexOf(EnumReceiveWord.AJOUTRIGHT.getValue().toLowerCase());
+                nNomPlat = nNomPlat.substring(0, nSplitString);
+
+                Log.d(TAG, "singleFromClient callback: >" + nNomPlat + "<");
+
+
+            } // if
+
+            updateAfterClientAjout(nNomPlat);
 
         } else {
             // cas non répertorié: ceinture et bretelles
@@ -170,6 +179,23 @@ public abstract class CustomActivity
         } // else
     } // void
 
+//    public void scrollListViewByName(final String pNomPlat) {
+//        mPlats.sort();
+//        mListAdapter.notifyDataSetChanged();
+////        Plat nPlat = (Plat)mListView.getItemAtPosition(1);
+////        Log.d(TAG, "scrollListViewByName nNomPlat: >" + nPlat.getNom() + "<");
+//        int nIndex = 0;
+//        while (nIndex < mListView.getCount()) {
+//
+//            Plat nPlat = (Plat)mListView.getItemAtPosition(nIndex);
+//            Log.d(TAG, "scrollListViewByName nom: " + pNomPlat + " getNom " + nPlat.getNom() + " index "+ nIndex);
+//            if (nPlat.getNom().equals(pNomPlat)) {
+//                mListView.smoothScrollToPosition(nIndex);
+//                break;
+//            } // if
+//            nIndex++;
+//        } // while
+//    } // void
 
     /**
      * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête LISTE.
@@ -201,7 +227,7 @@ public abstract class CustomActivity
             String nNom = pListData.get(i);
             int nQuantite = Integer.parseInt(pListData.get(i + 1));
 
-            Plat nPlat = mPlats.getPlat(nNom);
+            Plat nPlat = mPlats.getPlatByName(nNom);
 
             // nouveau plat
             if (null == nPlat) {
@@ -221,13 +247,7 @@ public abstract class CustomActivity
 
         // tri par nom de plat si nouvel ajout
         if (nIsNewPlat) {
-            Collections.sort(mPlats, new Comparator<Plat>() {
-                @Override
-                public int compare(Plat pPlatA, Plat pPlatB) {
-
-                    return pPlatA.getNom().compareTo(pPlatB.getNom());
-                }
-            });
+            mPlats.sort();
         } // if
 
         // maj de l'ihm
@@ -238,7 +258,6 @@ public abstract class CustomActivity
 
     // callback client: data
     //******************************************************************************
-
 
     //******************************************************************************
     // callback listAdapter

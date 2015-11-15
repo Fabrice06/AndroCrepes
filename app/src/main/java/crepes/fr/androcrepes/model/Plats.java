@@ -1,6 +1,8 @@
 package crepes.fr.androcrepes.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -54,7 +56,7 @@ public class Plats extends ArrayList<Plat> {
      *
      * @see Plat
      */
-    public Plat getPlat(final int pId) {
+    public Plat getPlatById(final int pId) {
 
         Plat nReturn = null;
 
@@ -85,7 +87,7 @@ public class Plats extends ArrayList<Plat> {
      *
      * @see Plat
      */
-    public Plat getPlat(final String pNom) {
+    public Plat getPlatByName(final String pNom) {
 
         Plat nReturn = null;
 
@@ -98,13 +100,34 @@ public class Plats extends ArrayList<Plat> {
             } // if
         } // while
 
-//        for (Plat nItem : this) {
-//            if (nItem.getNom().equals(pNom)) {
-//                nReturn = nItem;
-//            } // if
-//        } // for
         return nReturn;
     } // Plat
+
+//    public int getIndexByName(final String pNom) {
+//
+//        int nReturn = 0;
+//
+//        Iterator<Plat> nIterator = this.iterator();
+//        while (nIterator.hasNext()) {
+//            nReturn++;
+//            Plat nPlat = nIterator.next();
+//            if (nPlat.getNom().equals(pNom)) {
+//                break;
+//            } // if
+//        } // while
+//
+//        return nReturn;
+//    } // int
+
+    public void sort() {
+        Collections.sort(this, new Comparator<Plat>() {
+            @Override
+            public int compare(Plat pPlatA, Plat pPlatB) {
+
+                return pPlatA.getNom().compareTo(pPlatB.getNom());
+            }
+        });
+    } // void
 
     /**
      * Ajoute le plat dans la collection

@@ -17,7 +17,9 @@ public enum EnumReceiveWord {
     FINLISTE("FINLISTE"),
     COMMANDE("commandé"),
     EPUISE("épuisé"),
-    INCONNU("inconnu");
+    INCONNU("inconnu"),
+    AJOUTLEFT("le plat "),
+    AJOUTRIGHT(" est ");
 
     /**
      * Valeur d'un des mots de la réponse serveur
