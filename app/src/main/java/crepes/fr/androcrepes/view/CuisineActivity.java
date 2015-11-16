@@ -45,21 +45,12 @@ public class CuisineActivity
 
     } // void
 
-    protected void updateAfterClientAjout(final String pNewPlatName) {
+    protected void updateAfterClientAjout() { //final String pNewPlatName) {
 
         mEditTextQte.setText("1");
         mEditTextName.setText("");
 
         super.clientSendQuantity();
-
-        if (!pNewPlatName.isEmpty()) {
-
-            super.toastMessage("Le plat " + pNewPlatName + " a été ajouté à la carte !", true);
-
-            // fixme scroll seulement sur un nouveau plat ???
-            //marche pas
-            //super.scrollListViewByName(pNewPlatName);
-        } // if
     } // void
 
 

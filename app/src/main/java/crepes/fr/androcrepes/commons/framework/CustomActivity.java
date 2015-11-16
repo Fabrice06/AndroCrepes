@@ -43,7 +43,7 @@ public abstract class CustomActivity
     protected abstract int getListViewResourceId();
     protected abstract int getMenuResourceId();
 
-    protected abstract void updateAfterClientAjout(final String pNewPlatName);
+    protected abstract void updateAfterClientAjout();//final String pNewPlatName);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,33 +145,7 @@ public abstract class CustomActivity
 
         } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
 
-            boolean nIsNewPlat = true;
-            Iterator<Plat> nIterator = mPlats.iterator();
-            while (nIterator.hasNext()) {
-                String nStringToFind = EnumReceiveWord.AJOUTLEFT.getValue();
-                nStringToFind = nStringToFind + nIterator.next().getNom();
-                nStringToFind = nStringToFind + EnumReceiveWord.AJOUTRIGHT.getValue();
-
-                if (pResponseFromServer.toLowerCase().indexOf(nStringToFind.toLowerCase()) >= 0) {
-                    nIsNewPlat = false;
-                    break;
-                } // if
-            } // while
-
-            String nNomPlat = "";
-            if (nIsNewPlat) {
-                int nSplitString = EnumReceiveWord.AJOUTLEFT.getValue().length();
-                nNomPlat = pResponseFromServer.substring(nSplitString);
-
-                nSplitString = nNomPlat.toLowerCase().indexOf(EnumReceiveWord.AJOUTRIGHT.getValue().toLowerCase());
-                nNomPlat = nNomPlat.substring(0, nSplitString);
-
-                Log.d(TAG, "singleFromClient callback: >" + nNomPlat + "<");
-
-
-            } // if
-
-            updateAfterClientAjout(nNomPlat);
+            updateAfterClientAjout();
 
         } else {
             // cas non répertorié: ceinture et bretelles
@@ -179,23 +153,20 @@ public abstract class CustomActivity
         } // else
     } // void
 
-//    public void scrollListViewByName(final String pNomPlat) {
-//        mPlats.sort();
-//        mListAdapter.notifyDataSetChanged();
-////        Plat nPlat = (Plat)mListView.getItemAtPosition(1);
-////        Log.d(TAG, "scrollListViewByName nNomPlat: >" + nPlat.getNom() + "<");
-//        int nIndex = 0;
-//        while (nIndex < mListView.getCount()) {
-//
-//            Plat nPlat = (Plat)mListView.getItemAtPosition(nIndex);
-//            Log.d(TAG, "scrollListViewByName nom: " + pNomPlat + " getNom " + nPlat.getNom() + " index "+ nIndex);
-//            if (nPlat.getNom().equals(pNomPlat)) {
-//                mListView.smoothScrollToPosition(nIndex);
-//                break;
-//            } // if
-//            nIndex++;
-//        } // while
-//    } // void
+    private void scrollListViewByName(final String pNomPlat) {
+
+        int nIndex = 0;
+        while (nIndex < mListView.getCount()) {
+
+            Plat nPlat = (Plat)mListView.getItemAtPosition(nIndex);
+            //Log.d(TAG, "scrollListViewByName nom: " + pNomPlat + " getNom " + nPlat.getNom() + " index "+ nIndex);
+            if (nPlat.getNom().equals(pNomPlat)) {
+                mListView.smoothScrollToPosition(nIndex);
+                break;
+            } // if
+            nIndex++;
+        } // while
+    } // void
 
     /**
      * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête LISTE.
@@ -222,6 +193,8 @@ public abstract class CustomActivity
 
         boolean nIsNewPlat = false;
 
+        String nNewPlatNom = "";
+
         //fixme: le retrait d'un plat de la carte n'est pas pris en compte
         for (int nLen = pListData.size(), i = 1; i < (nLen-1); i+=2) {
             String nNom = pListData.get(i);
@@ -236,6 +209,10 @@ public abstract class CustomActivity
 
                 if (!nIsNewPlat) {
                     nIsNewPlat = true;
+
+                    if (mPlats.size() > 0) {
+                        nNewPlatNom = nNom;
+                    }
                 }
 
             } else { // update quantité
@@ -252,6 +229,11 @@ public abstract class CustomActivity
 
         // maj de l'ihm
         mListAdapter.notifyDataSetChanged();
+
+        if (!nNewPlatNom.isEmpty()) {
+            scrollListViewByName(nNewPlatNom);
+            toastMessage("Le plat " + nNewPlatNom + " a été ajouté à la carte !", true);
+        } // if
 
         mProgressDialog.hideMessage();
     } // void

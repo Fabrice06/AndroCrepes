@@ -41,7 +41,7 @@ public class SalleActivity
         //ici les futures view pour la gestion des commandes
     } // void
 
-    protected void updateAfterClientAjout(final String pNewPlatName) {
+    protected void updateAfterClientAjout() {//final String pNewPlatName) {
         super.clientSendQuantity();
 
     } // void
