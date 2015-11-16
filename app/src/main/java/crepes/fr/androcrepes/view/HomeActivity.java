@@ -1,5 +1,6 @@
 package crepes.fr.androcrepes.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
-import crepes.fr.androcrepes.commons.framework.CustomProgressDialog;
 import crepes.fr.androcrepes.commons.network.Client;
 import crepes.fr.androcrepes.controller.Controller;
 
@@ -31,7 +31,7 @@ public class HomeActivity
 
     private static final String TAG = HomeActivity.class.getSimpleName();
 
-    private CustomProgressDialog mProgressDialog = null;
+    private ProgressDialog mProgressDialog = null;
     
     private Button mBtnHomeSalle = null;
     private Button mBtnHomeCuisine = null;
@@ -48,8 +48,10 @@ public class HomeActivity
         //Get Global Controller Class object (see application tag in AndroidManifest.xml)
         final Controller nController = (Controller) getApplicationContext();
 
-        mProgressDialog = nController.getProgressDialog(this);
-        mProgressDialog.showMessage(Controller.WAIT, true);
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(Controller.WAIT);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCancelable(true);
 
         TextView myTextView = (TextView) findViewById(R.id.laBonneCrepe);
         Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
@@ -60,7 +62,9 @@ public class HomeActivity
         mBtnHomeCuisine = (Button) findViewById(R.id.btnHomeCuisine);
         mBtnHomeLog = (Button) findViewById(R.id.btnHomeLog);
 
-        updateAfterConnection(false);
+        updateButtonsAfterConnection(false);
+
+        mProgressDialog.show();
 
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
@@ -116,7 +120,8 @@ public class HomeActivity
     public void goLog(View pView) {
         Log.d(TAG, "goLog");
 
-        mProgressDialog.showMessage(Controller.WAIT, true);
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
 
         if (mClient.isRunning()) {
             mClient.disconnect();
@@ -157,8 +162,8 @@ public class HomeActivity
     public void connectedFromClient() {
         Log.d(TAG, "connectedFromClient");
 
-        mProgressDialog.hideMessage();
-        updateAfterConnection(true);
+        mProgressDialog.hide();
+        updateButtonsAfterConnection(true);
     } // void
 
     /**
@@ -171,8 +176,8 @@ public class HomeActivity
     public void disconnectedFromClient() {
         Log.d(TAG, "disconnectedFromClient");
 
-        mProgressDialog.hideMessage();
-        updateAfterConnection(false);
+        mProgressDialog.hide();
+        updateButtonsAfterConnection(false);
     } // void
 
     /**
@@ -189,8 +194,8 @@ public class HomeActivity
     public void errorFromClient(String pError) {
         //Log.d(TAG, "errorFromClient");
 
-        mProgressDialog.hideMessage();
-        updateAfterConnection(false);
+        mProgressDialog.hide();
+        updateButtonsAfterConnection(false);
         toastMessage(pError);
     } // void
 
@@ -224,7 +229,7 @@ public class HomeActivity
     public void listeFromClient(List<String> pListData) {
         //Log.d(TAG, "listeFromClient");
         //fixme: listeFromClient pas utilisé ici pour le moment
-        mProgressDialog.hideMessage();
+        mProgressDialog.hide();
     }
 
     /**
@@ -237,7 +242,7 @@ public class HomeActivity
     public void quantiteFromClient(List<String> pListData) {
         //Log.d(TAG, "quantiteFromClient");
         //fixme: quantiteFromClient pas utilisé ici pour le moment
-        mProgressDialog.hideMessage();
+        mProgressDialog.hide();
     } // void
 
     // callback Client: data
@@ -259,7 +264,7 @@ public class HomeActivity
      * @param pIsConnected
      *      Vrai: la connexion est établie et active.
      */
-    private void updateAfterConnection(final boolean pIsConnected) {
+    private void updateButtonsAfterConnection(final boolean pIsConnected) {
         mBtnHomeLog.setText(pIsConnected ? Controller.LOGOUT : Controller.LOGON);
         mBtnHomeSalle.setEnabled(pIsConnected);
         mBtnHomeCuisine.setEnabled(pIsConnected);

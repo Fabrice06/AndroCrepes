@@ -1,5 +1,6 @@
 package crepes.fr.androcrepes.commons.framework;
 
+import android.app.ProgressDialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Iterator;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
@@ -30,7 +30,7 @@ public abstract class CustomActivity
 
     private static final String TAG = CustomActivity.class.getSimpleName();
 
-    private CustomProgressDialog mProgressDialog = null;
+    private ProgressDialog mProgressDialog = null;
 
     private ListView mListView = null;
     private ListAdapter mListAdapter;
@@ -54,8 +54,10 @@ public abstract class CustomActivity
         //Get Global Controller Class object (see application tag in AndroidManifest.xml)
         final Controller nController = (Controller) getApplicationContext();
 
-        mProgressDialog = nController.getProgressDialog(this);
-        mProgressDialog.showMessage(Controller.WAIT, false);
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(Controller.WAIT);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCancelable(false);
 
         TextView nTextViewInfo = (TextView) findViewById(getTextViewInfoResourceId());
         Typeface nFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
@@ -67,6 +69,8 @@ public abstract class CustomActivity
 
         mListView = (ListView) findViewById(getListViewResourceId());
         mListView.setAdapter(mListAdapter);
+
+        mProgressDialog.show();
 
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
@@ -85,7 +89,7 @@ public abstract class CustomActivity
     @Override
     public void connectedFromClient() {
         //Log.d(TAG, "connectedFromClient callback");
-        mProgressDialog.hideMessage();
+        mProgressDialog.hide();
         mClient.send(EnumSendWord.QUANTITE, "");
     } // void
 
@@ -98,7 +102,7 @@ public abstract class CustomActivity
     public void disconnectedFromClient() {
         //Log.d(TAG, "disconnectedFromClient");
         //fixme: prévenir l'utilisateur ??
-        mProgressDialog.hideMessage();
+        mProgressDialog.hide();
     } // void
 
     /**
@@ -113,6 +117,7 @@ public abstract class CustomActivity
     @Override
     public void errorFromClient(String pError) {
         //Log.d(TAG, "errorFromClient");
+        mProgressDialog.hide();
         toastMessage(pError, true);
     } // void
 
@@ -178,7 +183,7 @@ public abstract class CustomActivity
     public void listeFromClient(List<String> pListData) {
         //Log.d(TAG, "listeFromClient callback");
         //fixme: listeFromClient pas utilisé ici pour le moment
-        mProgressDialog.hideMessage();
+        mProgressDialog.hide();
     } // void
 
     /**
@@ -235,7 +240,7 @@ public abstract class CustomActivity
             toastMessage("Le plat " + nNewPlatNom + " a été ajouté à la carte !", true);
         } // if
 
-        mProgressDialog.hideMessage();
+        mProgressDialog.hide();
     } // void
 
     // callback client: data
@@ -285,7 +290,8 @@ public abstract class CustomActivity
     protected void clientSendAjout(final String pInfoPlat, final boolean pShowProgressDialog) {
 
         if (pShowProgressDialog) {
-            mProgressDialog.showMessage(Controller.WAIT, true);
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
         } // if
 
         mClient.send(EnumSendWord.AJOUT, pInfoPlat);
@@ -294,7 +300,8 @@ public abstract class CustomActivity
     protected void clientSendCommande(final String pInfoPlat, final boolean pShowProgressDialog) {
 
         if (pShowProgressDialog) {
-            mProgressDialog.showMessage(Controller.WAIT, true);
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
         } // if
 
         mClient.send(EnumSendWord.COMMANDE, pInfoPlat);
@@ -315,7 +322,7 @@ public abstract class CustomActivity
     protected void toastMessage(final String pMessage, final boolean pHideProgressDialog) {
 
         if (pHideProgressDialog) {
-            mProgressDialog.hideMessage();
+            mProgressDialog.hide();
         } // if
 
         Toast.makeText(getApplicationContext(), pMessage, Toast.LENGTH_SHORT).show();
