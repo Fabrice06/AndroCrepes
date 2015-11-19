@@ -35,12 +35,12 @@
                 android:id="@+id/textAide"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Aide en ligne"
+                android:text="@string/aide_textViewInfoText"
                 android:gravity="center"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:typeface="serif"
-                android:textColor="@color/help_textViewInfoColor" />
+                android:textColor="@color/colorTxtTitle" />
         </FrameLayout>
 
     </LinearLayout>

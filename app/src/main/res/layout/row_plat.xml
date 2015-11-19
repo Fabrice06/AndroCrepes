@@ -21,20 +21,19 @@
         <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ico"
-            />
+        android:src="@drawable/ico" />
 
         <FrameLayout
             android:layout_width="20dp"
-            android:layout_height="0dp"
-            ></FrameLayout>
+            android:layout_height="0dp">
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="XXX"
             android:id="@+id/listadapter_textViewInfoId"
-            android:textColor="@color/listadapter_textViewInfoColor"
+            android:textColor="@color/colorTxt"
             android:textSize="20dp"
             android:ellipsize="end"
             />
@@ -55,11 +54,11 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="25dp"
-            android:text="Annuler"
+            android:text="@string/btnAnnuler"
             android:id="@+id/buttonListAdapterLeft"
             android:layout_gravity="left"
             android:background="@drawable/roundedbuttonmoins"
-            android:textColor="#F0FFFF"/>
+            android:textColor="@color/colorTxtBtn"/>
 
         <FrameLayout
             android:layout_width="0dp"
@@ -69,10 +68,10 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="25dp"
-            android:text="Commander"
+            android:text="@string/btnCommander"
             android:id="@+id/buttonListAdapterRight"
             android:background="@drawable/roundedbuttonplus"
-            android:textColor="#F0FFFF"/>
+            android:textColor="@color/colorTxtBtn"/>
 
     </LinearLayout>
 

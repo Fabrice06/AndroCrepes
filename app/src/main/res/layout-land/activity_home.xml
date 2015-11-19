@@ -20,8 +20,8 @@
             android:id="@+id/laBonneCrepe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="La Bonne Crèpe"
-            android:textColor="#181870"
+            android:text="@string/title_home"
+            android:textColor="@color/colorTxtTitle"
             android:textSize="20dp"
             android:layout_gravity="center"
             android:typeface="serif"
@@ -52,12 +52,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="cuisine"
+            android:text="@string/btnCuisine"
             android:layout_gravity="center"
             android:id="@+id/btnHomeCuisine"
             android:onClick="goCuisine"
-            android:background="#9C27B0"
-            android:textColor="#F0FFFF"/>
+            android:background="@color/colorBtnCuisine"
+            android:textColor="@color/colorTxtBtn"/>
 
         <FrameLayout
             android:layout_width="0dp"
@@ -66,12 +66,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="salle"
+            android:text="@string/btnSalle"
             android:layout_gravity="center"
             android:id="@+id/btnHomeSalle"
             android:onClick="goSalle"
-            android:background="#3F51B5"
-            android:textColor="#F0FFFF"/>
+            android:background="@color/colorBtnSalle"
+            android:textColor="@color/colorTxtBtn"/>
 
         <FrameLayout
             android:layout_width="0dp"
@@ -80,12 +80,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logout"
+            android:text="@string/btnLogout"
             android:layout_gravity="center"
             android:id="@+id/btnHomeLog"
             android:onClick="goLog"
-            android:background="#A02828"
-            android:textColor="#F0FFFF" />
+            android:background="@color/colorBtnLog"
+            android:textColor="@color/colorTxtBtn" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -94,12 +94,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="aide"
+            android:text="@string/btnAide"
             android:layout_gravity="center"
             android:id="@+id/btnHomeAide"
             android:onClick="goAide"
-            android:background="#FF5722"
-            android:textColor="#F0FFFF" />
+            android:background="@color/colorBtnAide"
+            android:textColor="@color/colorTxtBtn" />
 
     </LinearLayout>
 

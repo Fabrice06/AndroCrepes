@@ -1,6 +1,7 @@
 package crepes.fr.androcrepes.commons.framework;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,8 +71,9 @@ public class ListAdapter extends ArrayAdapter<Plat> {
 
                 nTextViewListAdapterInfo.setText(nPlat.getNom());
 
+
                 final Button nButtonListAdapterRight = (Button) nView.findViewById(R.id.buttonListAdapterRight);
-                nButtonListAdapterRight.setText(mIsCuisine ? "ajouter" : "commander");
+                nButtonListAdapterRight.setText(mIsCuisine ? R.string.btnAjouter : R.string.btnCommander);
                 nButtonListAdapterRight.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         //mCount++;

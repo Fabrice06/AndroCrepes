@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">AndroCrepes</string>
+    <string name="action_settings">Preferencia</string>
+    <string name="Logo">Logotipo</string>
+
+    <string name="title_home">La Buena panqueque</string>
+    <string name="btnCuisine">Cocción</string>
+    <string name="btnSalle">Comedor</string>
+    <string name="btnAide">Ayuda</string>
+    <string name="btnLogon">Logon</string>
+    <string name="btnLogout">Logout</string>
+
+    <string name="title_activity_cuisine">AndroCrepes - Cocción</string>
+    <string name="textNouveauPlat">Plato nuevo</string>
+    <string name="btnAjouter">Añadir</string>
+
+    <string name="title_activity_salle">AndroCrepes - Comedor</string>
+    <string name="title_activity_aide">AndroCrepes - Ayuda</string>
+
+    <string name="btnAnnuler">Cancelar</string>
+    <string name="btnCommander">Orden</string>
+
+    <string name="cuisine_textViewInfoText">Lista de platos</string>
+    <string name="salle_textViewInfoText">Lista de platos</string>
+    <string name="aide_textViewInfoText">Ayuda en línea</string>
+
+
+
+
+    <color name="colorTxtTitle">#181870</color>
+    <color name="colorTxt">#181870</color>
+
+    <color name="colorBtnValid">#FFE0B2</color>
+    <color name="colorBtnCuisine">#9C27B0</color>
+    <color name="colorTxtBtn">#F0FFFF</color>
+    <color name="colorBtnSalle">#3F51B5</color>
+    <color name="colorBtnAide">#FF5722</color>
+    <color name="colorBtnLog">#A02828</color>
+
+    <color name="cuisine_editTextPlatColor">#BDBDBD</color>
+    <color name="cuisine_editTextQuantiteColor">#424242</color>
+
+
+</resources>

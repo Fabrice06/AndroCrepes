@@ -42,7 +42,7 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:typeface="serif"
-                android:textColor="#181870" />
+                android:textColor="@color/colorTxtTitle" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/cuisine_editTextPlatColor"
                     android:inputType="text"
-                    android:hint="nouveau plat"
+                    android:hint="@string/textNouveauPlat"
                     />
 
             </LinearLayout>
@@ -118,11 +118,11 @@
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="25dp"
-                    android:text="Ajouter"
+                    android:text="@string/btnAjouter"
                     android:id="@+id/buttonCuisineAddNewPlat"
                     android:layout_gravity="right"
                     android:background="@drawable/roundedbuttonplus"
-                    android:textColor="#F0FFFF"
+                    android:textColor="@color/colorTxtBtn"
                     android:onClick="addNewPlat"/>
 
             </FrameLayout>

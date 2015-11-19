@@ -1,23 +1,44 @@
 <resources>
     <string name="app_name">AndroCrepes</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Préférences</string>
     <string name="Logo">Logo</string>
+
+    <string name="title_home">La Bonne Crèpe</string>
+    <string name="btnCuisine">Cuisine</string>
+    <string name="btnSalle">Salle</string>
+    <string name="btnAide">Aide</string>
+    <string name="btnLogon">Logon</string>
+    <string name="btnLogout">Logout</string>
+
     <string name="title_activity_cuisine">AndroCrepes - Cuisine</string>
+    <string name="textNouveauPlat">Nouveau Plat</string>
+    <string name="btnAjouter">Ajouter</string>
+
     <string name="title_activity_salle">AndroCrepes - Salle</string>
     <string name="title_activity_aide">AndroCrepes - Aide</string>
 
-    <color name="help_textViewInfoColor">#181870</color>
-    <color name="cuisine_editTextQuantiteColor">#181870</color>
-    <color name="cuisine_editTextPlatColor">#181870</color>
-    <color name="salle_textViewInfoColor">#181870</color>
-    <color name="listadapter_textViewInfoColor">#181870</color>
-    <color name="editTextQuantiteColor">#181870</color>
-    <color name="editTextPlatColor">#181870</color>
-
-
-    <color name="colorBtnValid">#FFE0B2</color>
-
+    <string name="btnAnnuler">Annuler</string>
+    <string name="btnCommander">Commander</string>
 
     <string name="cuisine_textViewInfoText">Liste des plats</string>
     <string name="salle_textViewInfoText">Liste des plats</string>
+    <string name="aide_textViewInfoText">Aide en ligne</string>
+
+
+
+
+    <color name="colorTxtTitle">#181870</color>
+    <color name="colorTxt">#181870</color>
+
+    <color name="colorBtnValid">#FFE0B2</color>
+    <color name="colorBtnCuisine">#9C27B0</color>
+    <color name="colorTxtBtn">#F0FFFF</color>
+    <color name="colorBtnSalle">#3F51B5</color>
+    <color name="colorBtnAide">#FF5722</color>
+    <color name="colorBtnLog">#A02828</color>
+
+    <color name="cuisine_editTextPlatColor">#BDBDBD</color>
+    <color name="cuisine_editTextQuantiteColor">#424242</color>
+
+
 </resources>

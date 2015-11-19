@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">AndroCrepes</string>
+    <string name="action_settings">Setting</string>
+    <string name="Logo">Logo</string>
+
+    <string name="title_home">The Good Pancake</string>
+    <string name="btnCuisine">Kitchen</string>
+    <string name="btnSalle">Dining room</string>
+    <string name="btnAide">Help</string>
+    <string name="btnLogon">Logon</string>
+    <string name="btnLogout">Logout</string>
+
+    <string name="title_activity_cuisine">AndroCrepes - Kitchen</string>
+    <string name="textNouveauPlat">New dish</string>
+    <string name="btnAjouter">Add</string>
+
+    <string name="title_activity_salle">AndroCrepes - Dining Room</string>
+    <string name="title_activity_aide">AndroCrepes - Help</string>
+
+    <string name="btnAnnuler">Cancel</string>
+    <string name="btnCommander">Order</string>
+
+    <string name="cuisine_textViewInfoText">List of food</string>
+    <string name="salle_textViewInfoText">List of food</string>
+    <string name="aide_textViewInfoText">Onligne help</string>
+
+
+    <color name="colorTxtTitle">#181870</color>
+    <color name="colorTxt">#181870</color>
+
+    <color name="colorBtnValid">#FFE0B2</color>
+    <color name="colorBtnCuisine">#9C27B0</color>
+    <color name="colorTxtBtn">#F0FFFF</color>
+    <color name="colorBtnSalle">#3F51B5</color>
+    <color name="colorBtnAide">#FF5722</color>
+    <color name="colorBtnLog">#A02828</color>
+
+    <color name="cuisine_editTextPlatColor">#BDBDBD</color>
+    <color name="cuisine_editTextQuantiteColor">#424242</color>
+
+</resources>
+
+

@@ -38,7 +38,7 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:typeface="serif"
-                android:textColor="@color/salle_textViewInfoColor" />
+                android:textColor="@color/colorTxtTitle" />
         </FrameLayout>
 
     </LinearLayout>
