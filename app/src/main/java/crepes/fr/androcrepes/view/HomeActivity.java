@@ -265,7 +265,7 @@ public class HomeActivity
      *      Vrai: la connexion est établie et active.
      */
     private void updateButtonsAfterConnection(final boolean pIsConnected) {
-        mBtnHomeLog.setText(pIsConnected ? Controller.LOGOUT : Controller.LOGON);
+        mBtnHomeLog.setText(pIsConnected ? R.string.btnLogout : R.string.btnLogon);
         mBtnHomeSalle.setEnabled(pIsConnected);
         mBtnHomeCuisine.setEnabled(pIsConnected);
     } // void
