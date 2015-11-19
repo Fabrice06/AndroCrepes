@@ -68,4 +68,8 @@ public class Plat extends Item {
         this.mQuantite = pQuantite;
     } // void
 
+    public int getQuantite() {
+        return mQuantite;
+    } // int
+
 } // class

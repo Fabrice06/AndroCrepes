@@ -1,7 +1,7 @@
 package crepes.fr.androcrepes.commons.framework;
 
 import android.content.Context;
-import android.content.res.Resources;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +56,7 @@ public class ListAdapter extends ArrayAdapter<Plat> {
 
         if (null != nPlat) {
             final TextView nTextViewListAdapterInfo = (TextView) nView.findViewById(R.id.listadapter_textViewInfoId);
+            final TextView nTextViewListAdapterQuantite = (TextView) nView.findViewById(R.id.listadapter_textViewQuantiteId);
 
             if (nTextViewListAdapterInfo != null) {
                 final Button nButtonListAdapterLeft = (Button) nView.findViewById(R.id.buttonListAdapterLeft);
@@ -69,8 +70,16 @@ public class ListAdapter extends ArrayAdapter<Plat> {
                     }
                 });
 
+                nTextViewListAdapterQuantite.setText(String.valueOf(nPlat.getQuantite()));
                 nTextViewListAdapterInfo.setText(nPlat.getNom());
 
+                if (0 == nPlat.getQuantite()) {
+                    nTextViewListAdapterInfo.setPaintFlags(nTextViewListAdapterInfo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                } else {
+                    nTextViewListAdapterInfo.setPaintFlags(nTextViewListAdapterInfo.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+
+                }
 
                 final Button nButtonListAdapterRight = (Button) nView.findViewById(R.id.buttonListAdapterRight);
                 nButtonListAdapterRight.setText(mIsCuisine ? R.string.btnAjouter : R.string.btnCommander);

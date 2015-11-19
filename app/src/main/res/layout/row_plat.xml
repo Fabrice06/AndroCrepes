@@ -20,7 +20,7 @@
 
 
         <TextView
-            android:id="@+id/txtViewQte"
+            android:id="@+id/listadapter_textViewQuantiteId"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:textSize="20dp"
