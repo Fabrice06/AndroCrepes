@@ -26,7 +26,7 @@
             android:textSize="20dp"
             android:text="0"
             android:gravity="center"
-            android:background="@drawable/roundedqte"
+            android:background="@drawable/rondorange"
             android:textColor="@color/colorTxtBtn"
             />
 

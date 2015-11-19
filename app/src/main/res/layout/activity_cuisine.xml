@@ -87,8 +87,7 @@
                 android:textColor="@color/cuisine_editTextQuantiteColor"
                 android:inputType="number"
                 android:hint="1"
-                android:text="1"
-                />
+                android:text="1" />
 
             <EditText
                 android:id="@+id/cuisine_editTextPlatId"
@@ -96,8 +95,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/cuisine_editTextPlatColor"
                 android:inputType="text"
-                android:hint="@string/textNouveauPlat"
-                />
+                android:hint="@string/textNouveauPlat" />
 
         </LinearLayout>
 
