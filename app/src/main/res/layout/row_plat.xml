@@ -14,14 +14,21 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:gravity="left">
 
 
-        <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ico" />
+
+        <TextView
+            android:id="@+id/txtViewQte"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:textSize="20dp"
+            android:text="0"
+            android:gravity="center"
+            android:background="@drawable/roundedqte"
+            android:textColor="@color/colorTxtBtn"
+            />
 
         <FrameLayout
             android:layout_width="20dp"
@@ -30,12 +37,13 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="XXX"
             android:id="@+id/listadapter_textViewInfoId"
             android:textColor="@color/colorTxt"
             android:textSize="20dp"
             android:ellipsize="end"
+            android:gravity="center"
             />
 
     </LinearLayout>
