@@ -12,7 +12,8 @@
     <FrameLayout
         android:id="@+id/fragmentSettings"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" ></FrameLayout>
+        android:layout_height="wrap_content"
+        android:background="#FFD180"></FrameLayout>
 
     <TextView
         android:id="@+id/laBonneCrepe"
