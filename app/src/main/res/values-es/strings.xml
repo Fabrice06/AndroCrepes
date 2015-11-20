@@ -33,7 +33,9 @@
     <string name="preferencePortSummary">Entrar el puerto del servidor</string>
 
 
-    <color name="colorTxtTitle">#181870</color>
+
+    <color name="colorFond">#DD2C00</color>
+    <color name="colorTxtTitle">#FFD600</color>
     <color name="colorTxt">#181870</color>
 
     <color name="colorBtnValid">#FFE0B2</color>
