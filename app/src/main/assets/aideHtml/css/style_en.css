@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Vollkorn-Regular';
+    src:url(../fonts/Vollkorn-Regular.ttf) format('truetype');
+}
+
+html, body{
+    font-size: 100%;
+	background:	#01579B;
+    background-image:linear-gradient(#01579B, #0288D1);
+}
+body {
+    font-size: 100%;
+    font-family: 'Vollkorn-Regular';
+    
+    min-height: 921px;
+    padding:0;
+}
+p{
+	margin:5;
+    padding: 5;
+}
+h1, h3{
+    margin: 10;
+    color: #FF3D00
+}
+.image {
+    padding:10px;
+    margin: 10px;
+    
+}
+#principal {
+    text-align: center;
+}
+#titre{
+    background: #01579B
+;
+}
