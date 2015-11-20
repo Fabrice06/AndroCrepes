@@ -74,10 +74,6 @@ public abstract class CustomActivity
 
         mProgressDialog.show();
 
-   //     SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-   //     String ip = sharedPref.getString("ip", "10.0.3.2");
-   //     int port = Integer.parseInt(sharedPref.getString("port", "7777"));
-
         Log.d("******* CustomActivity", "IP : " + Controller.SERVER_IP + " Port : " + Controller.SERVER_PORT);
 
         //fixme: définir plan B si serveur hors d'atteinte
