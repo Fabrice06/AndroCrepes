@@ -34,6 +34,7 @@
 
 
     <color name="colorFond">#01579B</color>
+    <color name="colorFondPreferences">#0288D1</color>
     <color name="colorTxtTitle">#FF3D00</color>
     <color name="colorTxt">#181870</color>
 
