@@ -24,6 +24,14 @@
     <string name="salle_textViewInfoText">List of food</string>
     <string name="aide_textViewInfoText">Onligne help</string>
 
+    <string name="preferenceIPTitle">Server IP</string>
+    <string name="preferenceIPDefaultValue">10.0.3.2</string>
+    <string name="preferenceIPSummary">Enter the server ip</string>
+
+    <string name="preferencePortTitle">Server Port</string>
+    <string name="preferencePortDefaultValue">7777</string>
+    <string name="preferencePortSummary">Enter the server port</string>
+
 
     <color name="colorTxtTitle">#181870</color>
     <color name="colorTxt">#181870</color>

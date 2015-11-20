@@ -1,7 +1,10 @@
 package crepes.fr.androcrepes.view;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +21,8 @@ import java.util.List;
 import crepes.fr.androcrepes.R;
 import crepes.fr.androcrepes.commons.network.Client;
 import crepes.fr.androcrepes.controller.Controller;
+import crepes.fr.androcrepes.controller.SettingsFragment;
+import android.preference.PreferenceManager;
 
 /**
  * <b>Classe dédiée à la description de l'ihm Home.</b>
@@ -30,6 +35,10 @@ public class HomeActivity
         implements Client.ClientCallBack {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
+
+    private static SettingsFragment frag = new SettingsFragment();
+    public static FragmentManager fragmentManager;
+    private SharedPreferences sharedPref;
 
     private ProgressDialog mProgressDialog = null;
     
@@ -65,6 +74,16 @@ public class HomeActivity
         updateButtonsAfterConnection(false);
 
         mProgressDialog.show();
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        fragmentManager = getFragmentManager();
+
+
+        // La première fois que l'application est lancée, on lit les préférences par défaut du
+        // fichier XML
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+        Log.d("******* HomeActivity", "IP : "+Controller.SERVER_IP+" Port : "+Controller.SERVER_PORT);
 
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
@@ -122,6 +141,8 @@ public class HomeActivity
 
         mProgressDialog.setCancelable(false);
         mProgressDialog.show();
+
+        Log.d("***************** goLog", "IP : " + Controller.SERVER_IP + " Port : " + Controller.SERVER_PORT);
 
         if (mClient.isRunning()) {
             mClient.disconnect();
@@ -279,14 +300,47 @@ public class HomeActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //Log.d(TAG, "onOptionsItemSelected");
+        Log.d(TAG, "********  onOptionsItemSelected");
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            Log.d("********** IF 1 ******"," IF ");
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            if (!(frag.isAdded())) {
+                Log.i("************** MainActivity", "onOptionItemSelected.IF");
+                transaction.add(R.id.fragmentSettings, frag);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+
+
+
+ //           fragmentManager.executePendingTransactions();
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Log.d(TAG,"onBackPressed");
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        if (frag.isAdded()) {
+            Log.i("MainActivity", "onBackPressed.isAdded");
+//            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+//            transaction.remove(frag);
+            fragmentManager.popBackStack();
+        } else {
+            Log.i("MainActivity", "onBackPressed.isNotAdded");
+            super.onBackPressed();
+        }
+        transaction.commit();
     }
 
     //******************************************************************************

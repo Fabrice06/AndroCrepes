@@ -1,8 +1,10 @@
 package crepes.fr.androcrepes.commons.framework;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -71,6 +73,12 @@ public abstract class CustomActivity
         mListView.setAdapter(mListAdapter);
 
         mProgressDialog.show();
+
+   //     SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+   //     String ip = sharedPref.getString("ip", "10.0.3.2");
+   //     int port = Integer.parseInt(sharedPref.getString("port", "7777"));
+
+        Log.d("******* CustomActivity", "IP : " + Controller.SERVER_IP + " Port : " + Controller.SERVER_PORT);
 
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);

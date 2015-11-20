@@ -8,9 +8,9 @@ import crepes.fr.androcrepes.model.Plats;
 public class Controller extends Application {
 
     //fixme: à dégager via le menu settings
-    public static final String SERVER_IP = "10.0.3.2";
+    public static String SERVER_IP = "10.0.3.2";
 //    public static final String SERVER_IP = "10.0.2.2";
-    public static final int SERVER_PORT = 7777;
+    public static int SERVER_PORT = 7777;
     //fixme: à dégager via le menu settings
 
     //fixme a dégager via string xml

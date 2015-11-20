@@ -11,13 +11,12 @@
     android:layout_margin="20dp"
     android:weightSum="1">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="left">
-
-
 
         <TextView
             android:id="@+id/listadapter_textViewQuantiteId"
@@ -27,13 +26,11 @@
             android:text="0"
             android:gravity="center"
             android:background="@drawable/rondorange"
-            android:textColor="@color/colorTxtBtn"
-            />
+            android:textColor="@color/colorTxtBtn"/>
 
         <FrameLayout
             android:layout_width="20dp"
-            android:layout_height="0dp">
-        </FrameLayout>
+            android:layout_height="0dp"></FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,15 +40,13 @@
             android:textColor="@color/colorTxt"
             android:textSize="20dp"
             android:ellipsize="end"
-            android:gravity="center"
-            />
+            android:gravity="center"/>
 
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="10dp"></FrameLayout>
-
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"

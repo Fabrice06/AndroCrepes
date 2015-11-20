@@ -24,7 +24,13 @@
     <string name="salle_textViewInfoText">Lista de platos</string>
     <string name="aide_textViewInfoText">Ayuda en línea</string>
 
+    <string name="preferenceIPTitle">Ip del servidor</string>
+    <string name="preferenceIPDefaultValue">10.0.3.2</string>
+    <string name="preferenceIPSummary">Entrar el IP del servidor</string>
 
+    <string name="preferencePortTitle">Puerto del Servidor</string>
+    <string name="preferencePortDefaultValue">7777</string>
+    <string name="preferencePortSummary">Entrar el puerto del servidor</string>
 
 
     <color name="colorTxtTitle">#181870</color>
