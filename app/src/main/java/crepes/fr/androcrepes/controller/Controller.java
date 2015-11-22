@@ -2,6 +2,7 @@ package crepes.fr.androcrepes.controller;
 
 import android.app.Application;
 
+import crepes.fr.androcrepes.model.Commande;
 import crepes.fr.androcrepes.model.Commandes;
 import crepes.fr.androcrepes.model.Plats;
 
@@ -18,6 +19,8 @@ public class Controller extends Application {
     private Commandes mCommandes = new Commandes();
     private Plats mPlats = new Plats();
 
+    private int mCurrentCommandeId = 0;
+    private Commande mCurrentCommande = null;
 
     public Commandes getCommandes() {
         return mCommandes;
@@ -43,5 +46,21 @@ public class Controller extends Application {
     public void setServerPort(final int pPort) {
         mServerPort = pPort;
     } // void
+
+
+    public void setCurrentCommande(final int pCurrentId) {
+
+        if (mCurrentCommandeId == pCurrentId) {
+
+        } else {
+            mCurrentCommande = mCommandes.getCommande(pCurrentId);
+            mCurrentCommandeId = pCurrentId;
+        }
+
+    } // void
+
+    public Commande getCurrentCommande() {
+        return mCurrentCommande;
+    } // Commande
 
 } // class

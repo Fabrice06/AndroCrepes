@@ -60,14 +60,14 @@ public class CustomPlatListAdapter
             final TextView nTextViewListAdapterQuantite = (TextView) nView.findViewById(R.id.plat_textViewRowQuantite);
 
             if (nTextViewListAdapterInfo != null) {
+
+                boolean nIsEmpty = (0 == nPlat.getQuantite());
+
                 final Button nButtonListAdapterLeft = (Button) nView.findViewById(R.id.plat_buttonRowLeft);
                 nButtonListAdapterLeft.setText(mIsCuisine ? R.string.cuisine_buttonRowLeft : R.string.table_buttonRowLeft);
+                nButtonListAdapterLeft.setEnabled(!nIsEmpty);
                 nButtonListAdapterLeft.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        //mCount--;
-                        //Log.d(TAG, "nBtnRemove click " + mCount);
-                        //Log.d(TAG, "nBtnRemove click " + nPlat.getId());
-
                         mCallBack.clicLeftFromListAdapter(nPlat);
                     }
                 });
@@ -75,25 +75,19 @@ public class CustomPlatListAdapter
                 nTextViewListAdapterQuantite.setText(String.valueOf(nPlat.getQuantite()));
                 nTextViewListAdapterInfo.setText(nPlat.getNom());
 
-                if (0 == nPlat.getQuantite()) {
+                if (nIsEmpty) {
                     nTextViewListAdapterInfo.setPaintFlags(nTextViewListAdapterInfo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
                 } else {
                     nTextViewListAdapterInfo.setPaintFlags(nTextViewListAdapterInfo.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-
                 }
 
                 final Button nButtonListAdapterRight = (Button) nView.findViewById(R.id.plat_buttonRowRight);
                 nButtonListAdapterRight.setText(mIsCuisine ? R.string.cuisine_buttonRowRight : R.string.table_buttonRowRight);
                 nButtonListAdapterRight.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        //mCount++;
-                        //Log.d(TAG, "nBtnAdd click " + mCount);
-
                         mCallBack.clicRightFromListAdapter(nPlat);
                     }
                 });
-
             } // if
         } // if
 

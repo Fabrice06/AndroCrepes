@@ -19,6 +19,8 @@
     <string name="activity_toastMessageUnknownError">Erreur inconnue: merci de prévenir l\'administrateur !</string>
     <string name="activity_toastMessageBeforePlat">Le plat </string>
     <string name="activity_toastMessageAfterPlat"> a été ajouté à la carte !</string>
+    <string name="activity_toastMessageBadQuantite">Merci de préciser une quantité correcte !</string>
+    <string name="activity_toastMessageBadPlat">Merci de préciser un nom de plat !</string>
 
 
     <!--string pour l'activity aide-->
@@ -59,7 +61,7 @@
 
     <!--string pour l'activity table-->
     <string name="table_activityTitle">AndroCrepes - Commande</string>
-    <string name="table_customTextViewTitle">Liste des plats</string>
+    <string name="table_customTextViewTitle">Commande n°</string>
     <string name="table_buttonRowLeft">Annuler</string>
     <string name="table_buttonRowRight">Commander</string>
 

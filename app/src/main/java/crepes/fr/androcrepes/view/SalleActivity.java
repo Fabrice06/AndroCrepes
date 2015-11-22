@@ -35,6 +35,8 @@ public class SalleActivity
     private TextView mEditTextTotal;
     private TextView mEditTextCommande;
 
+    private Controller mController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class SalleActivity
         Log.d(TAG, "onCreate");
 
         //Get Global Controller Class object (see application tag in AndroidManifest.xml)
-        final Controller nController = (Controller) getApplicationContext();
+        mController = (Controller) getApplicationContext();
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage(getString(R.string.activity_progressDialogWait));
@@ -53,7 +55,7 @@ public class SalleActivity
         mEditTextTotal = (TextView) findViewById(R.id.salle_textViewTotal);
         mEditTextCommande = (TextView) findViewById(R.id.salle_textViewCommande);
 
-        mCommandes = nController.getCommandes();
+        mCommandes = mController.getCommandes();
         mListAdapter = new CustomSalleListAdapter(this, mCommandes);
 
         mListView = (ListView) findViewById(R.id.salle_listView);
@@ -82,8 +84,7 @@ public class SalleActivity
     public void clicLeftFromListAdapter(Commande pCommande) {
         Log.d(TAG, "clicLeftFromListAdapter callback");
 
-
-        // fixme remettre en stock les crepes de la commande
+        // fixme remettre en stock les crepes de la commande ???
 
         // enlever la commande de la liste
         mCommandes.remove(pCommande);
@@ -107,9 +108,11 @@ public class SalleActivity
      */
     @Override
     public void clicRightFromListAdapter(Commande pCommande) {
-        Log.d(TAG, "clicRightFromListAdapter callback");
+        Log.d(TAG, "clicRightFromListAdapter callback " + pCommande.getId());
 
-        //fixme: passer la commande à l'intent voir cour
+        //identifier la commande courante
+        mController.setCurrentCommande(pCommande.getId());
+
         startSelectedActivity(TableActivity.class);
     } // void
 
@@ -172,7 +175,9 @@ public class SalleActivity
         updateHeaderInfo();
         mListAdapter.notifyDataSetChanged();
 
-        //fixme: passer la commande à l'intent voir cour
+        //identifier la commande courante
+        mController.setCurrentCommande(nCommande.getId());
+
         startSelectedActivity(TableActivity.class);
     } // void
 

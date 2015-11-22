@@ -43,23 +43,29 @@ public abstract class CustomActivity
 
     protected abstract void updateAfterClientAjout();
 
+    protected abstract Plats getPlats();
+
+    protected abstract Controller getController();
+
+    private CustomTextView mCustomTextViewTitle = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResourceId());
         Log.d(TAG, "onCreate");
 
-        //Get Global Controller Class object (see application tag in AndroidManifest.xml)
-        final Controller nController = (Controller) getApplicationContext();
+        final Controller nController = getController();
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage(getString(R.string.activity_progressDialogWait));
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
 
-        CustomTextView nCustomTextView = (CustomTextView) findViewById(getTextViewInfoResourceId());
+        mCustomTextViewTitle = (CustomTextView) findViewById(getTextViewInfoResourceId());
 
-        mPlats = nController.getPlats();
+//        mPlats = mController.getPlats();
+        mPlats = getPlats();
         mListAdapter = new CustomPlatListAdapter(this, mPlats);
 
         mListView = (ListView) findViewById(getListViewResourceId());
@@ -75,6 +81,11 @@ public abstract class CustomActivity
     } // void
 
 
+    protected CustomTextView getCustomTextViewTitle() {
+        return mCustomTextViewTitle;
+    } // CustomTextView
+
+
     //******************************************************************************
     // callback client: connexion
 
@@ -87,7 +98,7 @@ public abstract class CustomActivity
     public void connectedFromClient() {
         //Log.d(TAG, "connectedFromClient callback");
         mProgressDialog.hide();
-        mClient.send(EnumSendWord.QUANTITE, "");
+        clientSendQuantity();
     } // void
 
     /**
@@ -136,44 +147,8 @@ public abstract class CustomActivity
      *      Réponse de type String
      */
     @Override
-    public void singleFromClient(final String pResponseFromServer) {
-        Log.d(TAG, "singleFromClient callback: " + pResponseFromServer);
+    public abstract void singleFromClient(final String pResponseFromServer);
 
-        // recherche du dernier mot/chiffre pour identifier la réponse
-        String nReponse = pResponseFromServer.substring(pResponseFromServer.lastIndexOf(" ")+1);
-
-        if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
-            // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            toastMessage(pResponseFromServer + " !", true);
-
-        } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
-            clientSendQuantity();
-
-        } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
-
-            updateAfterClientAjout();
-
-        } else {
-            // cas non répertorié: ceinture et bretelles
-            String nMessage = getString(R.string.activity_toastMessageUnknownError);
-            toastMessage(nMessage, true);
-        } // else
-    } // void
-
-    private void scrollListViewByName(final String pNomPlat) {
-
-        int nIndex = 0;
-        while (nIndex < mListView.getCount()) {
-
-            Plat nPlat = (Plat)mListView.getItemAtPosition(nIndex);
-            //Log.d(TAG, "scrollListViewByName nom: " + pNomPlat + " getNom " + nPlat.getNom() + " index "+ nIndex);
-            if (nPlat.getNom().equals(pNomPlat)) {
-                mListView.smoothScrollToPosition(nIndex);
-                break;
-            } // if
-            nIndex++;
-        } // while
-    } // void
 
     /**
      * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête LISTE.
@@ -195,63 +170,11 @@ public abstract class CustomActivity
      *      Données sous forme d'une collection de String.
      */
     @Override
-    public void quantiteFromClient(List<String> pListData) {
-        //Log.d(TAG, "quantiteFromClient callback");
-
-        boolean nIsNewPlat = false;
-
-        String nNewPlatNom = "";
-
-        //fixme: le retrait d'un plat de la carte n'est pas pris en compte
-        for (int nLen = pListData.size(), i = 1; i < (nLen-1); i+=2) {
-            String nNom = pListData.get(i);
-            int nQuantite = Integer.parseInt(pListData.get(i + 1));
-
-            Plat nPlat = mPlats.getPlatByName(nNom);
-
-            // nouveau plat
-            if (null == nPlat) {
-                nPlat= new Plat(nNom, nQuantite);
-                mPlats.addPlat(nPlat);
-
-                if (!nIsNewPlat) {
-                    nIsNewPlat = true;
-
-                    if (mPlats.size() > 0) {
-                        nNewPlatNom = nNom;
-                    }
-                }
-
-            } else { // update quantité
-                nPlat.setQuantite(nQuantite);
-            } // else
-
-            //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
-        } // for
-
-        // tri par nom de plat si nouvel ajout
-        if (nIsNewPlat) {
-            mPlats.sort();
-        } // if
-
-        // maj de l'ihm
-        mListAdapter.notifyDataSetChanged();
-
-        if (!nNewPlatNom.isEmpty()) {
-            scrollListViewByName(nNewPlatNom);
-
-            String nMessage = getString(R.string.activity_toastMessageBeforePlat);
-            nMessage = nMessage + nNewPlatNom;
-            nMessage = nMessage + getString(R.string.activity_toastMessageAfterPlat);
-
-            toastMessage(nMessage, true);
-        } // if
-
-        mProgressDialog.hide();
-    } // void
+    public abstract void quantiteFromClient(List<String> pListData);
 
     // callback client: data
     //******************************************************************************
+
 
     //******************************************************************************
     // callback listAdapter
@@ -314,10 +237,47 @@ public abstract class CustomActivity
         mClient.send(EnumSendWord.COMMANDE, pInfoPlat);
     } // void
 
+    private void scrollListViewByName(final String pNomPlat) {
+
+        int nIndex = 0;
+        while (nIndex < mListView.getCount()) {
+
+            Plat nPlat = (Plat)mListView.getItemAtPosition(nIndex);
+            //Log.d(TAG, "scrollListViewByName nom: " + pNomPlat + " getNom " + nPlat.getNom() + " index "+ nIndex);
+            if (nPlat.getNom().equals(pNomPlat)) {
+                mListView.smoothScrollToPosition(nIndex);
+                break;
+            } // if
+            nIndex++;
+        } // while
+    } // void
+
+    protected void updateAfterClientQuantite(final String pNomPlat) {
+        // maj de l'ihm
+        mListAdapter.notifyDataSetChanged();
+
+        if (!pNomPlat.isEmpty()) {
+            scrollListViewByName(pNomPlat);
+
+            String nMessage = getString(R.string.activity_toastMessageBeforePlat);
+            nMessage = nMessage + pNomPlat;
+            nMessage = nMessage + getString(R.string.activity_toastMessageAfterPlat);
+
+            toastMessage(nMessage, true);
+        } // if
+
+        mProgressDialog.hide();
+    } // void
+
     protected void debugLog(final String pMessage) {
 
         Log.d(TAG, pMessage);
     } // void
+
+//    protected void hideProgressDialog() {
+//
+//        mProgressDialog.hide();
+//    } // void
 
 
     /**

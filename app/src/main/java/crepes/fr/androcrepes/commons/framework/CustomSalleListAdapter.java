@@ -56,7 +56,6 @@ public class CustomSalleListAdapter
                 final Button nButtonLeft = (Button) nView.findViewById(R.id.salle_buttonRowLeft);
                 nButtonLeft.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-
                         mCallBack.clicLeftFromListAdapter(nCommande);
                     }
                 });
@@ -67,7 +66,6 @@ public class CustomSalleListAdapter
                 final Button nButtonRight = (Button) nView.findViewById(R.id.salle_buttonRowRight);
                 nButtonRight.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-
                         mCallBack.clicRightFromListAdapter(nCommande);
                     }
                 });
