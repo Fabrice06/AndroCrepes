@@ -154,14 +154,6 @@ public class Plats extends ArrayList<Plat> {
         } // if
     } // void
 
-    /**
-     * Retourne la taille de la collection
-     *
-     * @return La taille de la collection de type int
-     */
-    public int getSize() {
-        return this.size();
-    } // int
 
     /**
      * Détermine si le plat est déjà présent dans la collection

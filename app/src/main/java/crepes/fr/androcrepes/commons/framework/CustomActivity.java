@@ -73,7 +73,7 @@ public abstract class CustomActivity
 
         mProgressDialog.show();
 
-        Log.d("******* CustomActivity", "IP : " + nController.getServerIp() + " Port : " +  nController.getServerPort());
+        //Log.d("******* CustomActivity", "IP : " + nController.getServerIp() + " Port : " +  nController.getServerPort());
 
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, nController.getServerIp(), nController.getServerPort());
