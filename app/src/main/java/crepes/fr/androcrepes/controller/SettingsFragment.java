@@ -1,14 +1,11 @@
 package crepes.fr.androcrepes.controller;
 
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.PreferenceFragment;
-import android.preference.SwitchPreference;
 import android.util.Log;
 
 import crepes.fr.androcrepes.R;
@@ -16,6 +13,8 @@ import crepes.fr.androcrepes.R;
 public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private static final String TAG = SettingsFragment.class.getSimpleName();
+
+//    private Controller mController;
 
     public SettingsFragment() {
     }
@@ -28,6 +27,8 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
         // Chargement de l'interface XML
         addPreferencesFromResource(R.xml.preferences);
 
+        //Get Global Controller Class object (see application tag in AndroidManifest.xml)
+//        mController = (Controller) pContext;
     }
 
     @Override
@@ -39,14 +40,14 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
             // Récupération de la préférence associée à la clé
             EditTextPreference ip = (EditTextPreference) findPreference(key);
             // Action à effectuer
-            Controller.SERVER_IP = ip.getText();
+//            mController.setServerIp(ip.getText());
             Log.d("*************** SettingFragment", "IP : "+ip.getText());
         }
 
         if (key.equals("port")){
             EditTextPreference port = (EditTextPreference) findPreference(key);
 
-            Controller.SERVER_PORT = Integer.parseInt(port.getText());
+//            mController.setServerPort(Integer.parseInt(port.getText()));
             Log.d("*************** SettingFragment", "Port: "+port.getText());
         }
 

@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import crepes.fr.androcrepes.R;
 import crepes.fr.androcrepes.commons.java.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
 import crepes.fr.androcrepes.commons.java.Tools;
@@ -334,7 +335,7 @@ public class Client {
 
             } else {
                 //fixme donner à l'utilisateur les piste pour résoudre son pb
-                mCallBack.errorFromClient("Impossible de se connecter au serveur !");
+                mCallBack.errorFromClient("");
             } // else
         } // void
     } // private class --------------------------------------------------------------

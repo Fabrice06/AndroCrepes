@@ -1,7 +1,5 @@
 package crepes.fr.androcrepes.model;
 
-import crepes.fr.androcrepes.commons.java.Item;
-
 //fixme: voir la doc java/dominique sur le check des données
 
 /**
@@ -13,7 +11,11 @@ import crepes.fr.androcrepes.commons.java.Item;
  *     Aucun attribut n'est controlé.
  * </p>
  */
-public class Plat extends Item {
+public class Plat {
+
+    private static int mCount = 1;
+
+    private int mId;
 
     /**
      * Nom du plat
@@ -41,7 +43,7 @@ public class Plat extends Item {
      *      Quantité du plat, de type Integer.
      */
     public Plat(final String pNom, final int pQuantite) {
-        super();
+        this.mId = mCount++;
 
         this.mNom = pNom;
         this.mQuantite = pQuantite;
@@ -72,4 +74,8 @@ public class Plat extends Item {
         return mQuantite;
     } // int
 
+    public int getId() {
+
+        return mId;
+    } // int
 } // class

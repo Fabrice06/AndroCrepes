@@ -25,7 +25,7 @@ public class CuisineActivity
     } // int
 
     protected int getTextViewInfoResourceId() {
-        return R.id.cuisine_textViewInfoId;
+        return R.id.cuisine_customTextViewTitle;
     } // int
 
     protected int getListViewResourceId() {
@@ -40,12 +40,12 @@ public class CuisineActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mEditTextQte = (EditText) findViewById(R.id.cuisine_editTextQuantiteId);
-        mEditTextName = (EditText) findViewById(R.id.cuisine_editTextPlatId);
+        mEditTextQte = (EditText) findViewById(R.id.cuisine_editTextQuantite);
+        mEditTextName = (EditText) findViewById(R.id.cuisine_editTextPlat);
 
     } // void
 
-    protected void updateAfterClientAjout() { //final String pNewPlatName) {
+    protected void updateAfterClientAjout() {
 
         mEditTextQte.setText("1");
         mEditTextName.setText("");
@@ -104,8 +104,8 @@ public class CuisineActivity
      * @param pView
      *      Objet de type View
      */
-    public void addNewPlat(View pView) {
-        super.debugLog("addNewPlat");
+    public void addPlat(View pView) {
+        super.debugLog("addPlat");
 
         String nQuantite = mEditTextQte.getText().toString();
         String nName = mEditTextName.getText().toString().trim();

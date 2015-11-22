@@ -1,17 +1,13 @@
 package crepes.fr.androcrepes.commons.framework;
 
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -28,14 +24,14 @@ import crepes.fr.androcrepes.model.Plats;
 
 public abstract class CustomActivity
         extends AppCompatActivity
-        implements Client.ClientCallBack, ListAdapter.ListAdapterCallBack {
+        implements Client.ClientCallBack, CustomPlatListAdapter.PlatListAdapterCallBack {
 
     private static final String TAG = CustomActivity.class.getSimpleName();
 
     private ProgressDialog mProgressDialog = null;
 
     private ListView mListView = null;
-    private ListAdapter mListAdapter;
+    private CustomPlatListAdapter mListAdapter;
 
     private Client mClient;
     private Plats mPlats;
@@ -45,7 +41,7 @@ public abstract class CustomActivity
     protected abstract int getListViewResourceId();
     protected abstract int getMenuResourceId();
 
-    protected abstract void updateAfterClientAjout();//final String pNewPlatName);
+    protected abstract void updateAfterClientAjout();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,27 +53,24 @@ public abstract class CustomActivity
         final Controller nController = (Controller) getApplicationContext();
 
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage(Controller.WAIT);
+        mProgressDialog.setMessage(getString(R.string.activity_progressDialogWait));
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
 
-        TextView nTextViewInfo = (TextView) findViewById(getTextViewInfoResourceId());
-        Typeface nFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
-        nTextViewInfo.setTypeface(nFont);
-        nTextViewInfo.setTextSize(30);
+        CustomTextView nCustomTextView = (CustomTextView) findViewById(getTextViewInfoResourceId());
 
         mPlats = nController.getPlats();
-        mListAdapter = new ListAdapter(this, mPlats);
+        mListAdapter = new CustomPlatListAdapter(this, mPlats);
 
         mListView = (ListView) findViewById(getListViewResourceId());
         mListView.setAdapter(mListAdapter);
 
         mProgressDialog.show();
 
-        Log.d("******* CustomActivity", "IP : " + Controller.SERVER_IP + " Port : " + Controller.SERVER_PORT);
+        Log.d("******* CustomActivity", "IP : " + nController.getServerIp() + " Port : " +  nController.getServerPort());
 
         //fixme: définir plan B si serveur hors d'atteinte
-        mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
+        mClient = Client.getInstance(this, nController.getServerIp(), nController.getServerPort());
         mClient.connect();
     } // void
 
@@ -121,8 +114,12 @@ public abstract class CustomActivity
     @Override
     public void errorFromClient(String pError) {
         //Log.d(TAG, "errorFromClient");
+
+        //fixme pError pas utilisé
+        String nMessage = getString(R.string.activity_toastMessageNoConnection);
+
         mProgressDialog.hide();
-        toastMessage(pError, true);
+        toastMessage(nMessage, true);
     } // void
 
     // callback client: connexion
@@ -158,7 +155,8 @@ public abstract class CustomActivity
 
         } else {
             // cas non répertorié: ceinture et bretelles
-            toastMessage("Erreur inconnue: merci de prévenir l'administrateur !", true);
+            String nMessage = getString(R.string.activity_toastMessageUnknownError);
+            toastMessage(nMessage, true);
         } // else
     } // void
 
@@ -241,7 +239,12 @@ public abstract class CustomActivity
 
         if (!nNewPlatNom.isEmpty()) {
             scrollListViewByName(nNewPlatNom);
-            toastMessage("Le plat " + nNewPlatNom + " a été ajouté à la carte !", true);
+
+            String nMessage = getString(R.string.activity_toastMessageBeforePlat);
+            nMessage = nMessage + nNewPlatNom;
+            nMessage = nMessage + getString(R.string.activity_toastMessageAfterPlat);
+
+            toastMessage(nMessage, true);
         } // if
 
         mProgressDialog.hide();

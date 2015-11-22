@@ -2,63 +2,46 @@ package crepes.fr.androcrepes.controller;
 
 import android.app.Application;
 
+import crepes.fr.androcrepes.model.Commandes;
 import crepes.fr.androcrepes.model.Plats;
 
 
 public class Controller extends Application {
 
-    //fixme: à dégager via le menu settings
-    public static String SERVER_IP = "10.0.3.2";
-//    public static final String SERVER_IP = "10.0.2.2";
-    public static int SERVER_PORT = 7777;
-    //fixme: à dégager via le menu settings
+    //private static final String SERVER_IP = "10.0.3.2";
+    private static final String SERVER_IP = "10.0.2.2";
+    private static final int SERVER_PORT = 7777;
 
-    //fixme a dégager via string xml
-//    public static final String LOGOUT = "logout";
-//    public static final String LOGON = "logon";
-    public static final String WAIT = "Thinking...";
-    // a dégager via string xml
+    private String mServerIp = "";
+    private int mServerPort = 0;
 
+    private Commandes mCommandes = new Commandes();
     private Plats mPlats = new Plats();
 
-//    private Commandes mCommandes = new Commandes();
 
-//    private CustomProgressDialog mProgressDialog;
-
-//    private ModelCart myCart = new ModelCart();
-
-//    public ModelProducts getProducts(int pPosition) {
-//        return myProducts.get(pPosition);
-//    }
-
-//    public void setProducts(ModelProducts Products) {
-//        myProducts.add(Products);
-//    }
-
-//    public void setPlats(ModelProducts Products) {
-//        myProducts.add(Products);
-//    }
+    public Commandes getCommandes() {
+        return mCommandes;
+    } // Commandes
 
     public Plats getPlats() {
         return mPlats;
     } // Plats
 
-//    public Commandes getCommandes() {
-//        return mCommandes;
-//    } // Commandes
 
+    public String getServerIp() {
+        return (mServerIp.isEmpty()) ? SERVER_IP : mServerIp;
+    } // String
 
-//    public CustomProgressDialog getProgressDialog(final Context pContext) {
-////        mProgressDialog = new CustomProgressDialog(pContext);
-////        mProgressDialog.setMessage(Controller.WAIT);
-//        //mProgressDialog.setIndeterminate(true);
-//        //mProgressDialog.setCancelable(false);
-////        return mProgressDialog;
-//
-//        return new CustomProgressDialog(pContext);
-//    } // CustomProgressDialog
+    public void setServerIp(final String pIp) {
+        mServerIp = pIp;
+    } // void
 
-//    public int getProductsArraylistSize() {
-//        return myProducts.size();
-//    }
+    public int getServerPort() {
+        return (0 == mServerPort) ? SERVER_PORT : mServerPort;
+    } // int
+
+    public void setServerPort(final int pPort) {
+        mServerPort = pPort;
+    } // void
+
 } // class

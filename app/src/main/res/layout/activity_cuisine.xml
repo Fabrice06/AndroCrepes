@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:background="@color/colorFond">
+    android:background="@color/background_activity">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -18,7 +18,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButtonCuisineGoHome"
+            android:id="@+id/cuisine_imageButtonGoHome"
             android:src="@drawable/home"
             android:background="@drawable/roundedbutton"
             android:onClick="goHome"/>
@@ -32,16 +32,16 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/cuisine_textViewInfoId"
+            <crepes.fr.androcrepes.commons.framework.CustomTextView
+                android:id="@+id/cuisine_customTextViewTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/cuisine_textViewInfoText"
+                android:text="@string/cuisine_customTextViewTitle"
                 android:gravity="center"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:typeface="serif"
-                android:textColor="@color/colorTxtTitle" />
+                android:textColor="@color/font_customTextViewTitle" />
         </FrameLayout>
 
     </LinearLayout>
@@ -80,21 +80,21 @@
                 ></FrameLayout>
 
             <EditText
-                android:id="@+id/cuisine_editTextQuantiteId"
+                android:id="@+id/cuisine_editTextQuantite"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/cuisine_editTextQuantiteColor"
+                android:textColor="@color/font_editText"
                 android:inputType="number"
                 android:hint="1"
                 android:text="1" />
 
             <EditText
-                android:id="@+id/cuisine_editTextPlatId"
+                android:id="@+id/cuisine_editTextPlat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/cuisine_editTextPlatColor"
+                android:textColor="@color/font_editText"
                 android:inputType="text"
-                android:hint="@string/textNouveauPlat" />
+                android:hint="@string/cuisine_editTextPlatHint" />
 
         </LinearLayout>
 
@@ -109,12 +109,12 @@
             <Button
                 android:layout_width="100dp"
                 android:layout_height="25dp"
-                android:text="@string/btnAjouter"
-                android:id="@+id/buttonCuisineAddNewPlat"
+                android:text="@string/cuisine_buttonAdd"
+                android:id="@+id/cuisine_buttonAdd"
                 android:layout_gravity="right"
                 android:background="@drawable/roundedbuttonplus"
-                android:textColor="@color/colorTxtBtn"
-                android:onClick="addNewPlat"/>
+                android:textColor="@color/font_button"
+                android:onClick="addPlat"/>
 
         </FrameLayout>
 

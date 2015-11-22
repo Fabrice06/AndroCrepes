@@ -1,0 +1,59 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@color/background_activity">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/table_imageButtonGoHome"
+            android:src="@drawable/home"
+            android:background="@drawable/roundedbutton"
+            android:onClick="goHome"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+
+            <crepes.fr.androcrepes.commons.framework.CustomTextView
+                android:id="@+id/table_customTextViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/table_customTextViewTitle"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:typeface="serif"
+                android:textColor="@color/font_customTextViewTitle" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="10dp"></FrameLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/table_listView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="90"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0px"/>
+
+
+</LinearLayout>

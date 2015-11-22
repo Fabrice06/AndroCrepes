@@ -22,4 +22,9 @@ public class Commandes extends ArrayList<Commande> {
         return nReturn;
     } // Commande
 
+    public String getValueOfSize() {
+
+        return String.valueOf(this.size());
+    } // String
+
 } // class

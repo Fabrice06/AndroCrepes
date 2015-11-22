@@ -3,27 +3,7 @@
     <string name="action_settings">Préférences</string>
     <string name="Logo">Logo</string>
 
-    <string name="title_home">La Bonne Crèpe</string>
-    <string name="btnCuisine">Cuisine</string>
-    <string name="btnSalle">Salle</string>
-    <string name="btnAide">Aide</string>
-    <string name="btnLogon">Logon</string>
-    <string name="btnLogout">Logout</string>
-
-    <string name="title_activity_cuisine">AndroCrepes - Cuisine</string>
-    <string name="textNouveauPlat">Nouveau Plat</string>
-    <string name="btnAjouter">Ajouter</string>
-
-    <string name="title_activity_salle">AndroCrepes - Salle</string>
-    <string name="title_activity_aide">AndroCrepes - Aide</string>
-
-    <string name="btnAnnuler">Annuler</string>
-    <string name="btnCommander">Commander</string>
-
-    <string name="cuisine_textViewInfoText">Liste des plats</string>
-    <string name="salle_textViewInfoText">Liste des plats</string>
-    <string name="aide_textViewInfoText">Aide en ligne</string>
-
+    <color name="colorFondPreferences">#FFD180</color>
     <string name="preferenceIPTitle">Ip du serveur</string>
     <string name="preferenceIPDefaultValue">10.0.3.2</string>
     <string name="preferenceIPSummary">Saisir Ip du serveur</string>
@@ -33,20 +13,69 @@
     <string name="preferencePortSummary">Saisir le port du serveur</string>
 
 
-    <color name="colorFond">#FFBB33</color>
-    <color name="colorFondPreferences">#FFD180</color>
-    <color name="colorTxtTitle">#181870</color>
-    <color name="colorTxt">#181870</color>
+    <!--string transverses pour toute l'application-->
+    <string name="activity_progressDialogWait">Chargement en cours ...</string>
+    <string name="activity_toastMessageNoConnection">Impossible de se connecter au serveur !</string>
+    <string name="activity_toastMessageUnknownError">Erreur inconnue: merci de prévenir l\'administrateur !</string>
+    <string name="activity_toastMessageBeforePlat">Le plat </string>
+    <string name="activity_toastMessageAfterPlat"> a été ajouté à la carte !</string>
 
-    <color name="colorBtnValid">#FFE0B2</color>
-    <color name="colorBtnCuisine">#9C27B0</color>
-    <color name="colorTxtBtn">#F0FFFF</color>
-    <color name="colorBtnSalle">#3F51B5</color>
-    <color name="colorBtnAide">#FF5722</color>
-    <color name="colorBtnLog">#A02828</color>
 
-    <color name="cuisine_editTextPlatColor">#BDBDBD</color>
-    <color name="cuisine_editTextQuantiteColor">#424242</color>
+    <!--string pour l'activity aide-->
+    <string name="aide_activityTitle">AndroCrepes - Aide</string>
+    <string name="aide_customTextViewTitle">Aide en ligne</string>
 
+
+    <!--string pour l'activity cuisine-->
+    <string name="cuisine_activityTitle">AndroCrepes - Cuisine</string>
+    <string name="cuisine_customTextViewTitle">Liste des plats</string>
+    <string name="cuisine_editTextPlatHint">Nouveau Plat</string>
+    <string name="cuisine_buttonAdd">Ajouter</string>
+    <string name="cuisine_buttonRowLeft">Annuler</string>
+    <string name="cuisine_buttonRowRight">Ajouter</string>
+
+    <!--string pour l'activity home-->
+    <string name="home_customTextViewTitle">La Bonne Crèpe</string>
+    <string name="home_buttonCuisine">Cuisine</string>
+    <string name="home_buttonSalle">Salle</string>
+    <string name="home_buttonAide">Aide</string>
+    <string name="home_buttonLog_logon">Logon</string>
+    <string name="home_buttonLog_logout">Logout</string>
+
+
+    <!--string pour l'activity salle-->
+    <string name="salle_activityTitle">AndroCrepes - Salle</string>
+    <string name="salle_customTextViewTitle">Liste des commandes</string>
+    <string name="salle_textViewTotal_one">une</string>
+    <string name="salle_textViewCommande_none">aucune commande</string>
+    <string name="salle_textViewCommande_one">commande</string>
+    <string name="salle_textViewCommande_more">commandes</string>
+    <string name="salle_buttonLeft">Tout supprimer</string>
+    <string name="salle_buttonRight">Ajouter</string>
+    <string name="salle_TextViewRowInfo">commande n°</string>
+    <string name="salle_buttonRowLeft">Supprimer</string>
+    <string name="salle_buttonRowRight">Modifier</string>
+
+
+    <!--string pour l'activity table-->
+    <string name="table_activityTitle">AndroCrepes - Commande</string>
+    <string name="table_customTextViewTitle">Liste des plats</string>
+    <string name="table_buttonRowLeft">Annuler</string>
+    <string name="table_buttonRowRight">Commander</string>
+
+
+    <!--background color transverses pour toute l'application-->
+    <color name="background_activity">#FFBB33</color>
+    <color name="background_homeButtonCuisine">#9C27B0</color>
+    <color name="background_homeButtonSalle">#3F51B5</color>
+    <color name="background_homeButtonAide">#FF5722</color>
+    <color name="background_homeButtonLog">#A02828</color>
+
+
+    <!--font color transverses pour toute l'application-->
+    <color name="font_customTextViewTitle">#181870</color>
+    <color name="font_button">#F0FFFF</color>
+    <color name="font_editText">#424242</color>
+    <color name="font_textView">#181870</color>
 
 </resources>

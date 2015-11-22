@@ -1,0 +1,74 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@drawable/custom_zone"
+    android:layout_margin="20dp"
+    android:weightSum="1">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/salle_TextViewRowInfo"
+            android:id="@+id/salle_TextViewRowInfo"
+            android:textColor="@color/font_textView"
+            android:textSize="20dp"
+            android:ellipsize="end"
+            android:gravity="right"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/salle_TextViewRowNumero"
+            android:textColor="@color/font_textView"
+            android:textSize="20dp"
+            android:gravity="left"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="10dp"></FrameLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:text="@string/salle_buttonRowLeft"
+            android:id="@+id/salle_buttonRowLeft"
+            android:layout_gravity="left"
+            android:background="@drawable/roundedbuttonmoins"
+            android:textColor="@color/font_button"/>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="3"></FrameLayout>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:text="@string/salle_buttonRowRight"
+            android:id="@+id/salle_buttonRowRight"
+            android:background="@drawable/roundedbuttonplus"
+            android:textColor="@color/font_button"/>
+
+    </LinearLayout>
+
+</LinearLayout>

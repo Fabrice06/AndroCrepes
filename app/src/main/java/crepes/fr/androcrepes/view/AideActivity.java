@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import crepes.fr.androcrepes.R;
+import crepes.fr.androcrepes.commons.framework.CustomTextView;
 
 /**
  * <b>Classe dédiée à la description de l'ihm Aide.</b>
@@ -22,11 +23,10 @@ public class AideActivity extends AppCompatActivity {
 
     private static final String TAG = AideActivity.class.getSimpleName();
 
-    //Uri uri = Uri.parse("http://www.google.fr");
-    String uri = "http://www.google.fr";
-    String local = "file:///android_asset/aideHtml/html/index.html";
-    String local_en = "file:///android_asset/aideHtml/html/index_en.html";
-    String local_es = "file:///android_asset/aideHtml/html/index_es.html";
+    //private final static String uri = "http://www.google.fr";
+    private final static String HELP_URI_FR = "file:///android_asset/aideHtml/html/index.html";
+    private final static String HELP_URI_EN = "file:///android_asset/aideHtml/html/index_en.html";
+    private final static String HELP_URI_ES = "file:///android_asset/aideHtml/html/index_es.html";
 
     private WebView webwiew;
 
@@ -38,10 +38,7 @@ public class AideActivity extends AppCompatActivity {
 
         webwiew = (WebView) findViewById(R.id.webwiew);
 
-        TextView myTextView = (TextView) findViewById(R.id.textAide);
-        Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
-        myTextView.setTypeface(myFont);
-        myTextView.setTextSize(30);
+        CustomTextView nCustomTextView = (CustomTextView) findViewById(R.id.aide_customTextViewTitle);
     }
 
     @Override
@@ -78,15 +75,14 @@ public class AideActivity extends AppCompatActivity {
         String langue = Locale.getDefault().getDisplayLanguage();
 
         if ("français".equals(langue)) {
-            webwiew.loadUrl(local);
+            webwiew.loadUrl(HELP_URI_FR);
         }
         if ("English".equals(langue)) {
-            webwiew.loadUrl(local_en);
+            webwiew.loadUrl(HELP_URI_EN);
         }
         if ("español".equals(langue)) {
-            webwiew.loadUrl(local_es);
+            webwiew.loadUrl(HELP_URI_ES);
         }
-
 
         webwiew.setWebViewClient(new WebViewClient());
     }

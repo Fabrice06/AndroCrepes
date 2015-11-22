@@ -19,14 +19,13 @@
         android:gravity="left">
 
         <TextView
-            android:id="@+id/listadapter_textViewQuantiteId"
+            android:id="@+id/plat_textViewRowQuantite"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:textSize="20dp"
-            android:text="0"
             android:gravity="center"
             android:background="@drawable/rondorange"
-            android:textColor="@color/colorTxtBtn"/>
+            android:textColor="@color/font_textView"/>
 
         <FrameLayout
             android:layout_width="20dp"
@@ -35,9 +34,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="XXX"
-            android:id="@+id/listadapter_textViewInfoId"
-            android:textColor="@color/colorTxt"
+            android:id="@+id/plat_textViewRowInfo"
+            android:textColor="@color/font_textView"
             android:textSize="20dp"
             android:ellipsize="end"
             android:gravity="center"/>
@@ -51,17 +49,15 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layoutRowPlat">
+        android:layout_height="wrap_content">
 
         <Button
             android:layout_width="100dp"
             android:layout_height="25dp"
-            android:text="@string/btnAnnuler"
-            android:id="@+id/buttonListAdapterLeft"
+            android:id="@+id/plat_buttonRowLeft"
             android:layout_gravity="left"
             android:background="@drawable/roundedbuttonmoins"
-            android:textColor="@color/colorTxtBtn"/>
+            android:textColor="@color/font_button"/>
 
         <FrameLayout
             android:layout_width="0dp"
@@ -71,10 +67,9 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="25dp"
-            android:text="@string/btnCommander"
-            android:id="@+id/buttonListAdapterRight"
+            android:id="@+id/plat_buttonRowRight"
             android:background="@drawable/roundedbuttonplus"
-            android:textColor="@color/colorTxtBtn"/>
+            android:textColor="@color/font_button"/>
 
     </LinearLayout>
 

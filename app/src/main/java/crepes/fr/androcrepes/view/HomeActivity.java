@@ -5,8 +5,8 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -19,10 +19,10 @@ import android.widget.Toast;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
+import crepes.fr.androcrepes.commons.framework.CustomTextView;
 import crepes.fr.androcrepes.commons.network.Client;
 import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.controller.SettingsFragment;
-import android.preference.PreferenceManager;
 
 /**
  * <b>Classe dédiée à la description de l'ihm Home.</b>
@@ -36,9 +36,9 @@ public class HomeActivity
 
     private static final String TAG = HomeActivity.class.getSimpleName();
 
-    private static SettingsFragment frag = new SettingsFragment();
-    public static FragmentManager fragmentManager;
-    private SharedPreferences sharedPref;
+    private static SettingsFragment mSettingsFragment = new SettingsFragment();
+    public static FragmentManager mFragmentManager;
+    private SharedPreferences mSharedPreferences;
 
     private ProgressDialog mProgressDialog = null;
     
@@ -48,6 +48,8 @@ public class HomeActivity
 
     private Client mClient;
 
+    private Controller mController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,40 +57,41 @@ public class HomeActivity
         Log.d(TAG, "onCreate");
 
         //Get Global Controller Class object (see application tag in AndroidManifest.xml)
-        final Controller nController = (Controller) getApplicationContext();
+        mController = (Controller) getApplicationContext();
 
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage(Controller.WAIT);
+        mProgressDialog.setMessage(getString(R.string.activity_progressDialogWait));
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(true);
 
-        TextView myTextView = (TextView) findViewById(R.id.laBonneCrepe);
-        Typeface myFont = Typeface.createFromAsset(getAssets(), "Milasian.ttf");
-        myTextView.setTypeface(myFont);
-        myTextView.setTextSize(30);
+        CustomTextView nCustomTextView = (CustomTextView) findViewById(R.id.home_customTextViewTitle);
 
-        mBtnHomeSalle = (Button) findViewById(R.id.btnHomeSalle);
-        mBtnHomeCuisine = (Button) findViewById(R.id.btnHomeCuisine);
-        mBtnHomeLog = (Button) findViewById(R.id.btnHomeLog);
+        mBtnHomeSalle = (Button) findViewById(R.id.home_buttonSalle);
+        mBtnHomeCuisine = (Button) findViewById(R.id.home_buttonCuisine);
+        mBtnHomeLog = (Button) findViewById(R.id.home_buttonLog);
 
         updateButtonsAfterConnection(false);
 
         mProgressDialog.show();
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        fragmentManager = getFragmentManager();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mFragmentManager = getFragmentManager();
 
 
         // La première fois que l'application est lancée, on lit les préférences par défaut du
         // fichier XML
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
-        Log.d("******* HomeActivity", "IP : "+Controller.SERVER_IP+" Port : "+Controller.SERVER_PORT);
+        connectToClient();
+
+    } // void
+
+    private void connectToClient() {
+        Log.d(TAG, "IP : " + mController.getServerIp() + " Port : " + mController.getServerPort());
 
         //fixme: définir plan B si serveur hors d'atteinte
-        mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
+        mClient = Client.getInstance(this, mController.getServerIp(), mController.getServerPort());
         mClient.connect();
-
     } // void
 
     /**
@@ -137,12 +140,10 @@ public class HomeActivity
      *      Objet de type View
      */
     public void goLog(View pView) {
-        Log.d(TAG, "goLog");
+        //Log.d(TAG, "goLog");
 
         mProgressDialog.setCancelable(false);
         mProgressDialog.show();
-
-        Log.d("***************** goLog", "IP : " + Controller.SERVER_IP + " Port : " + Controller.SERVER_PORT);
 
         if (mClient.isRunning()) {
             mClient.disconnect();
@@ -152,8 +153,7 @@ public class HomeActivity
 //            updateAfterConnection(false);
 
         } else {
-            mClient = Client.getInstance(this, Controller.SERVER_IP, Controller.SERVER_PORT);
-            mClient.connect();
+            connectToClient();
         } // else
     } // void
 
@@ -215,9 +215,12 @@ public class HomeActivity
     public void errorFromClient(String pError) {
         //Log.d(TAG, "errorFromClient");
 
+        //fixme pError pas utilisé
+        String nMessage = getString(R.string.activity_toastMessageNoConnection);
+
         mProgressDialog.hide();
         updateButtonsAfterConnection(false);
-        toastMessage(pError);
+        toastMessage(nMessage);
     } // void
 
     // callback Client: connexion
@@ -286,7 +289,7 @@ public class HomeActivity
      *      Vrai: la connexion est établie et active.
      */
     private void updateButtonsAfterConnection(final boolean pIsConnected) {
-        mBtnHomeLog.setText(pIsConnected ? R.string.btnLogout : R.string.btnLogon);
+        mBtnHomeLog.setText(pIsConnected ? R.string.home_buttonLog_logout : R.string.home_buttonLog_logon);
         mBtnHomeSalle.setEnabled(pIsConnected);
         mBtnHomeCuisine.setEnabled(pIsConnected);
     } // void
@@ -305,11 +308,11 @@ public class HomeActivity
 
         if (id == R.id.action_settings) {
             Log.d("********** IF 1 ******"," IF ");
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            FragmentTransaction transaction = mFragmentManager.beginTransaction();
 
-            if (!(frag.isAdded())) {
-                Log.i("************** MainActivity", "onOptionItemSelected.IF");
-                transaction.add(R.id.fragmentSettings, frag);
+            if (!mSettingsFragment.isAdded()) {
+                Log.i("********** MainActivity", "onOptionItemSelected.IF");
+                transaction.add(R.id.fragmentSettings, mSettingsFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -329,13 +332,13 @@ public class HomeActivity
 
         Log.d(TAG,"onBackPressed");
 
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
 
-        if (frag.isAdded()) {
+        if (mSettingsFragment.isAdded()) {
             Log.i("MainActivity", "onBackPressed.isAdded");
 //            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
 //            transaction.remove(frag);
-            fragmentManager.popBackStack();
+            mFragmentManager.popBackStack();
         } else {
             Log.i("MainActivity", "onBackPressed.isNotAdded");
             super.onBackPressed();
@@ -353,18 +356,18 @@ public class HomeActivity
 
 //    home -> salle
 //    HomeActivity: onPause
-//    SalleActivity: onCreate
-//    SalleActivity: onStart
-//    SalleActivity: onResume
+//    TableActivity: onCreate
+//    TableActivity: onStart
+//    TableActivity: onResume
 //    HomeActivity: onStop
 
 //    salle -> home
-//    SalleActivity: onPause
+//    TableActivity: onPause
 //    HomeActivity: onRestart
 //    HomeActivity: onStart
 //    HomeActivity: onResume
-//    SalleActivity: onStop
-//    SalleActivity: onDestroy
+//    TableActivity: onStop
+//    TableActivity: onDestroy
 
     @Override
     protected void onStart() {
