@@ -80,16 +80,23 @@
 
             <TextView
                 android:id="@+id/salle_textViewTotal"
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/font_editText" />
+                android:textSize="20dp"
+                android:textColor="@color/font_textView" />
+
+            <FrameLayout
+                android:layout_width="5dp"
+                android:layout_height="0dp"
+                ></FrameLayout>
 
             <TextView
                 android:id="@+id/salle_textViewCommande"
                 android:text="@string/salle_textViewCommande_none"
+                android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/font_editText" />
+                android:textColor="@color/font_textView" />
 
         </LinearLayout>
 

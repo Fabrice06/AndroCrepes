@@ -1,5 +1,6 @@
 package crepes.fr.androcrepes.view;
 
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,11 +23,6 @@ import crepes.fr.androcrepes.commons.framework.CustomTextView;
 public class AideActivity extends AppCompatActivity {
 
     private static final String TAG = AideActivity.class.getSimpleName();
-
-    //private final static String uri = "http://www.google.fr";
-    private final static String HELP_URI_FR = "file:///android_asset/aideHtml/html/index.html";
-    private final static String HELP_URI_EN = "file:///android_asset/aideHtml/html/index_en.html";
-    private final static String HELP_URI_ES = "file:///android_asset/aideHtml/html/index_es.html";
 
     private WebView webwiew;
 
@@ -68,21 +64,14 @@ public class AideActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //Log.d(TAG, "onStart"); français English español
 
         Log.d("***** Langue :", Locale.getDefault().getDisplayLanguage());
 
-        String langue = Locale.getDefault().getDisplayLanguage();
+        Resources res = getResources();
 
-        if ("français".equals(langue)) {
-            webwiew.loadUrl(HELP_URI_FR);
-        }
-        if ("English".equals(langue)) {
-            webwiew.loadUrl(HELP_URI_EN);
-        }
-        if ("español".equals(langue)) {
-            webwiew.loadUrl(HELP_URI_ES);
-        }
+        String uri = String.format(res.getString(R.string.aide_URI));
+
+        webwiew.loadUrl(uri);
 
         webwiew.setWebViewClient(new WebViewClient());
     }

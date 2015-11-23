@@ -1,6 +1,7 @@
 package crepes.fr.androcrepes.view;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.List;
 
@@ -59,6 +60,8 @@ public class TableActivity
 
         String nTitle = getString(R.string.table_customTextViewTitle);
         nTitle = nTitle + mController.getCurrentCommande().getValueOfId();
+
+        Log.d("***********", mController.getCurrentCommande().getValueOfId());
         super.getCustomTextViewTitle().setText(nTitle);
         super.debugLog("onCreate " + nTitle);
 

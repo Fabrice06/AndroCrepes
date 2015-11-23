@@ -6,10 +6,10 @@
         />
     <stroke
         android:width="5dip"
-        android:color="#daff22"
+        android:color="@color/background_customZone"
         />
 
     <solid
-        android:color="#daff22"
+        android:color="@color/background_customZone"
         />
 </shape>

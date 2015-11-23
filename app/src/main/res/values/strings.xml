@@ -26,6 +26,7 @@
     <!--string pour l'activity aide-->
     <string name="aide_activityTitle">AndroCrepes - Aide</string>
     <string name="aide_customTextViewTitle">Aide en ligne</string>
+    <string name="aide_URI">file:///android_asset/aideHtml/html/index.html</string>
 
 
     <!--string pour l'activity cuisine-->
@@ -52,7 +53,7 @@
     <string name="salle_textViewCommande_none">aucune commande</string>
     <string name="salle_textViewCommande_one">commande</string>
     <string name="salle_textViewCommande_more">commandes</string>
-    <string name="salle_buttonLeft">Tout supprimer</string>
+    <string name="salle_buttonLeft">Tout suppr.</string>
     <string name="salle_buttonRight">Ajouter</string>
     <string name="salle_TextViewRowInfo">commande n°</string>
     <string name="salle_buttonRowLeft">Supprimer</string>
@@ -72,6 +73,8 @@
     <color name="background_homeButtonSalle">#3F51B5</color>
     <color name="background_homeButtonAide">#FF5722</color>
     <color name="background_homeButtonLog">#A02828</color>
+    <color name="background_customZone">#FFE0B2</color>
+    <color name="border_customZone">#FF5722</color>
 
 
     <!--font color transverses pour toute l'application-->

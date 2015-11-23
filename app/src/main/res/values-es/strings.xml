@@ -3,27 +3,7 @@
     <string name="action_settings">Preferencia</string>
     <string name="Logo">Logotipo</string>
 
-    <string name="title_home">La Buena panqueque</string>
-    <string name="btnCuisine">Cocción</string>
-    <string name="btnSalle">Comedor</string>
-    <string name="btnAide">Ayuda</string>
-    <string name="btnLogon">Logon</string>
-    <string name="btnLogout">Logout</string>
-
-    <string name="title_activity_cuisine">AndroCrepes - Cocción</string>
-    <string name="textNouveauPlat">Plato nuevo</string>
-    <string name="btnAjouter">Añadir</string>
-
-    <string name="title_activity_salle">AndroCrepes - Comedor</string>
-    <string name="title_activity_aide">AndroCrepes - Ayuda</string>
-
-    <string name="btnAnnuler">Cancelar</string>
-    <string name="btnCommander">Orden</string>
-
-    <string name="cuisine_textViewInfoText">Lista de platos</string>
-    <string name="salle_textViewInfoText">Lista de platos</string>
-    <string name="aide_textViewInfoText">Ayuda en línea</string>
-
+    <color name="colorFondPreferences">#FF6E40</color>
     <string name="preferenceIPTitle">Ip del servidor</string>
     <string name="preferenceIPDefaultValue">10.0.3.2</string>
     <string name="preferenceIPSummary">Entrar el IP del servidor</string>
@@ -33,21 +13,75 @@
     <string name="preferencePortSummary">Entrar el puerto del servidor</string>
 
 
+    <!--string transverses pour toute l'application-->
+    <string name="activity_progressDialogWait">Cargando ...</string>
+    <string name="activity_toastMessageNoConnection">No se puede conectar al servidor !</string>
+    <string name="activity_toastMessageUnknownError">Desconocido Error: gracias a prevenir el administrador !</string>
+    <string name="activity_toastMessageBeforePlat">El plato </string>
+    <string name="activity_toastMessageAfterPlat"> esta en el mapa !</string>
+    <string name="activity_toastMessageBadQuantite">Gracias a especificar la cantidad correcta !</string>
+    <string name="activity_toastMessageBadPlat">Gracias especificar un nombre !</string>
 
-    <color name="colorFond">#DD2C00</color>
-    <color name="colorFondPreferences">#FF6E40</color>
-    <color name="colorTxtTitle">#FFD600</color>
-    <color name="colorTxt">#181870</color>
 
-    <color name="colorBtnValid">#FFE0B2</color>
-    <color name="colorBtnCuisine">#9C27B0</color>
-    <color name="colorTxtBtn">#F0FFFF</color>
-    <color name="colorBtnSalle">#3F51B5</color>
-    <color name="colorBtnAide">#FF5722</color>
-    <color name="colorBtnLog">#A02828</color>
+    <!--string pour l'activity aide-->
+    <string name="aide_activityTitle">AndroCrepes - Ayuda</string>
+    <string name="aide_customTextViewTitle">Ayuda en línea</string>
+    <string name="aide_URI">file:///android_asset/aideHtml/html/index_es.html</string>
 
-    <color name="cuisine_editTextPlatColor">#BDBDBD</color>
-    <color name="cuisine_editTextQuantiteColor">#424242</color>
+
+    <!--string pour l'activity cuisine-->
+    <string name="cuisine_activityTitle">AndroCrepes - Cocción</string>
+    <string name="cuisine_customTextViewTitle">Lista de platos</string>
+    <string name="cuisine_editTextPlatHint">Plato nuevo</string>
+    <string name="cuisine_buttonAdd">Añadir</string>
+    <string name="cuisine_buttonRowLeft">Cancelar</string>
+    <string name="cuisine_buttonRowRight">Añadir</string>
+
+    <!--string pour l'activity home-->
+    <string name="home_customTextViewTitle">La Buena panqueque</string>
+    <string name="home_buttonCuisine">Cocción</string>
+    <string name="home_buttonSalle">Comedor</string>
+    <string name="home_buttonAide">Ayuda</string>
+    <string name="home_buttonLog_logon">Logon</string>
+    <string name="home_buttonLog_logout">Logout</string>
+
+
+    <!--string pour l'activity salle-->
+    <string name="salle_activityTitle">AndroCrepes - Comedor</string>
+    <string name="salle_customTextViewTitle">Lista de órdenes</string>
+    <string name="salle_textViewTotal_one">un</string>
+    <string name="salle_textViewCommande_none">ningún pedido</string>
+    <string name="salle_textViewCommande_one">pedido</string>
+    <string name="salle_textViewCommande_more">pedidos</string>
+    <string name="salle_buttonLeft">Eliminar todo</string>
+    <string name="salle_buttonRight">Añadir</string>
+    <string name="salle_TextViewRowInfo">Pedido n°</string>
+    <string name="salle_buttonRowLeft">Eliminar</string>
+    <string name="salle_buttonRowRight">Cambiar</string>
+
+
+    <!--string pour l'activity table-->
+    <string name="table_activityTitle">AndroCrepes - Pedido</string>
+    <string name="table_customTextViewTitle">Pedido n°</string>
+    <string name="table_buttonRowLeft">Cancelar</string>
+    <string name="table_buttonRowRight">Orden</string>
+
+
+    <!--background color transverses pour toute l'application-->
+    <color name="background_activity">#DD2C00</color>
+    <color name="background_homeButtonCuisine">#9C27B0</color>
+    <color name="background_homeButtonSalle">#3F51B5</color>
+    <color name="background_homeButtonAide">#FF5722</color>
+    <color name="background_homeButtonLog">#A02828</color>
+    <color name="background_customZone">#FFE0B2</color>
+    <color name="border_customZone">#FF5722</color>
+
+
+    <!--font color transverses pour toute l'application-->
+    <color name="font_customTextViewTitle">#FFD600</color>
+    <color name="font_button">#F0FFFF</color>
+    <color name="font_editText">#424242</color>
+    <color name="font_textView">#181870</color>
 
 
 </resources>

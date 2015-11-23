@@ -26,7 +26,7 @@ public class CustomTextView extends TextView {
     }
 
     private void init() {
-        Typeface nTypeface = Typeface.createFromAsset(getContext().getAssets(), "Milasian.ttf");
+        Typeface nTypeface = Typeface.createFromAsset(getContext().getAssets(), "orange juice 2.0.ttf");
         setTypeface(nTypeface);
         setTextSize(30);
     }
