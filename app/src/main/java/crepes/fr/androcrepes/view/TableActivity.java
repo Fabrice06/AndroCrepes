@@ -6,9 +6,7 @@ import java.util.List;
 
 import crepes.fr.androcrepes.R;
 import crepes.fr.androcrepes.commons.framework.CustomActivity;
-import crepes.fr.androcrepes.commons.java.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
-import crepes.fr.androcrepes.commons.java.Tools;
 import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.model.Plat;
 import crepes.fr.androcrepes.model.Plats;
@@ -24,6 +22,18 @@ public class TableActivity
     private Controller mController = null;
 
     private Plat mCurrentPlat = null;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        String nTitle = getString(R.string.table_customTextViewTitle);
+        nTitle = nTitle + mController.getCurrentCommande().getValueOfId();
+        super.getCustomTextViewTitle().setText(nTitle);
+        super.debugLog("onCreate " + nTitle);
+
+        //ici les futures view pour la gestion des commandes
+    } // void
 
     protected int getLayoutResourceId() {
         return R.layout.activity_table;
@@ -43,7 +53,7 @@ public class TableActivity
 
     protected Plats getPlats() {
         return mController.getCurrentCommande().getPlats();
-    }
+    } // Plats
 
     protected Controller getController() {
         if (null == mController) {
@@ -53,63 +63,31 @@ public class TableActivity
         return mController;
     } // Controller
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        String nTitle = getString(R.string.table_customTextViewTitle);
-        nTitle = nTitle + mController.getCurrentCommande().getValueOfId();
-        super.getCustomTextViewTitle().setText(nTitle);
-        super.debugLog("onCreate " + nTitle);
-
-        //ici les futures view pour la gestion des commandes
+    protected void updateCurrentPlatAfterCommande(final String pResponseFromServer) {
+        if (null != mCurrentPlat) {
+            if (pResponseFromServer.indexOf(mCurrentPlat.getNom()) >= 0) {
+                mCurrentPlat.setQuantite(mCurrentPlat.getQuantite() + 1);
+            }
+        }
+        super.clientSendQuantity();
     } // void
 
-    protected void updateAfterClientAjout() {
+    protected void updateCurrentPlatAfterAjout(final String pResponseFromServer) {
+        if (null != mCurrentPlat) {
+            if (pResponseFromServer.indexOf(mCurrentPlat.getNom()) >= 0) {
+                if (mCurrentPlat.getQuantite() >= 1) {
+                    mCurrentPlat.setQuantite(mCurrentPlat.getQuantite() - 1);
+                } else {
+                    mCurrentPlat.setQuantite(0);
+                }
+            }
+        }
         super.clientSendQuantity();
-
     } // void
 
 
     //******************************************************************************
     // callback client: data
-
-    public void singleFromClient(final String pResponseFromServer) {
-        super.debugLog("singleFromClient callback: " + pResponseFromServer);
-
-        // recherche du dernier mot/chiffre pour identifier la réponse
-        String nReponse = pResponseFromServer.substring(pResponseFromServer.lastIndexOf(" ")+1);
-
-        if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
-            // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            super.toastMessage(pResponseFromServer + " !", true);
-
-        } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
-            if (null != mCurrentPlat) {
-                if (pResponseFromServer.indexOf(mCurrentPlat.getNom()) >= 0) {
-                    mCurrentPlat.setQuantite(mCurrentPlat.getQuantite() + 1);
-                }
-            }
-            super.clientSendQuantity();
-
-        } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
-            if (null != mCurrentPlat) {
-                if (pResponseFromServer.indexOf(mCurrentPlat.getNom()) >= 0) {
-                    if (mCurrentPlat.getQuantite() >= 1) {
-                        mCurrentPlat.setQuantite(mCurrentPlat.getQuantite() - 1);
-                    } else {
-                        mCurrentPlat.setQuantite(0);
-                    }
-                }
-            }
-            this.updateAfterClientAjout();
-
-        } else {
-            // cas non répertorié: ceinture et bretelles
-            String nMessage = getString(R.string.activity_toastMessageUnknownError);
-            super.toastMessage(nMessage, true);
-        } // else
-    } // void
 
     public void quantiteFromClient(List<String> pListData) {
         super.debugLog("quantiteFromClient callback");

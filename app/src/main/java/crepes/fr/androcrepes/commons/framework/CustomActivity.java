@@ -41,8 +41,6 @@ public abstract class CustomActivity
     protected abstract int getListViewResourceId();
     protected abstract int getMenuResourceId();
 
-    protected abstract void updateAfterClientAjout();
-
     protected abstract Plats getPlats();
 
     protected abstract Controller getController();
@@ -140,6 +138,9 @@ public abstract class CustomActivity
     //******************************************************************************
     // callback client: data
 
+    protected abstract void updateCurrentPlatAfterCommande(final String pResponseFromServer);
+    protected abstract void updateCurrentPlatAfterAjout(final String pResponseFromServer);
+
     /**
      * Implémentation de ClientCallback: réponse reçue du serveur suite à une requête AJOUT ou COMMANDE.
      *
@@ -147,7 +148,28 @@ public abstract class CustomActivity
      *      Réponse de type String
      */
     @Override
-    public abstract void singleFromClient(final String pResponseFromServer);
+    public void singleFromClient(final String pResponseFromServer) {
+        Log.d(TAG, "singleFromClient callback: " + pResponseFromServer);
+
+        // recherche du dernier mot/chiffre pour identifier la réponse
+        String nReponse = pResponseFromServer.substring(pResponseFromServer.lastIndexOf(" ")+1);
+
+        if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
+            // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
+            toastMessage(pResponseFromServer + " !", true);
+
+        } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
+            updateCurrentPlatAfterCommande(pResponseFromServer);
+
+        } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
+            updateCurrentPlatAfterAjout(pResponseFromServer);
+
+        } else {
+            // cas non répertorié: ceinture et bretelles
+            String nMessage = getString(R.string.activity_toastMessageUnknownError);
+            toastMessage(nMessage, true);
+        } // else
+    } // void
 
 
     /**
