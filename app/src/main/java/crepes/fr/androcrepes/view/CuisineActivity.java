@@ -9,7 +9,6 @@ import java.util.List;
 
 import crepes.fr.androcrepes.R;
 import crepes.fr.androcrepes.commons.framework.CustomActivity;
-import crepes.fr.androcrepes.commons.java.EnumReceiveWord;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
 import crepes.fr.androcrepes.commons.java.Tools;
 import crepes.fr.androcrepes.controller.Controller;
@@ -26,6 +25,15 @@ public class CuisineActivity
 
     private EditText mEditTextQte;
     private EditText mEditTextName;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mEditTextQte = (EditText) findViewById(R.id.cuisine_editTextQuantite);
+        mEditTextName = (EditText) findViewById(R.id.cuisine_editTextPlat);
+
+    } // void
 
     protected int getLayoutResourceId() {
         return R.layout.activity_cuisine;
@@ -55,16 +63,11 @@ public class CuisineActivity
         return mController;
     } // Controller
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mEditTextQte = (EditText) findViewById(R.id.cuisine_editTextQuantite);
-        mEditTextName = (EditText) findViewById(R.id.cuisine_editTextPlat);
-
+    protected void updateCurrentPlatAfterCommande(final String pResponseFromServer) {
+        super.clientSendQuantity();
     } // void
 
-    protected void updateAfterClientAjout() {
+    protected void updateCurrentPlatAfterAjout(final String pResponseFromServer) {
 
         mEditTextQte.setText("1");
         mEditTextName.setText("");
@@ -75,29 +78,6 @@ public class CuisineActivity
 
     //******************************************************************************
     // callback client: data
-
-    public void singleFromClient(final String pResponseFromServer) {
-        //super.debugLog("singleFromClient callback: " + pResponseFromServer);
-
-        // recherche du dernier mot/chiffre pour identifier la réponse
-        String nReponse = pResponseFromServer.substring(pResponseFromServer.lastIndexOf(" ")+1);
-
-        if (nReponse.equals(EnumReceiveWord.EPUISE.getValue()) || (nReponse.equals(EnumReceiveWord.INCONNU.getValue()))) {
-            // échec d'une commande ('épuisé' ou 'inconnu' trouvé en fin de message)
-            super.toastMessage(pResponseFromServer + " !", true);
-
-        } else if (nReponse.equals(EnumReceiveWord.COMMANDE.getValue())) { // en réponse à l'ordre COMMANDE
-            super.clientSendQuantity();
-
-        } else if (Tools.isInteger(nReponse)) { // en réponse à l'ordre AJOUT
-            this.updateAfterClientAjout();
-
-        } else {
-            // cas non répertorié: ceinture et bretelles
-            String nMessage = getString(R.string.activity_toastMessageUnknownError);
-            super.toastMessage(nMessage, true);
-        } // else
-    } // void
 
     public void quantiteFromClient(List<String> pListData) {
         //super.debugLog("quantiteFromClient callback");
@@ -216,4 +196,5 @@ public class CuisineActivity
             super.clientSendAjout(nQuantite + " " + nName, true);
         } // else
     } // void
+
 } // class
