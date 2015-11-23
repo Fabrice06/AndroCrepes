@@ -110,7 +110,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_width="100dp"
+                android:layout_width="110dp"
                 android:layout_height="25dp"
                 android:text="@string/salle_buttonLeft"
                 android:id="@+id/salle_buttonLeft"
