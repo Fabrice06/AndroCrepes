@@ -8,10 +8,9 @@ import android.widget.EditText;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
-import crepes.fr.androcrepes.commons.framework.CustomActivity;
+import crepes.fr.androcrepes.commons.framework.CustomListActivity;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
 import crepes.fr.androcrepes.commons.java.Tools;
-import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.model.Plat;
 import crepes.fr.androcrepes.model.Plats;
 
@@ -19,12 +18,26 @@ import crepes.fr.androcrepes.model.Plats;
  * <b>Classe dédiée à la description de l'ihm Cuisine.</b>
  */
 public class CuisineActivity
-        extends CustomActivity {
-
-    private Controller mController = null;
+        extends CustomListActivity {
 
     private EditText mEditTextQte;
     private EditText mEditTextName;
+
+    protected int getLayoutId() {
+        return R.layout.activity_cuisine;
+    } // int
+
+    protected int getTextViewTitleId() {
+        return R.id.cuisine_customTextViewTitle;
+    } // int
+
+    protected int getListViewId() {
+        return R.id.cuisine_listView;
+    } // int
+
+    protected Plats getPlats() {
+        return super.getController().getPlats();
+    } // Plats
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,33 +48,6 @@ public class CuisineActivity
 
     } // void
 
-    protected int getLayoutResourceId() {
-        return R.layout.activity_cuisine;
-    } // int
-
-    protected int getTextViewInfoResourceId() {
-        return R.id.cuisine_customTextViewTitle;
-    } // int
-
-    protected int getListViewResourceId() {
-        return R.id.cuisine_listView;
-    } // int
-
-    protected int getMenuResourceId() {
-        return R.menu.menu_cuisine;
-    } // int
-
-    protected Plats getPlats() {
-        return mController.getPlats();
-    } // Plats
-
-    protected Controller getController() {
-        if ( null == mController) {
-            //Get Global Controller Class object (see application tag in AndroidManifest.xml)
-            mController = (Controller) getApplicationContext();
-        }
-        return mController;
-    } // Controller
 
     protected void updateCurrentPlatAfterCommande(final String pResponseFromServer) {
         super.clientSendQuantity();
@@ -80,9 +66,9 @@ public class CuisineActivity
     // callback client: data
 
     public void quantiteFromClient(List<String> pListData) {
-        //super.debugLog("quantiteFromClient callback");
+        super.createLogD("quantiteFromClient callback");
 
-        Plats nPlats = mController.getPlats();
+        Plats nPlats = super.getController().getPlats();
 
         boolean nIsNewPlat = false;
 
@@ -111,7 +97,7 @@ public class CuisineActivity
                 nPlat.setQuantite(nQuantite);
             } // else
 
-            //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
+            //super.createLogD("quantiteFromClient for item " + nNom + " " + nQuantite);
         } // for
 
         // tri par nom de plat si nouvel ajout
@@ -147,7 +133,7 @@ public class CuisineActivity
      */
     @Override
     public void clicLeftFromListAdapter(Plat pPlat) {
-        //super.debugLog("clicLeftFromListAdapter callback");
+        //super.createLogD("clicLeftFromListAdapter callback");
 
         super.clientSendCommande(pPlat.getNom(), true);
     } // void
@@ -166,7 +152,7 @@ public class CuisineActivity
      */
     @Override
     public void clicRightFromListAdapter(Plat pPlat) {
-        //super.debugLog("clicRightFromListAdapter callback");
+        //super.createLogD("clicRightFromListAdapter callback");
 
         super.clientSendAjout("1 " + pPlat.getNom(), true);
     } // void
@@ -181,7 +167,7 @@ public class CuisineActivity
      *      Objet de type View
      */
     public void addPlat(View pView) {
-        //super.debugLog("addPlat");
+        //super.createLogD("addPlat");
 
         String nQuantite = mEditTextQte.getText().toString();
         String nName = mEditTextName.getText().toString().trim();

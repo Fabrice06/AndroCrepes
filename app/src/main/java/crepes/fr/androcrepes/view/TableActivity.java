@@ -5,9 +5,8 @@ import android.os.Bundle;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
-import crepes.fr.androcrepes.commons.framework.CustomActivity;
+import crepes.fr.androcrepes.commons.framework.CustomListActivity;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
-import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.model.Plat;
 import crepes.fr.androcrepes.model.Plats;
 
@@ -16,52 +15,35 @@ import crepes.fr.androcrepes.model.Plats;
  */
 
 public class TableActivity
-        extends CustomActivity {
-
-    //ici les futures view pour la gestion des commandes
-    private Controller mController = null;
+        extends CustomListActivity {
 
     private Plat mCurrentPlat = null;
+
+    protected int getLayoutId() {
+        return R.layout.activity_table;
+    } // int
+
+    protected int getTextViewTitleId() {
+        return R.id.table_customTextViewTitle;
+    } // int
+
+    protected int getListViewId() {
+        return R.id.table_listView;
+    } // int
+
+    protected Plats getPlats() {
+        return super.getController().getCurrentCommande().getPlats();
+    } // Plats
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         String nTitle = getString(R.string.table_customTextViewTitle);
-        nTitle = nTitle + mController.getCurrentCommande().getValueOfId();
-        super.getCustomTextViewTitle().setText(nTitle);
-        super.debugLog("onCreate " + nTitle);
+        nTitle = nTitle + super.getController().getCurrentCommande().getValueOfId();
+        super.setTitle(nTitle);
 
-        //ici les futures view pour la gestion des commandes
     } // void
-
-    protected int getLayoutResourceId() {
-        return R.layout.activity_table;
-    } // int
-
-    protected int getTextViewInfoResourceId() {
-        return R.id.table_customTextViewTitle;
-    } // int
-
-    protected int getListViewResourceId() {
-        return R.id.table_listView;
-    } // int
-
-    protected int getMenuResourceId() {
-        return R.menu.menu_table;
-    } // int
-
-    protected Plats getPlats() {
-        return mController.getCurrentCommande().getPlats();
-    } // Plats
-
-    protected Controller getController() {
-        if (null == mController) {
-            //Get Global Controller Class object (see application tag in AndroidManifest.xml)
-            mController = (Controller) getApplicationContext();
-        }
-        return mController;
-    } // Controller
 
     protected void updateCurrentPlatAfterCommande(final String pResponseFromServer) {
         if (null != mCurrentPlat) {
@@ -90,15 +72,11 @@ public class TableActivity
     // callback client: data
 
     public void quantiteFromClient(List<String> pListData) {
-        super.debugLog("quantiteFromClient callback");
+        super.createLogD("quantiteFromClient callback");
 
-        Plats nPlats = mController.getCurrentCommande().getPlats();
+        Plats nPlats = super.getController().getCurrentCommande().getPlats();
 
         boolean nIsNewPlat = false;
-
-//        int nPlatSize = nPlats.size();
-
-//        String nNewPlatNom = "";
 
         for (int nLen = pListData.size(), i = 1; i < (nLen-1); i+=2) {
             String nNom = pListData.get(i);
@@ -108,30 +86,23 @@ public class TableActivity
 
             // nouveau plat
             if (null == nPlat) {
-                //nPlat= new Plat(nNom, nQuantite);
                 nPlat= new Plat(nNom, 0);
                 nPlats.addPlat(nPlat);
 
                 if (!nIsNewPlat) {
                     nIsNewPlat = true;
-//                    nNewPlatNom = nNom;
                 } // if
 
 //            } else { // update quantité
 //                nPlat.setQuantite(nQuantite);
             } // else
 
-            //Log.d(TAG, "quantiteFromClient for item " + nNom + " " + nQuantite);
         } // for
 
         // tri par nom de plat si nouvel ajout
         if (nIsNewPlat) {
             nPlats.sort();
         } // if
-
-//        if (nPlats.size() != (nPlatSize + 1)) {
-//            nNewPlatNom = "";
-//        } // if
 
         super.updateAfterClientQuantite("");
     } // void
@@ -157,7 +128,7 @@ public class TableActivity
      */
     @Override
     public void clicLeftFromListAdapter(Plat pPlat) {
-        //super.debugLog("clicLeftFromListAdapter callback");
+        //super.createLogD("clicLeftFromListAdapter callback");
 
         mCurrentPlat = pPlat;
         super.clientSendAjout("1 " + pPlat.getNom(), true);
@@ -177,7 +148,7 @@ public class TableActivity
      */
     @Override
     public void clicRightFromListAdapter(Plat pPlat) {
-        //super.debugLog("clicRightFromListAdapter callback");
+        //super.createLogD("clicRightFromListAdapter callback");
 
         mCurrentPlat = pPlat;
         super.clientSendCommande(pPlat.getNom(), true);

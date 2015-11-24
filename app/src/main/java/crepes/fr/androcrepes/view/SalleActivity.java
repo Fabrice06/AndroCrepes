@@ -3,7 +3,6 @@ package crepes.fr.androcrepes.view;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -16,6 +15,7 @@ import java.util.List;
 import crepes.fr.androcrepes.R;
 import crepes.fr.androcrepes.commons.framework.CustomSalleListAdapter;
 import crepes.fr.androcrepes.commons.framework.CustomTextView;
+import crepes.fr.androcrepes.commons.framework.TemplateActivity;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
 import crepes.fr.androcrepes.commons.network.Client;
 import crepes.fr.androcrepes.controller.Controller;
@@ -25,62 +25,52 @@ import crepes.fr.androcrepes.model.Plat;
 
 
 public class SalleActivity
-        extends AppCompatActivity
-        implements Client.ClientCallBack, CustomSalleListAdapter.SalleListAdapterCallBack {
-
-    private static final String TAG = SalleActivity.class.getSimpleName();
-
-    private ProgressDialog mProgressDialog = null;
+        extends TemplateActivity
+        implements CustomSalleListAdapter.SalleListAdapterCallBack {
 
     private ListView mListView = null;
     private CustomSalleListAdapter mListAdapter;
 
-    private Client mClient;
     private Commandes mCommandes;
 
     private TextView mEditTextTotal;
     private TextView mEditTextCommande;
 
-    private Controller mController;
-
     private int mTotalPlat = 0;
+
+    protected int getLayoutId() {
+        return R.layout.activity_salle;
+    } // int
+
+    protected int getTextViewTitleId() {
+        return R.id.salle_customTextViewTitle;
+    } // int
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_salle);
-        Log.d(TAG, "onCreate");
 
-        //Get Global Controller Class object (see application tag in AndroidManifest.xml)
-        mController = (Controller) getApplicationContext();
-
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage(getString(R.string.activity_progressDialogWait));
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setCancelable(false);
-
-        CustomTextView nCustomTextView = (CustomTextView) findViewById(R.id.salle_customTextViewTitle);
         mEditTextTotal = (TextView) findViewById(R.id.salle_textViewTotal);
         mEditTextCommande = (TextView) findViewById(R.id.salle_textViewCommande);
 
-        mCommandes = mController.getCommandes();
+        mCommandes = super.getController().getCommandes();
         mListAdapter = new CustomSalleListAdapter(this, mCommandes);
 
         mListView = (ListView) findViewById(R.id.salle_listView);
         mListView.setAdapter(mListAdapter);
 
-        mProgressDialog.show();
+        super.connectClient();
 
-        //fixme: définir plan B si serveur hors d'atteinte
-        mClient = Client.getInstance(this, mController.getServerIp(), mController.getServerPort());
-        mClient.connect();
-
-        //this.updateHeaderInfo();
     } // void
 
 
     //******************************************************************************
     // callback client: connexion
+
+    public void disconnectedFromClient() {
+        //super.createLogD("disconnectedFromClient");
+        super.hideProgressDialog();
+    } // void
 
     /**
      * Implémentation de ClientCallback: la connection est établie.
@@ -89,41 +79,18 @@ public class SalleActivity
      */
     @Override
     public void connectedFromClient() {
-        //Log.d(TAG, "connectedFromClient callback");
-        mProgressDialog.hide();
+        //super.createLogD("connectedFromClient callback");
+        super.hideProgressDialog();
         this.updateHeaderInfo();
     } // void
 
-    /**
-     * Implémentation de ClientCallback: la déconnection est effective.
-     *
-     * @see Client
-     */
-    @Override
-    public void disconnectedFromClient() {
-        //Log.d(TAG, "disconnectedFromClient callback");
-        //fixme: prévenir l'utilisateur ??
-        mProgressDialog.hide();
-    } // void
-
-    /**
-     * Implémentation de ClientCallback: une erreur est transmise.
-     *
-     * @param pError
-     *      Message d'erreur à afficher de type String
-     *
-     * @see Client
-     * @see toastMessage
-     */
-    @Override
     public void errorFromClient(String pError) {
-        //Log.d(TAG, "errorFromClient");
+        //super.createLogD( "errorFromClient");
 
         //fixme pError pas utilisé
         String nMessage = getString(R.string.activity_toastMessageNoConnection);
 
-        mProgressDialog.hide();
-        toastMessage(nMessage, true);
+        super.toastMessage(nMessage, true);
     } // void
 
     // callback client: connexion
@@ -145,22 +112,9 @@ public class SalleActivity
             mTotalPlat--;
 
         } else {
-            mProgressDialog.hide();
+            super.hideProgressDialog();
         } // else
     }
-
-    /**
-     * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête LISTE.
-     *
-     * @param pListData
-     *      Données sous forme d'une collection de String.
-     */
-    @Override
-    public void listeFromClient(List<String> pListData) {
-        //Log.d(TAG, "listeFromClient callback");
-        //fixme: listeFromClient pas utilisé ici pour le moment
-        mProgressDialog.hide();
-    } // void
 
     /**
      * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête QUANTITE.
@@ -170,7 +124,7 @@ public class SalleActivity
      */
     @Override
     public void quantiteFromClient(List<String> pListData) {
-        mProgressDialog.hide();
+        super.hideProgressDialog();
     }
 
     // callback client: data
@@ -194,15 +148,11 @@ public class SalleActivity
      */
     @Override
     public void clicLeftFromListAdapter(Commande pCommande) {
-        Log.d(TAG, "clicLeftFromListAdapter callback");
+        super.createLogD("clicLeftFromListAdapter callback");
 
-        // fixme remettre en stock les crepes de la commande ???
-        mTotalPlat = pCommande.getPlats().size();
-        Iterator<Plat> nIterator = pCommande.getPlats().iterator();
-        while (nIterator.hasNext()) {
-            Plat nPlat = nIterator.next();
-            mClient.send(EnumSendWord.AJOUT, "1 " + nPlat.getNom());
-        } // while
+        //approvisionner le stock avec les crepes issues de la commande
+        mTotalPlat = pCommande.getTotalPlat();
+        this.annulerCommande(pCommande);
 
         // enlever la commande de la liste
         mCommandes.remove(pCommande);
@@ -226,25 +176,16 @@ public class SalleActivity
      */
     @Override
     public void clicRightFromListAdapter(Commande pCommande) {
-        Log.d(TAG, "clicRightFromListAdapter callback " + pCommande.getId());
+        super.createLogD("clicRightFromListAdapter callback " + pCommande.getId());
 
         //identifier la commande courante
-        mController.setCurrentCommande(pCommande.getId());
+        super.getController().setCurrentCommande(pCommande.getId());
 
-        startSelectedActivity(TableActivity.class);
+        super.startSelectedActivity(TableActivity.class);
     } // void
 
     // callback listAdapter
     //******************************************************************************
-
-    private void toastMessage(final String pMessage, final boolean pHideProgressDialog) {
-
-        if (pHideProgressDialog) {
-            mProgressDialog.hide();
-        } // if
-
-        Toast.makeText(getApplicationContext(), pMessage, Toast.LENGTH_SHORT).show();
-    } // void
 
     private void updateHeaderInfo() {
 
@@ -265,30 +206,31 @@ public class SalleActivity
         } // switch
     } // void
 
-    public void goHome(View pView) {
-        finish();
+    private void annulerCommande(final Commande pCommande) {
+        Iterator<Plat> nIterator = pCommande.getPlats().iterator();
+
+        while (nIterator.hasNext()) {
+            Plat nPlat = nIterator.next();
+            if (nPlat.getQuantite() >= 1) {
+                super.clientSendAjout(nPlat.getQuantite() + " " + nPlat.getNom(), false);
+            } // if
+        } // while
     } // void
 
     public void clearAll(View pView) {
-        Log.d(TAG, "clearAll");
+        super.createLogD("clearAll");
 
         //fixme message attention !
 
         mTotalPlat = 0;
-        Iterator<Commande> nIterCommande = mCommandes.iterator();
-        while (nIterCommande.hasNext()) {
-            Commande nCommande = nIterCommande.next();
-            mTotalPlat+= nCommande.getPlats().size();
+        Iterator<Commande> nIterator = mCommandes.iterator();
+        while (nIterator.hasNext()) {
+            mTotalPlat = mTotalPlat + nIterator.next().getTotalPlat();
         } // while
 
-        nIterCommande = mCommandes.iterator();
-        while (nIterCommande.hasNext()) {
-            Commande nCommande = nIterCommande.next();
-            Iterator<Plat> nIterPlat = nCommande.getPlats().iterator();
-            while (nIterPlat.hasNext()) {
-                Plat nPlat = nIterPlat.next();
-                mClient.send(EnumSendWord.AJOUT, "1 " + nPlat.getNom());
-            } // while
+        nIterator = mCommandes.iterator();
+        while (nIterator.hasNext()) {
+            this.annulerCommande(nIterator.next());
         } // while
 
         //enlever toutes les commandes de la liste
@@ -300,7 +242,7 @@ public class SalleActivity
     } // void
 
     public void addCommande(View pView) {
-        Log.d(TAG, "addCommande");
+        //super.createLogD("addCommande");
 
         //ajouter une commande dans de la liste
         Commande nCommande = new Commande();
@@ -311,53 +253,9 @@ public class SalleActivity
         mListAdapter.notifyDataSetChanged();
 
         //identifier la commande courante
-        mController.setCurrentCommande(nCommande.getId());
+        super.getController().setCurrentCommande(nCommande.getId());
 
         startSelectedActivity(TableActivity.class);
     } // void
 
-    private void startSelectedActivity(final Class pClass) {
-        Log.d(TAG, "startSelectedActivity");
-        Intent nIntent = new Intent(this, pClass);
-        startActivity(nIntent);
-    } // void
-
-    //******************************************************************************
-    // cycle de vie activity
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "onRestart");
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d(TAG, "onPause");
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.d(TAG, "onStop");
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d(TAG, "onDestroy");
-        super.onDestroy();
-    }
 } // class

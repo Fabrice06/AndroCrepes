@@ -17,32 +17,6 @@ import java.util.Iterator;
  */
 public class Plats extends ArrayList<Plat> {
 
-//    /**
-//     * Instance singleton
-//     */
-//    protected static Plats mInstance;
-//
-//    /**
-//     * Constructeur privé
-//     *
-//     * @see getInstance
-//     */
-//    private Plats() {
-//    } // constructeur
-//
-//    /**
-//     * Retourne une instance unique de la classe Plats.
-//     *
-//     * @return La collection des différents plats disponibles en cuisine, sous forme d'ArrayList<Plat>.
-//     */
-//    public static Plats getInstance() {
-//
-//        if (null == mInstance) {
-//            mInstance = new Plats();
-//        }
-//        return mInstance;
-//    } // Plats
-
     public Plats() {
     } // constructeur
 
@@ -102,22 +76,6 @@ public class Plats extends ArrayList<Plat> {
 
         return nReturn;
     } // Plat
-
-//    public int getIndexByName(final String pNom) {
-//
-//        int nReturn = 0;
-//
-//        Iterator<Plat> nIterator = this.iterator();
-//        while (nIterator.hasNext()) {
-//            nReturn++;
-//            Plat nPlat = nIterator.next();
-//            if (nPlat.getNom().equals(pNom)) {
-//                break;
-//            } // if
-//        } // while
-//
-//        return nReturn;
-//    } // int
 
     public void sort() {
         Collections.sort(this, new Comparator<Plat>() {

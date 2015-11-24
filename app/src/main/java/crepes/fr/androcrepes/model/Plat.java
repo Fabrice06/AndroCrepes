@@ -75,7 +75,6 @@ public class Plat {
     } // int
 
     public int getId() {
-
         return mId;
     } // int
 } // class
