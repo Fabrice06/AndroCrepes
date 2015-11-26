@@ -34,7 +34,7 @@
     <string name="cuisine_customTextViewTitle">Liste des plats</string>
     <string name="cuisine_editTextPlatHint">Nouveau Plat</string>
     <string name="cuisine_buttonAdd">Ajouter</string>
-    <string name="cuisine_buttonRowLeft">Annuler</string>
+    <string name="cuisine_buttonRowLeft">Enlever</string>
     <string name="cuisine_buttonRowRight">Ajouter</string>
 
     <!--string pour l'activity home-->
@@ -58,6 +58,10 @@
     <string name="salle_TextViewRowInfo">commande n°</string>
     <string name="salle_buttonRowLeft">Supprimer</string>
     <string name="salle_buttonRowRight">Modifier</string>
+    <string name="salle_alertDialogTitle">Attention</string>
+    <string name="salle_alertDialogMessage">Vous allez supprimer toutes les commandes en cours !</string>
+    <string name="salle_alertDialogYes">oui</string>
+    <string name="salle_alertDialogNo">non</string>
 
 
     <!--string pour l'activity table-->
@@ -65,7 +69,7 @@
     <string name="table_customTextViewTitle">Commande n°</string>
     <string name="table_buttonRowLeft">Annuler</string>
     <string name="table_buttonRowRight">Commander</string>
-
+    <string name="table_textViewRowStock">disponible en cuisine :</string>
 
     <!--background color transverses pour toute l'application-->
     <color name="background_activity">#FFBB33</color>

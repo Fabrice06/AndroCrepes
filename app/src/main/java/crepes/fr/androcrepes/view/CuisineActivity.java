@@ -79,13 +79,13 @@ public class CuisineActivity
         //fixme: le retrait d'un plat de la carte n'est pas pris en compte
         for (int nLen = pListData.size(), i = 1; i < (nLen-1); i+=2) {
             String nNom = pListData.get(i);
-            int nQuantite = Integer.parseInt(pListData.get(i + 1));
+            int nStock = Integer.parseInt(pListData.get(i + 1));
 
             Plat nPlat = nPlats.getPlatByName(nNom);
 
             // nouveau plat
             if (null == nPlat) {
-                nPlat= new Plat(nNom, nQuantite);
+                nPlat= new Plat(nNom, 0, nStock);
                 nPlats.addPlat(nPlat);
 
                 if (!nIsNewPlat) {
@@ -93,8 +93,8 @@ public class CuisineActivity
                     nNewPlatNom = nNom;
                 } // if
 
-            } else { // update quantité
-                nPlat.setQuantite(nQuantite);
+            } else { // update stock
+                nPlat.setStock(nStock);
             } // else
 
             //super.createLogD("quantiteFromClient for item " + nNom + " " + nQuantite);
@@ -169,17 +169,17 @@ public class CuisineActivity
     public void addPlat(View pView) {
         //super.createLogD("addPlat");
 
-        String nQuantite = mEditTextQte.getText().toString();
+        String nStock = mEditTextQte.getText().toString();
         String nName = mEditTextName.getText().toString().trim();
 
-        if (!Tools.isInteger(nQuantite)) { // check si digit
+        if (!Tools.isInteger(nStock)) { // check si digit
             super.toastMessage(getString(R.string.activity_toastMessageBadQuantite), false);
 
         } else if (0 == nName.length()) { // check si nom plat valide
             super.toastMessage(getString(R.string.activity_toastMessageBadPlat), false);
 
         } else {
-            super.clientSendAjout(nQuantite + " " + nName, true);
+            super.clientSendAjout(nStock + " " + nName, true);
         } // else
     } // void
 

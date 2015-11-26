@@ -1,24 +1,21 @@
 package crepes.fr.androcrepes.view;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Iterator;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
 import crepes.fr.androcrepes.commons.framework.CustomSalleListAdapter;
-import crepes.fr.androcrepes.commons.framework.CustomTextView;
 import crepes.fr.androcrepes.commons.framework.TemplateActivity;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
 import crepes.fr.androcrepes.commons.network.Client;
-import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.model.Commande;
 import crepes.fr.androcrepes.model.Commandes;
 import crepes.fr.androcrepes.model.Plat;
@@ -35,6 +32,7 @@ public class SalleActivity
 
     private TextView mEditTextTotal;
     private TextView mEditTextCommande;
+    private Button mButtonClearAll;
 
     private int mTotalPlat = 0;
 
@@ -52,12 +50,15 @@ public class SalleActivity
 
         mEditTextTotal = (TextView) findViewById(R.id.salle_textViewTotal);
         mEditTextCommande = (TextView) findViewById(R.id.salle_textViewCommande);
+        mButtonClearAll = (Button) findViewById(R.id.salle_buttonClearAll);
 
         mCommandes = super.getController().getCommandes();
         mListAdapter = new CustomSalleListAdapter(this, mCommandes);
 
         mListView = (ListView) findViewById(R.id.salle_listView);
         mListView.setAdapter(mListAdapter);
+
+        mButtonClearAll.setEnabled(mCommandes.size() >= 1);
 
         super.connectClient();
 
@@ -193,16 +194,19 @@ public class SalleActivity
             case 0:
                 mEditTextTotal.setText("");
                 mEditTextCommande.setText(R.string.salle_textViewCommande_none);
+                mButtonClearAll.setEnabled(false);
                 break;
 
             case 1:
                 mEditTextTotal.setText(R.string.salle_textViewTotal_one);
                 mEditTextCommande.setText(R.string.salle_textViewCommande_one);
+                mButtonClearAll.setEnabled(true);
                 break;
 
             default:
                 mEditTextTotal.setText(mCommandes.getValueOfSize());
                 mEditTextCommande.setText(R.string.salle_textViewCommande_more);
+                mButtonClearAll.setEnabled(true);
         } // switch
     } // void
 
@@ -217,10 +221,28 @@ public class SalleActivity
         } // while
     } // void
 
-    public void clearAll(View pView) {
-        super.createLogD("clearAll");
+    // associé à salle_buttonLeft
+    public void warnBeforeClearAll(View pView) {
 
-        //fixme message attention !
+        AlertDialog.Builder nAlertDialogBuilder = new AlertDialog.Builder(this);
+        nAlertDialogBuilder.setTitle(R.string.salle_alertDialogTitle);
+        nAlertDialogBuilder.setMessage(R.string.salle_alertDialogMessage);
+
+        nAlertDialogBuilder.setPositiveButton(R.string.salle_alertDialogYes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                clearAll();
+            }
+        });
+
+        nAlertDialogBuilder.setNegativeButton(R.string.salle_alertDialogNo, null);
+
+        AlertDialog nAlertDialog = nAlertDialogBuilder.create();
+        nAlertDialog.show();
+    }
+
+    public void clearAll() {
+        super.createLogD("clearAll");
 
         mTotalPlat = 0;
         Iterator<Commande> nIterator = mCommandes.iterator();
@@ -241,6 +263,7 @@ public class SalleActivity
         mListAdapter.notifyDataSetChanged();
     } // void
 
+    // associé à salle_buttonRight
     public void addCommande(View pView) {
         //super.createLogD("addCommande");
 
@@ -257,5 +280,4 @@ public class SalleActivity
 
         startSelectedActivity(TableActivity.class);
     } // void
-
 } // class

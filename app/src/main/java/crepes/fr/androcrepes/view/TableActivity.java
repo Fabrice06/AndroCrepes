@@ -80,21 +80,21 @@ public class TableActivity
 
         for (int nLen = pListData.size(), i = 1; i < (nLen-1); i+=2) {
             String nNom = pListData.get(i);
-            //int nQuantite = Integer.parseInt(pListData.get(i + 1));
+            int nStock = Integer.parseInt(pListData.get(i + 1));
 
             Plat nPlat = nPlats.getPlatByName(nNom);
 
             // nouveau plat
             if (null == nPlat) {
-                nPlat= new Plat(nNom, 0);
+                nPlat= new Plat(nNom, 0, nStock);
                 nPlats.addPlat(nPlat);
 
                 if (!nIsNewPlat) {
                     nIsNewPlat = true;
                 } // if
 
-//            } else { // update quantité
-//                nPlat.setQuantite(nQuantite);
+            } else { // update stock
+                nPlat.setStock(nStock);
             } // else
 
         } // for

@@ -1,12 +1,12 @@
 package crepes.fr.androcrepes.commons.framework;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import crepes.fr.androcrepes.R;
@@ -33,6 +33,8 @@ public class CustomPlatListAdapter
 
     private boolean mIsCuisine = false;
 
+    private String mStringStock;
+
     //private int mCount = 0;
 
     public CustomPlatListAdapter(final Context pContext, Plats pPlats) {
@@ -40,6 +42,8 @@ public class CustomPlatListAdapter
         this.mCallBack = (PlatListAdapterCallBack) pContext;
 
         mIsCuisine = (pContext instanceof CuisineActivity);
+
+        mStringStock = pContext.getString(R.string.table_textViewRowStock);
     } // constructeur
 
     @Override
@@ -59,35 +63,71 @@ public class CustomPlatListAdapter
             final TextView nTextViewListAdapterInfo = (TextView) nView.findViewById(R.id.plat_textViewRowInfo);
             final TextView nTextViewListAdapterQuantite = (TextView) nView.findViewById(R.id.plat_textViewRowQuantite);
 
+            final TextView nTextViewListAdapterStock = (TextView) nView.findViewById(R.id.plat_textViewRowStock);
+            final ImageView nImageViewListAdapterCheck = (ImageView) nView.findViewById(R.id.plat_ImageViewRowCheck);
+
+
             if (nTextViewListAdapterInfo != null) {
 
-                boolean nIsEmpty = (0 == nPlat.getQuantite());
+                boolean nIsQuantiteEmpty = (0 == nPlat.getQuantite());
+                boolean nIsStockEmpty = (0 == nPlat.getStock());
 
                 final Button nButtonListAdapterLeft = (Button) nView.findViewById(R.id.plat_buttonRowLeft);
-                nButtonListAdapterLeft.setText(mIsCuisine ? R.string.cuisine_buttonRowLeft : R.string.table_buttonRowLeft);
-                nButtonListAdapterLeft.setEnabled(!nIsEmpty);
+                final Button nButtonListAdapterRight = (Button) nView.findViewById(R.id.plat_buttonRowRight);
+
+                if(mIsCuisine) {
+                    nTextViewListAdapterQuantite.setText(String.valueOf(nPlat.getStock()));
+
+                    nTextViewListAdapterStock.setText("");
+
+                    nImageViewListAdapterCheck.setImageResource(R.drawable.check_empty);
+
+                    nButtonListAdapterLeft.setText(R.string.cuisine_buttonRowLeft);
+                    nButtonListAdapterLeft.setEnabled(!nIsStockEmpty);
+
+                    nButtonListAdapterRight.setText(R.string.cuisine_buttonRowRight);
+
+                } else {
+                    nTextViewListAdapterQuantite.setText(String.valueOf(nPlat.getQuantite()));
+
+                    final StringBuffer nBuffer = new StringBuffer();
+                    nBuffer.append(mStringStock);
+                    nBuffer.append(nPlat.getStock());
+                    nTextViewListAdapterStock.setText(nBuffer.toString());
+
+                    if (nIsQuantiteEmpty) { // pas check
+                        nImageViewListAdapterCheck.setImageResource(R.drawable.check_off);
+
+                    } else { // check
+                        nImageViewListAdapterCheck.setImageResource(R.drawable.check_on);
+                    }
+
+                    nButtonListAdapterLeft.setText(R.string.table_buttonRowLeft);
+                    nButtonListAdapterLeft.setEnabled(!nIsQuantiteEmpty);
+
+                    nButtonListAdapterRight.setText(R.string.table_buttonRowRight);
+                    nButtonListAdapterRight.setEnabled(!nIsStockEmpty);
+                }
+
                 nButtonListAdapterLeft.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         mCallBack.clicLeftFromListAdapter(nPlat);
                     }
                 });
 
-                nTextViewListAdapterQuantite.setText(String.valueOf(nPlat.getQuantite()));
-                nTextViewListAdapterInfo.setText(nPlat.getNom());
-
-                if (nIsEmpty) {
-                    nTextViewListAdapterInfo.setPaintFlags(nTextViewListAdapterInfo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                } else {
-                    nTextViewListAdapterInfo.setPaintFlags(nTextViewListAdapterInfo.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-                }
-
-                final Button nButtonListAdapterRight = (Button) nView.findViewById(R.id.plat_buttonRowRight);
-                nButtonListAdapterRight.setText(mIsCuisine ? R.string.cuisine_buttonRowRight : R.string.table_buttonRowRight);
                 nButtonListAdapterRight.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         mCallBack.clicRightFromListAdapter(nPlat);
                     }
                 });
+
+                nTextViewListAdapterInfo.setText(nPlat.getNom());
+
+//                if (nIsEmpty) {
+//                    nTextViewListAdapterInfo.setPaintFlags(nTextViewListAdapterInfo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+//                } else {
+//                    nTextViewListAdapterInfo.setPaintFlags(nTextViewListAdapterInfo.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+//                }
             } // if
         } // if
 

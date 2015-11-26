@@ -113,11 +113,11 @@
                 android:layout_width="110dp"
                 android:layout_height="25dp"
                 android:text="@string/salle_buttonLeft"
-                android:id="@+id/salle_buttonLeft"
+                android:id="@+id/salle_buttonClearAll"
                 android:layout_gravity="left"
                 android:background="@drawable/roundedbuttonmoins"
                 android:textColor="@color/font_button"
-                android:onClick="clearAll"/>
+                android:onClick="warnBeforeClearAll"/>
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -128,7 +128,7 @@
                 android:layout_width="100dp"
                 android:layout_height="25dp"
                 android:text="@string/salle_buttonRight"
-                android:id="@+id/salle_buttonRight"
+                android:id="@+id/salle_buttonAdd"
                 android:background="@drawable/roundedbuttonplus"
                 android:textColor="@color/font_button"
                 android:onClick="addCommande"/>

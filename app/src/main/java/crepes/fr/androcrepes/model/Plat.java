@@ -23,9 +23,14 @@ public class Plat {
     private String mNom;
 
     /**
-     * Quantité disponible en cuisine
+     * Quantité commandée en cuisine
      */
     private int mQuantite;
+
+    /**
+     * Total stock disponible en cuisine
+     */
+    private int mStock;
 
     /**
      * <b>Constructeur</b>
@@ -42,11 +47,12 @@ public class Plat {
      * @param pQuantite
      *      Quantité du plat, de type Integer.
      */
-    public Plat(final String pNom, final int pQuantite) {
+    public Plat(final String pNom, final int pQuantite, final int pStock) {
         this.mId = mCount++;
 
         this.mNom = pNom;
         this.mQuantite = pQuantite;
+        this.mStock = pStock;
     } // constructeur
 
 
@@ -61,10 +67,10 @@ public class Plat {
 
 
     /**
-     * Change la quantité du plat disponible en cuisine.
+     * Change la quantité du plat commandé en cuisine.
      *
      * @param pQuantite
-     *      Quantité du plat, de type Integer.
+     *      Quantité du plat commandé, de type Integer.
      */
     public void setQuantite(final int pQuantite) {
         this.mQuantite = pQuantite;
@@ -72,6 +78,20 @@ public class Plat {
 
     public int getQuantite() {
         return mQuantite;
+    } // int
+
+    /**
+     * Change le stock du plat disponible en cuisine.
+     *
+     * @param pQuantite
+     *      Total du stock du plat en cuisine, de type Integer.
+     */
+    public void setStock(final int pStock) {
+        this.mStock = pStock;
+    } // void
+
+    public int getStock() {
+        return mStock;
     } // int
 
     public int getId() {
