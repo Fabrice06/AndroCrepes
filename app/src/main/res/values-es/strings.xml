@@ -58,6 +58,10 @@
     <string name="salle_TextViewRowInfo">Pedido n°</string>
     <string name="salle_buttonRowLeft">Eliminar</string>
     <string name="salle_buttonRowRight">Cambiar</string>
+    <string name="salle_alertDialogTitle">¡Atención</string>
+    <string name="salle_alertDialogMessage">¡ Va a eliminar todos los pedidos !</string>
+    <string name="salle_alertDialogYes">sí</string>
+    <string name="salle_alertDialogNo">no</string>
 
 
     <!--string pour l'activity table-->
@@ -65,6 +69,7 @@
     <string name="table_customTextViewTitle">Pedido n°</string>
     <string name="table_buttonRowLeft">Cancelar</string>
     <string name="table_buttonRowRight">Orden</string>
+    <string name="table_textViewRowStock">disponible :</string>
 
 
     <!--background color transverses pour toute l'application-->

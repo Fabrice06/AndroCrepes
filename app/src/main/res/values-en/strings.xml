@@ -58,6 +58,10 @@
     <string name="salle_TextViewRowInfo">Order n°</string>
     <string name="salle_buttonRowLeft">Remove</string>
     <string name="salle_buttonRowRight">Edit</string>
+    <string name="salle_alertDialogTitle">Warning</string>
+    <string name="salle_alertDialogMessage">You will delete all current orders !</string>
+    <string name="salle_alertDialogYes">yes</string>
+    <string name="salle_alertDialogNo">no</string>
 
 
     <!--string pour l'activity table-->
@@ -65,6 +69,7 @@
     <string name="table_customTextViewTitle">Order n°</string>
     <string name="table_buttonRowLeft">Cancel</string>
     <string name="table_buttonRowRight">Order</string>
+    <string name="table_textViewRowStock">Available :</string>
 
 
     <!--background color transverses pour toute l'application-->
