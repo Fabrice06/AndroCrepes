@@ -92,6 +92,7 @@ public class CustomPlatListAdapter
 
                     final StringBuffer nBuffer = new StringBuffer();
                     nBuffer.append(mStringStock);
+                    nBuffer.append(" ");
                     nBuffer.append(nPlat.getStock());
                     nTextViewListAdapterStock.setText(nBuffer.toString());
 

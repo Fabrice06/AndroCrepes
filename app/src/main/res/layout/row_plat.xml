@@ -28,7 +28,7 @@
             android:textColor="@color/font_textView"/>
 
         <FrameLayout
-            android:layout_width="20dp"
+            android:layout_width="10dp"
             android:layout_height="0dp"></FrameLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,7 +44,8 @@
                 android:textColor="@color/font_textView"
                 android:textSize="20dp"
                 android:ellipsize="end"
-                android:gravity="left"/>
+                android:gravity="left"
+                android:singleLine="true"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -57,10 +58,14 @@
 
         </LinearLayout>
 
+        <FrameLayout
+            android:layout_width="10dp"
+            android:layout_height="0dp"></FrameLayout>
+
         <ImageView
             android:id="@+id/plat_ImageViewRowCheck"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             />
 
     </LinearLayout>
