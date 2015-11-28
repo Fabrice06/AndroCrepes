@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/table_imageButtonGoHome"
-            android:src="@drawable/home"
+            android:src="@drawable/back"
             android:background="@drawable/roundedbutton"
             android:onClick="goHome"/>
 

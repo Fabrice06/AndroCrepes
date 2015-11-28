@@ -2,13 +2,14 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/preference_serverTitle" >
+    <PreferenceCategory
+        android:title="@string/preference_serverTitle">
 
         <EditTextPreference
             android:key="ip"
             android:title="@string/preferenceIPTitle"
             android:hint="@string/preferenceIPDefaultValue"
-            android:summary="@string/preferenceIPSummary"/>
+            android:summary="@string/preferenceIPSummary" />
 
         <EditTextPreference
             android:key="port"
@@ -16,9 +17,19 @@
             android:hint="@string/preferencePortDefaultValue"
             android:summary="@string/preferencePortSummary"/>
 
-        <Preference
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="">
+
+        <Preference/>
+
+         <Preference
             android:title="@string/preferenceClose"
             android:key="preferenceClose"/>
 
     </PreferenceCategory>
+
 </PreferenceScreen>

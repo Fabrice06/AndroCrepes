@@ -23,4 +23,14 @@
         <item name="android:background">#000000</item>
     </style>
 
+    <style name="PreferenceThemeB" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="PreferenceTheme" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+
+
 </resources>

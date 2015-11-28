@@ -3,7 +3,6 @@
     <string name="action_settings">Préférences</string>
     <string name="Logo">Logo</string>
 
-    <color name="colorFondPreferences">#FFD180</color>
     <string name="preference_serverTitle">Configuration du serveur distant</string>
 
     <string name="preferenceIPTitle">Adresse IP</string>
@@ -91,5 +90,6 @@
     <color name="font_editText">#424242</color>
     <color name="font_textView">#181870</color>
     <string name="title_activity_setting">SettingActivity</string>
+    <color name="colorFondPreferences">#FFD180</color>
 
 </resources>

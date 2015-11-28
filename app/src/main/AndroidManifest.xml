@@ -34,7 +34,8 @@
             android:label="@string/table_activityTitle" />
         <activity
             android:name=".view.SettingActivity"
-            android:label="@string/title_activity_setting"/>
+            android:label="@string/title_activity_setting"
+            android:theme="@style/PreferenceThemeB"/>
     </application>
 
 </manifest>

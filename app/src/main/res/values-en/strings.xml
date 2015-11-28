@@ -3,14 +3,17 @@
     <string name="action_settings">Setting</string>
     <string name="Logo">Logo</string>
 
-    <color name="colorFondPreferences">#0288D1</color>
+    <string name="preference_serverTitle">Configuring remote server</string>
+
     <string name="preferenceIPTitle">Server IP</string>
-    <string name="preferenceIPDefaultValue">10.0.3.2</string>
-    <string name="preferenceIPSummary">Enter the server ip</string>
+    <string name="preferenceIPDefaultValue">0.0.0.0</string>
+    <string name="preferenceIPSummary">Enter the server ip (0.0.0.0)</string>
 
     <string name="preferencePortTitle">Server Port</string>
-    <string name="preferencePortDefaultValue">7777</string>
-    <string name="preferencePortSummary">Enter the server port</string>
+    <string name="preferencePortDefaultValue">1234</string>
+    <string name="preferencePortSummary">Enter the server port (1234)</string>
+
+    <string name="preferenceClose">Close</string>
 
 
     <!--string transverses pour toute l'application-->
@@ -87,6 +90,7 @@
     <color name="font_button">#F0FFFF</color>
     <color name="font_editText">#424242</color>
     <color name="font_textView">#181870</color>
+    <color name="colorFondPreferences">#0288D1</color>
 
 
 </resources>

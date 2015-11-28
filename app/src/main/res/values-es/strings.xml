@@ -3,14 +3,17 @@
     <string name="action_settings">Preferencia</string>
     <string name="Logo">Logotipo</string>
 
-    <color name="colorFondPreferences">#FF6E40</color>
+    <string name="preference_serverTitle">Configuración de servidor remoto</string>
+
     <string name="preferenceIPTitle">Ip del servidor</string>
-    <string name="preferenceIPDefaultValue">10.0.3.2</string>
-    <string name="preferenceIPSummary">Entrar el IP del servidor</string>
+    <string name="preferenceIPDefaultValue">0.0.0.0</string>
+    <string name="preferenceIPSummary">Entrar el IP del servidor (0.0.0.0)</string>
 
     <string name="preferencePortTitle">Puerto del Servidor</string>
-    <string name="preferencePortDefaultValue">7777</string>
-    <string name="preferencePortSummary">Entrar el puerto del servidor</string>
+    <string name="preferencePortDefaultValue">1234</string>
+    <string name="preferencePortSummary">Entrar el puerto del servidor (1234)</string>
+
+    <string name="preferenceClose">Cerrar</string>
 
 
     <!--string transverses pour toute l'application-->
@@ -87,6 +90,7 @@
     <color name="font_button">#F0FFFF</color>
     <color name="font_editText">#424242</color>
     <color name="font_textView">#181870</color>
+    <color name="colorFondPreferences">#FF6E40</color>
 
 
 </resources>
