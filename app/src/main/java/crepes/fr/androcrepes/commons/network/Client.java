@@ -99,7 +99,7 @@ public class Client {
     private static String mIp = "";
 
     /**
-     * Port ud serveur distant.
+     * Port du serveur distant.
      */
     private static int mPort = 0;
 

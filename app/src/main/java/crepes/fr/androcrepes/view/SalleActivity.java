@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import crepes.fr.androcrepes.R;
+import crepes.fr.androcrepes.commons.framework.CustomListActivity;
 import crepes.fr.androcrepes.commons.framework.CustomSalleListAdapter;
 import crepes.fr.androcrepes.commons.framework.TemplateActivity;
 import crepes.fr.androcrepes.commons.java.EnumSendWord;
@@ -20,12 +21,14 @@ import crepes.fr.androcrepes.model.Commande;
 import crepes.fr.androcrepes.model.Commandes;
 import crepes.fr.androcrepes.model.Plat;
 
-
+/**
+ * <b>Classe dédiée à la description de l'ihm Salle.</b>
+ */
 public class SalleActivity
         extends TemplateActivity
         implements CustomSalleListAdapter.SalleListAdapterCallBack {
 
-    private ListView mListView = null;
+    private ListView mListView;
     private CustomSalleListAdapter mListAdapter;
 
     private Commandes mCommandes;
@@ -36,18 +39,47 @@ public class SalleActivity
 
     private int mTotalPlat = 0;
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe TemplateActivity
+     *
+     * @see TemplateActivity
+     *
+     * @return
+     *      L'identifiant de l'activity de type int
+     */
     protected int getLayoutId() {
         return R.layout.activity_salle;
     } // int
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe TemplateActivity
+     *
+     * @see TemplateActivity
+     *
+     * @return
+     *      L'identifiant du titre de l'activity de type int
+     */
     protected int getTextViewTitleId() {
         return R.id.salle_customTextViewTitle;
     } // int
 
-    protected void updatePreference() {
-
-    }
-
+    /**
+     * Méthode appelée à la création de l\'activité Salle
+     * <p>
+     *     L'exécution de cette méthode se déroule en 4 phases:
+     *     <ul>
+     *         <li>appel de la méthode onCreate() sur la super classe TemplateActivity,</li>
+     *         <li>éléments présents dans le layout XML initialisés,</li>
+     *         <li>mise en oeuvre du listview,</li>
+     *         <li>création d'une connexion avec le serveur avec TemplateActivity.connectClient().</li>
+     *     </ul>
+     * </p>
+     *
+     * @see TemplateActivity
+     *
+     * @param pSavedInstanceState
+     *      Objet de type Bundle contenant l’état de sauvegarde enregistré lors de la dernière exécution de cette activité.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +100,16 @@ public class SalleActivity
 
     } // void
 
+    /**
+     * Réalise la mise à jour des données contenues dans le listview
+     *
+     */
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        mListAdapter.notifyDataSetChanged();
+    }
 
     //******************************************************************************
     // callback client: connexion
@@ -284,10 +326,15 @@ public class SalleActivity
         startSelectedActivity(TableActivity.class);
     } // void
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
 
-        mListAdapter.notifyDataSetChanged();
+
+    /**
+     * Réalise la mise à jour des données issues du SharedPreferences
+     * <p>
+     *     L'implémentation de cette méthode abstraite est inutile ici.
+     * </p>
+     */
+    protected void updatePreference() {
+
     }
 } // class

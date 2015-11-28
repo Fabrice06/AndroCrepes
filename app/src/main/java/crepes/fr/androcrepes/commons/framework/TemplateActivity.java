@@ -22,7 +22,12 @@ import crepes.fr.androcrepes.controller.Controller;
 import crepes.fr.androcrepes.model.Plat;
 import crepes.fr.androcrepes.model.Plats;
 
-
+/**
+ * <b>Modèle utilisé par l'ensemble des actitvity</b>
+ * <p>
+ *     Cette classe implémente les callback diffusés par la classe Client.
+ * </p>
+ */
 public abstract class TemplateActivity
         extends AppCompatActivity
         implements Client.ClientCallBack {
@@ -39,14 +44,14 @@ public abstract class TemplateActivity
 
     protected abstract void updatePreference();
 
-    private CustomTextView mCustomTextViewTitle = null;
+    private CustomTextView mCustomTextViewTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
 
-        this.createLogD("onCreate");
+        //this.createLogD("onCreate");
 
         mController = (Controller) getApplicationContext();
 
@@ -65,16 +70,13 @@ public abstract class TemplateActivity
 
 
     protected void setNewInstanceClient() {
-        this.createLogD("setInstanceClient " + mController.getServerIp());
-        this.createLogD("setInstanceClient " + mController.getServerPort());
+
         if (mClient.isRunning()) {
             mClient.disconnect();
 
         } else {
             mClient = Client.getInstance(this, mController.getServerIp(), mController.getServerPort());
         } // else
-//        mClient = Client.getInstance(this, mController.getServerIp(), mController.getServerPort());
-//        connectClient();
     }
 
     protected void connectClient() {
@@ -143,15 +145,9 @@ public abstract class TemplateActivity
     //******************************************************************************
     // callback client: data
 
-    /**
-     * Implémentation de ClientCallback: réponse reçue du serveur suite à une requête AJOUT ou COMMANDE.
-     *
-     * @param pResponseFromServer
-     *      Réponse de type String
-     */
+
     @Override
     public abstract void singleFromClient(final String pResponseFromServer);
-
 
     /**
      * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête LISTE.
@@ -165,12 +161,6 @@ public abstract class TemplateActivity
         mProgressDialog.hide();
     } // void
 
-    /**
-     * Implémentation de ClientCallback: données sont reçues du serveur suite à une requête QUANTITE.
-     *
-     * @param pListData
-     *      Données sous forme d'une collection de String.
-     */
     @Override
     public abstract void quantiteFromClient(List<String> pListData);
 
@@ -203,7 +193,7 @@ public abstract class TemplateActivity
     } // void
 
     /**
-     * Evènement associé au bouton imageButtonCuisineGoHome pour naviguer vers l'ihm Home
+     * Evènement associé au boutons pour naviguer vers l'ihm Home
      *
      * @param pView
      *      Objet de type View
@@ -242,43 +232,13 @@ public abstract class TemplateActivity
     // cycle de vie activity
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        this.createLogD("onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        this.createLogD("onResume");
-    }
-
-    @Override
     protected void onRestart() {
         super.onRestart();
         this.createLogD("onRestart");
 
         // retour d'une autre activity via finish
-        //mClient.setCallBack(this);
         mClient = Client.getInstance(this, mController.getServerIp(), mController.getServerPort());
     }
 
-    @Override
-    protected void onPause() {
-        this.createLogD("onPause");
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        this.createLogD("onStop");
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        this.createLogD("onDestroy");
-        super.onDestroy();
-    }
 } // class
 

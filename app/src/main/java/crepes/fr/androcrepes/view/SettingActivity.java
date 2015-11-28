@@ -6,6 +6,9 @@ import android.preference.PreferenceActivity;
 
 import crepes.fr.androcrepes.R;
 
+/**
+ * <b>Classe dédiée à la description de l'ihm Setting.</b>
+ */
 public class SettingActivity extends PreferenceActivity {
 
     @Override

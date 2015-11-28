@@ -13,49 +13,79 @@ import crepes.fr.androcrepes.model.Plat;
 import crepes.fr.androcrepes.model.Plats;
 
 /**
- * <b>Classe dédiée à la description de l'ihm Salle.</b>
+ * <b>Classe dédiée à la description de l'ihm Table.</b>
  */
-
 public class TableActivity
         extends CustomListActivity {
 
     private Plat mCurrentPlat = null;
 
+    private ImageButton mImageButtonFilter;
+
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     *
+     * @see CustomListActivity
+     *
+     * @return
+     *      L'identifiant de l'activity de type int
+     */
     protected int getLayoutId() {
         return R.layout.activity_table;
     } // int
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     *
+     * @see CustomListActivity
+     *
+     * @return
+     *      L'identifiant du titre de l'activity de type int
+     */
     protected int getTextViewTitleId() {
         return R.id.table_customTextViewTitle;
     } // int
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     *
+     * @see CustomListActivity
+     *
+     * @return
+     *      L'identifiant du listview de l'activity de type int
+     */
     protected int getListViewId() {
         return R.id.table_listView;
     } // int
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     *
+     * @see CustomListActivity
+     *
+     * @return super.getController().getPlats()
+     *      Une collection de type Plats destinée à contenir l'ensemble des plats de la commande en cours.
+     */
     protected Plats getPlats() {
         return super.getController().getCurrentCommande().getPlats();
     } // Plats
 
-    private ImageButton mImageButtonFilter;
-
-    // associé à table_imageButtonFilter
-    public void doFilter(View pView) {
-        
-        boolean nIsFilterOn = ! super.getController().getCurrentCommande().getFilter();
-        super.getController().getCurrentCommande().setFilter(nIsFilterOn);
-
-        int nId = super.getController().getCurrentCommande().getId();
-        super.getController().getCommandes().getCommande(nId).setFilter(nIsFilterOn);
-
-        if (nIsFilterOn) {
-            mImageButtonFilter.setImageResource(R.drawable.list);
-        } else {
-            mImageButtonFilter.setImageResource(R.drawable.checked);
-        }
-        super.doFilter(nIsFilterOn);
-    }
-
+    /**
+     * Méthode appelée à la création de l\'activité Table
+     * <p>
+     *     L'exécution de cette méthode se déroule en 3 phases:
+     *     <ul>
+     *         <li>appel de la méthode onCreate() sur la super classe CustomListActivity,</li>
+     *         <li>éléments présents dans le layout XML initialisés,</li>
+     *         <li>fitre du ListView appliqué.</li>
+     *     </ul>
+     * </p>
+     *
+     * @see CustomListActivity
+     *
+     * @param pSavedInstanceState
+     *      Objet de type Bundle contenant l’état de sauvegarde enregistré lors de la dernière exécution de cette activité.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +99,17 @@ public class TableActivity
         super.doFilter(super.getController().getCurrentCommande().getFilter());
     } // void
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     * <p>
+     *     La mise à jour des données est réalisée via l'exécution de la méthode super.clientSendQuantity().
+     * </p>
+     *
+     * @see CustomListActivity
+     *
+     * @param pResponseFromServer
+     *      Réponse serveur de type String.
+     */
     protected void updateCurrentPlatAfterCommande(final String pResponseFromServer) {
         if (null != mCurrentPlat) {
             if (pResponseFromServer.indexOf(mCurrentPlat.getNom()) >= 0) {
@@ -78,6 +119,17 @@ public class TableActivity
         super.clientSendQuantity();
     } // void
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     * <p>
+     *     La mise à jour des données est réalisée via l'exécution de la méthode super.clientSendQuantity().
+     * </p>
+     *
+     * @see CustomListActivity
+     *
+     * @param pResponseFromServer
+     *      Réponse serveur de type String.
+     */
     protected void updateCurrentPlatAfterAjout(final String pResponseFromServer) {
         if (null != mCurrentPlat) {
             if (pResponseFromServer.indexOf(mCurrentPlat.getNom()) >= 0) {
@@ -95,8 +147,14 @@ public class TableActivity
     //******************************************************************************
     // callback client: data
 
+    /**
+     * Implémentation de l\'interface ClientCallback: données sont reçues du serveur suite à une requête QUANTITE.
+     *
+     * @param pListData
+     *      Données sous forme d'une collection de String.
+     */
     public void quantiteFromClient(List<String> pListData) {
-        super.createLogD("quantiteFromClient callback");
+        //super.createLogD("quantiteFromClient callback");
 
         Plats nPlats = super.getController().getCurrentCommande().getPlats();
 
@@ -139,7 +197,7 @@ public class TableActivity
     // callback listAdapter
 
     /**
-     * Implémentation de ListAdapterCallBack: clic sur bouton gauche.
+     * Implémentation de l\'interface ListAdapterCallBack: clic sur bouton gauche.
      * <p>
      *     Une requête AJOUT est envoyée au serveur distant.
      * </p>
@@ -159,7 +217,7 @@ public class TableActivity
     } // void
 
     /**
-     * Implémentation de ListAdapterCallBack: clic sur bouton droit.
+     * Implémentation de l\'interface ListAdapterCallBack: clic sur bouton droit.
      * <p>
      *     Une requête COMMANDE est envoyée au serveur distant.
      * </p>
@@ -180,5 +238,27 @@ public class TableActivity
 
     // callback listAdapter
     //******************************************************************************
+
+    /**
+     * Evènement associé au bouton table_imageButtonFilter pour filtrer les données du listview
+     *
+     * @param pView
+     *      Objet de type View
+     */
+    public void doFilter(View pView) {
+
+        boolean nIsFilterOn = ! super.getController().getCurrentCommande().getFilter();
+        super.getController().getCurrentCommande().setFilter(nIsFilterOn);
+
+        int nId = super.getController().getCurrentCommande().getId();
+        super.getController().getCommandes().getCommande(nId).setFilter(nIsFilterOn);
+
+        if (nIsFilterOn) {
+            mImageButtonFilter.setImageResource(R.drawable.list);
+        } else {
+            mImageButtonFilter.setImageResource(R.drawable.checked);
+        }
+        super.doFilter(nIsFilterOn);
+    }
 
 } // class

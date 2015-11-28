@@ -1,4 +1,6 @@
-crepes.fr.androcrepes
-crepes.fr.androcrepes.commons
-crepes.fr.androcrepes.entity
+crepes.fr.androcrepes.commons.framework
+crepes.fr.androcrepes.commons.java
 crepes.fr.androcrepes.commons.network
+crepes.fr.androcrepes.controller
+crepes.fr.androcrepes.model
+crepes.fr.androcrepes.view

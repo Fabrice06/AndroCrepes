@@ -6,10 +6,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 /**
- * <b>Collection des différents plats disponibles en cuisine.</b>
- * <p>
- *     Le pattern design singleton est appliqué à cette classe.
- * </p>
+ * <b>Collection des différents plats commandés ou disponibles en cuisine.</b>
+ *
  * <p><b>Attention:</b><br>
  *     La taille de la collection n'est pas vérifiée en fonction des capacités de stockage du device.
  *     On suppose que le nom du plat est unique, mais aucun contrôle n'a été mis en oeuvre en ce sens.
@@ -20,36 +18,36 @@ public class Plats extends ArrayList<Plat> {
     public Plats() {
     } // constructeur
 
-    /**
-     * Retourne le plat trouvé dans la collection à l'aide de son identifiant unique.
-     *
-     * @param pId
-     *      Identifiant unique du plat, de type Integer.
-     *
-     * @return Un objet Plat ou null si le plat est absent de la collection.
-     *
-     * @see Plat
-     */
-    public Plat getPlatById(final int pId) {
-
-        Plat nReturn = null;
-
-        Iterator<Plat> nIterator = this.iterator();
-        while (nIterator.hasNext()) {
-            Plat nPlat = nIterator.next();
-            if (pId == nPlat.getId()) {
-                nReturn = nPlat;
-                break;
-            } // if
-        } // while
-
-//        for (Plat nItem : this) {
-//            if (pId == nItem.getId()) {
-//                nReturn = nItem;
+//    /**
+//     * Retourne le plat trouvé dans la collection à l'aide de son identifiant unique.
+//     *
+//     * @param pId
+//     *      Identifiant unique du plat, de type Integer.
+//     *
+//     * @return Un objet Plat ou null si le plat est absent de la collection.
+//     *
+//     * @see Plat
+//     */
+//    public Plat getPlatById(final int pId) {
+//
+//        Plat nReturn = null;
+//
+//        Iterator<Plat> nIterator = this.iterator();
+//        while (nIterator.hasNext()) {
+//            Plat nPlat = nIterator.next();
+//            if (pId == nPlat.getId()) {
+//                nReturn = nPlat;
+//                break;
 //            } // if
-//        } // for
-        return nReturn;
-    } // Plat
+//        } // while
+//
+////        for (Plat nItem : this) {
+////            if (pId == nItem.getId()) {
+////                nReturn = nItem;
+////            } // if
+////        } // for
+//        return nReturn;
+//    } // Plat
 
     /**
      * Retourne le premier plat trouvé dans la collection à l'aide de son nom.
@@ -106,8 +104,6 @@ public class Plats extends ArrayList<Plat> {
         //fixme: a tester containsPlat pas sûr que ça marche
         // on ne veux pas de doubles
         if (!containsPlat(pPlat)) {
-            //mInstance.add(pPlat.getId(), pPlat);
-//            mInstance.add(pPlat);
             this.add(pPlat);
         } // if
     } // void

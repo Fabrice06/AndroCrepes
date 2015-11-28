@@ -3,7 +3,13 @@ package crepes.fr.androcrepes.model;
 import java.util.Iterator;
 
 /**
- * Created by vince on 12/11/2015.
+ * <b>Représente une commande.</b>
+ * <p>
+ *     La commande est associée à une collection de plat et à un identifiant unique.
+ * </p>
+ * <p><b>Attention:</b><br>
+ *     Aucun attribut n'est controlé.
+ * </p>
  */
 public class Commande {
 

@@ -30,7 +30,6 @@ public class CustomSalleListAdapter
 
     private LayoutInflater mInflater = null;
 
-
     public CustomSalleListAdapter(final Context pContext, Commandes pCommandes) {
         super(pContext, 0, pCommandes);
         this.mCallBack = (SalleListAdapterCallBack) pContext;

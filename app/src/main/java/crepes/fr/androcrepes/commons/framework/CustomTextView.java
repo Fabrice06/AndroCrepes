@@ -5,9 +5,6 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-/**
- * Created by vince on 21/11/2015.
- */
 public class CustomTextView extends TextView {
 
     public CustomTextView(Context pContext, AttributeSet pAttributeSet, int pDefStyle) {

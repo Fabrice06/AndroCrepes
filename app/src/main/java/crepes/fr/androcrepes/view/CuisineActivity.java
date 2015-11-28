@@ -23,25 +23,73 @@ public class CuisineActivity
     private EditText mEditTextQte;
     private EditText mEditTextName;
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     *
+     * @see CustomListActivity
+     *
+     * @return
+     *      L'identifiant de l'activity de type int
+     */
     protected int getLayoutId() {
         return R.layout.activity_cuisine;
     } // int
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     *
+     * @see CustomListActivity
+     *
+     * @return
+     *      L'identifiant du titre de l'activity de type int
+     */
     protected int getTextViewTitleId() {
         return R.id.cuisine_customTextViewTitle;
     } // int
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     *
+     * @see CustomListActivity
+     *
+     * @return
+     *      L'identifiant du listview de l'activity de type int
+     */
     protected int getListViewId() {
         return R.id.cuisine_listView;
     } // int
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     *
+     * @see CustomListActivity
+     *
+     * @return super.getController().getPlats()
+     *      Une collection de type Plats destinée à contenir l'ensemble des plats cuisinés.
+     */
     protected Plats getPlats() {
         return super.getController().getPlats();
     } // Plats
 
+    /**
+     * Méthode appelée à la création de l\'activité Cuisine
+     * <p>
+     *     L'exécution de cette méthode se déroule en 3 phases:
+     *     <ul>
+     *         <li>appel de la méthode onCreate() sur la super classe CustomListActivity,</li>
+     *         <li>éléments présents dans le layout XML initialisés,</li>
+     *         <li>fitre du ListView désactivé.</li>
+     *     </ul>
+     * </p>
+     *
+     * @see CustomListActivity
+     *
+     * @param pSavedInstanceState
+     *      Objet de type Bundle contenant l’état de sauvegarde enregistré lors de la dernière exécution de cette activité.
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle pSavedInstanceState) {
+        super.onCreate(pSavedInstanceState);
 
         mEditTextQte = (EditText) findViewById(R.id.cuisine_editTextQuantite);
         mEditTextName = (EditText) findViewById(R.id.cuisine_editTextPlat);
@@ -49,11 +97,32 @@ public class CuisineActivity
         super.doFilter(false);
     } // void
 
-
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     * <p>
+     *     La mise à jour des données est réalisée via l'exécution de la méthode super.clientSendQuantity().
+     * </p>
+     *
+     * @see CustomListActivity
+     *
+     * @param pResponseFromServer
+     *      Réponse serveur de type String.
+     */
     protected void updateCurrentPlatAfterCommande(final String pResponseFromServer) {
         super.clientSendQuantity();
     } // void
 
+    /**
+     * Implémentation de la méthode abstraite issue de la super classe CustomListActivity
+     * <p>
+     *     La mise à jour des données est réalisée via l'exécution de la méthode super.clientSendQuantity().
+     * </p>
+     *
+     * @see CustomListActivity
+     *
+     * @param pResponseFromServer
+     *      Réponse serveur de type String.
+     */
     protected void updateCurrentPlatAfterAjout(final String pResponseFromServer) {
 
         mEditTextQte.setText("1");
@@ -66,6 +135,12 @@ public class CuisineActivity
     //******************************************************************************
     // callback client: data
 
+    /**
+     * Implémentation de l\'interface ClientCallback: données sont reçues du serveur suite à une requête QUANTITE.
+     *
+     * @param pListData
+     *      Données sous forme d'une collection de String.
+     */
     public void quantiteFromClient(List<String> pListData) {
         super.createLogD("quantiteFromClient callback");
 
@@ -121,7 +196,7 @@ public class CuisineActivity
     // callback listAdapter
 
     /**
-     * Implémentation de ListAdapterCallBack: clic sur bouton gauche.
+     * Implémentation de l\'interface ListAdapterCallBack: clic sur bouton gauche.
      * <p>
      *     Une requête COMMANDE est envoyée au serveur distant.
      * </p>

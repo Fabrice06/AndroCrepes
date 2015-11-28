@@ -19,7 +19,6 @@ public abstract class CustomListActivity
         implements CustomPlatListAdapter.PlatListAdapterCallBack {
 
 
-
     private ListView mListView = null;
     private CustomPlatListAdapter mListAdapter;
 

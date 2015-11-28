@@ -3,7 +3,11 @@ package crepes.fr.androcrepes.model;
 import java.util.ArrayList;
 
 /**
- * Created by vince on 12/11/2015.
+ * <b>Collection des différentes commandes passées en cuisine.</b>
+ *
+ * <p><b>Attention:</b><br>
+ *     La taille de la collection n'est pas vérifiée en fonction des capacités de stockage du device.
+ * </p>
  */
 public class Commandes extends ArrayList<Commande> {
 
@@ -23,7 +27,6 @@ public class Commandes extends ArrayList<Commande> {
     } // Commande
 
     public String getValueOfSize() {
-
         return String.valueOf(this.size());
     } // String
 
