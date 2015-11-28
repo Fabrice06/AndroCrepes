@@ -10,8 +10,8 @@ import crepes.fr.androcrepes.model.Plats;
 public class Controller extends Application {
 
     //private static final String SERVER_IP = "10.0.3.2";
-    private static final String SERVER_IP = "10.0.2.2";
-    private static final int SERVER_PORT = 7777;
+    public static final String SERVER_IP = "10.0.2.2";
+    public static final int SERVER_PORT = 7777;
 
     private String mServerIp = "";
     private int mServerPort = 0;
@@ -32,7 +32,8 @@ public class Controller extends Application {
 
 
     public String getServerIp() {
-        return (mServerIp.isEmpty()) ? SERVER_IP : mServerIp;
+        return mServerIp;
+//        return (mServerIp.isEmpty()) ? SERVER_IP : mServerIp;
     } // String
 
     public void setServerIp(final String pIp) {
@@ -40,7 +41,8 @@ public class Controller extends Application {
     } // void
 
     public int getServerPort() {
-        return (0 == mServerPort) ? SERVER_PORT : mServerPort;
+        return mServerPort;
+        //return (0 == mServerPort) ? SERVER_PORT : mServerPort;
     } // int
 
     public void setServerPort(final int pPort) {

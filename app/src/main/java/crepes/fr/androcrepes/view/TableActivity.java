@@ -45,6 +45,9 @@ public class TableActivity
         boolean nIsFilterOn = ! super.getController().getCurrentCommande().getFilter();
         super.getController().getCurrentCommande().setFilter(nIsFilterOn);
 
+        int nId = super.getController().getCurrentCommande().getId();
+        super.getController().getCommandes().getCommande(nId).setFilter(nIsFilterOn);
+
         if (nIsFilterOn) {
             mImageButtonFilter.setImageResource(R.drawable.list);
         } else {

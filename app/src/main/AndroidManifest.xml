@@ -22,16 +22,19 @@
         </activity>
         <activity
             android:name=".view.CuisineActivity"
-            android:label="@string/cuisine_activityTitle"></activity>
+            android:label="@string/cuisine_activityTitle" />
         <activity
             android:name=".view.AideActivity"
-            android:label="@string/aide_activityTitle"></activity>
+            android:label="@string/aide_activityTitle" />
         <activity
             android:name=".view.TableActivity"
-            android:label="@string/salle_activityTitle"></activity>
+            android:label="@string/salle_activityTitle" />
         <activity
             android:name=".view.SalleActivity"
-            android:label="@string/table_activityTitle"></activity>
+            android:label="@string/table_activityTitle" />
+        <activity
+            android:name=".view.SettingActivity"
+            android:label="@string/title_activity_setting"/>
     </application>
 
 </manifest>

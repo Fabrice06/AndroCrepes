@@ -149,12 +149,11 @@ public class Client {
         if (null == mInstance) {
             mInstance = new Client();
 
-            mInstance.mIp = pIp;
-            mInstance.mPort = pPort;
-
             mDatas.clear();
         } // if
 
+        mInstance.mIp = pIp;
+        mInstance.mPort = pPort;
         mInstance.mCallBack = pCallback;
 
     return mInstance;

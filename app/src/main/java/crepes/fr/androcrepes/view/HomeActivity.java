@@ -32,8 +32,10 @@ import crepes.fr.androcrepes.controller.SettingsFragment;
 public class HomeActivity
         extends TemplateActivity {
 
-    private static SettingsFragment mSettingsFragment = new SettingsFragment();
-    public static FragmentManager mFragmentManager;
+    private static final int RESULT_SETTINGS = 1;
+
+//    private static SettingsFragment mSettingsFragment = new SettingsFragment();
+//    public static FragmentManager mFragmentManager;
     private SharedPreferences mSharedPreferences;
 
     private Button mBtnHomeSalle = null;
@@ -51,6 +53,13 @@ public class HomeActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//
+//        SharedPreferences.Editor nEditor = mSharedPreferences.edit();
+//        nEditor.clear();
+//        nEditor.commit();
+
         super.onCreate(savedInstanceState);
 
         mBtnHomeSalle = (Button) findViewById(R.id.home_buttonSalle);
@@ -59,17 +68,29 @@ public class HomeActivity
 
         this.updateButtonsAfterConnection(false);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mFragmentManager = getFragmentManager();
-
-        // La première fois que l'application est lancée, on lit les préférences par défaut du
-        // fichier XML
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-
         super.connectClient();
-
     } // void
 
+    protected void updatePreference() {
+        if (mSharedPreferences == null) {
+            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        }
+
+        String nIp = mSharedPreferences.getString("ip", super.getController().SERVER_IP);
+        super.getController().setServerIp(nIp);
+        super.createLogD("updatePreference " + nIp);
+
+        String nPort = mSharedPreferences.getString("port", String.valueOf(super.getController().SERVER_PORT));
+        super.getController().setServerPort(Integer.valueOf(nPort));
+        super.createLogD("updatePreference " + nPort);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        this.createLogD("onRestart");
+
+    }
 
     /**
      * Evènement associé au bouton btnHomeCuisine pour naviguer vers l'ihm Cuisine
@@ -80,7 +101,7 @@ public class HomeActivity
      * @see startSelectedActivity
      */
     public void goCuisine(View pView) {
-        super.createLogD("goCuisine");
+        //super.createLogD("goCuisine");
         super.startSelectedActivity(CuisineActivity.class);
     }
 
@@ -93,7 +114,7 @@ public class HomeActivity
      * @see startSelectedActivity
      */
     public void goSalle(View pView) {
-        super.createLogD("goSalle");
+        //super.createLogD("goSalle");
         super.startSelectedActivity(SalleActivity.class);
     }
 
@@ -106,7 +127,7 @@ public class HomeActivity
      * @see startSelectedActivity
      */
     public void goAide(View pView) {
-        super.createLogD("goAide");
+        //super.createLogD("goAide");
         super.startSelectedActivity(AideActivity.class);
     }
 
@@ -167,8 +188,7 @@ public class HomeActivity
     public void errorFromClient(String pError) {
         //super.createLogD("errorFromClient");
 
-        //fixme pError pas utilisé
-        String nMessage = getString(R.string.activity_toastMessageNoConnection);
+        String nMessage = pError.isEmpty() ? getString(R.string.activity_toastMessageNoConnection) : pError;
 
         updateButtonsAfterConnection(false);
         super.toastMessage(nMessage, true);
@@ -223,48 +243,49 @@ public class HomeActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        super.createLogD("********  onOptionsItemSelected");
-        int id = item.getItemId();
+        //super.createLogD("onOptionsItemSelected");
 
-        if (id == R.id.action_settings) {
-            super.createLogD(" IF ");
-            FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        boolean nReturn = true;
 
-            if (!mSettingsFragment.isAdded()) {
+        switch (item.getItemId()) {
 
-                transaction.add(R.id.fragmentSettings, mSettingsFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
+            case R.id.menu_settings:
+                Intent nIntent = new Intent(this, SettingActivity.class);
+                startActivityForResult(nIntent, RESULT_SETTINGS);
+                nReturn = true;
+                break;
 
+            default:
+                nReturn = super.onOptionsItemSelected(item);
 
+        } // switch
 
- //           fragmentManager.executePendingTransactions();
-
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return nReturn;
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        super.createLogD("onBackPressed");
+        super.createLogD("onActivityResult");
 
-        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        switch (requestCode) {
+            case RESULT_SETTINGS:
 
-        if (mSettingsFragment.isAdded()) {
+                String nIp = super.getController().getServerIp();
+                int nPort = super.getController().getServerPort();
 
-//            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-//            transaction.remove(frag);
-            mFragmentManager.popBackStack();
-        } else {
+                this.updatePreference();
 
-            super.onBackPressed();
-        }
-        transaction.commit();
+                if (!(nIp.equals(super.getController().getServerIp()) && (nPort == super.getController().getServerPort()))) {
+
+                    super.setNewInstanceClient();
+                }
+                break;
+
+        } // switch
     }
+
 
     //******************************************************************************
     // cycle de vie activity

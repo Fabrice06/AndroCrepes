@@ -45,6 +45,10 @@ public abstract class CustomListActivity
 
     } // void
 
+    protected void updatePreference() {
+
+    }
+
 protected void doFilter(final boolean pIsFilterOn) {
 //    mFilterOn = !mFilterOn;
     mListAdapter.getFilter().filter(pIsFilterOn? "on" : "");

@@ -4,13 +4,17 @@
     <string name="Logo">Logo</string>
 
     <color name="colorFondPreferences">#FFD180</color>
-    <string name="preferenceIPTitle">Ip du serveur</string>
-    <string name="preferenceIPDefaultValue">10.0.3.2</string>
-    <string name="preferenceIPSummary">Saisir Ip du serveur</string>
+    <string name="preference_serverTitle">Configuration du serveur distant</string>
 
-    <string name="preferencePortTitle">Port du serveur</string>
-    <string name="preferencePortDefaultValue">7777</string>
-    <string name="preferencePortSummary">Saisir le port du serveur</string>
+    <string name="preferenceIPTitle">Adresse IP</string>
+    <string name="preferenceIPDefaultValue">0.0.0.0</string>
+    <string name="preferenceIPSummary">Saisir l\'adresse IP (0.0.0.0)</string>
+
+    <string name="preferencePortTitle">Port</string>
+    <string name="preferencePortDefaultValue">1234</string>
+    <string name="preferencePortSummary">Saisir le port (1234)</string>
+
+    <string name="preferenceClose">Fermer</string>
 
 
     <!--string transverses pour toute l'application-->
@@ -86,5 +90,6 @@
     <color name="font_button">#F0FFFF</color>
     <color name="font_editText">#424242</color>
     <color name="font_textView">#181870</color>
+    <string name="title_activity_setting">SettingActivity</string>
 
 </resources>

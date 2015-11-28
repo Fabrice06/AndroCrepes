@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import crepes.fr.androcrepes.R;
@@ -50,7 +51,7 @@ public class CustomSalleListAdapter
 
         if (null != nCommande) {
             final TextView nTextViewRowNumero = (TextView) nView.findViewById(R.id.salle_TextViewRowNumero);
-            //final TextView nTextViewListAdapterQuantite = (TextView) nView.findViewById(R.id.plat_textViewRowQuantite);
+            final ImageView nImageViewListAdapterCheck = (ImageView) nView.findViewById(R.id.salle_ImageViewRowCheck);
 
             if (nTextViewRowNumero != null) {
                 final Button nButtonLeft = (Button) nView.findViewById(R.id.salle_buttonRowLeft);
@@ -60,7 +61,8 @@ public class CustomSalleListAdapter
                     }
                 });
 
-//                nTextViewListAdapterQuantite.setText(String.valueOf(nPlat.getQuantite()));
+                nImageViewListAdapterCheck.setImageResource(nCommande.getFilter() ? R.drawable.checked : R.drawable.list);
+
                 nTextViewRowNumero.setText(nCommande.getValueOfId());
 
                 final Button nButtonRight = (Button) nView.findViewById(R.id.salle_buttonRowRight);

@@ -37,6 +37,8 @@ public abstract class TemplateActivity
     protected abstract int getLayoutId();
     protected abstract int getTextViewTitleId();
 
+    protected abstract void updatePreference();
+
     private CustomTextView mCustomTextViewTitle = null;
 
     @Override
@@ -51,14 +53,29 @@ public abstract class TemplateActivity
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage(getString(R.string.activity_progressDialogWait));
         mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setCancelable(false);
+        mProgressDialog.setCancelable(true);
 
         mCustomTextViewTitle = (CustomTextView) findViewById(getTextViewTitleId());
 
+        this.updatePreference();
+
         //fixme: définir plan B si serveur hors d'atteinte
         mClient = Client.getInstance(this, mController.getServerIp(), mController.getServerPort());
-
     } // void
+
+
+    protected void setNewInstanceClient() {
+        this.createLogD("setInstanceClient " + mController.getServerIp());
+        this.createLogD("setInstanceClient " + mController.getServerPort());
+        if (mClient.isRunning()) {
+            mClient.disconnect();
+
+        } else {
+            mClient = Client.getInstance(this, mController.getServerIp(), mController.getServerPort());
+        } // else
+//        mClient = Client.getInstance(this, mController.getServerIp(), mController.getServerPort());
+//        connectClient();
+    }
 
     protected void connectClient() {
         mProgressDialog.show();
@@ -66,7 +83,7 @@ public abstract class TemplateActivity
     }
 
     protected void toggleClient() {
-        this.createLogD("toggleClient");
+        //this.createLogD("toggleClient");
 
         mProgressDialog.setCancelable(false);
         mProgressDialog.show();
@@ -210,7 +227,7 @@ public abstract class TemplateActivity
     } // void
 
     protected void startSelectedActivity(final Class pClass) {
-        this.createLogD("startSelectedActivity");
+        //this.createLogD("startSelectedActivity");
 
         Intent nIntent = new Intent(this, pClass);
         startActivity(nIntent);
@@ -242,7 +259,8 @@ public abstract class TemplateActivity
         this.createLogD("onRestart");
 
         // retour d'une autre activity via finish
-        mClient.setCallBack(this);
+        //mClient.setCallBack(this);
+        mClient = Client.getInstance(this, mController.getServerIp(), mController.getServerPort());
     }
 
     @Override

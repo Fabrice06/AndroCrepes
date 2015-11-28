@@ -44,6 +44,10 @@ public class SalleActivity
         return R.id.salle_customTextViewTitle;
     } // int
 
+    protected void updatePreference() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +92,7 @@ public class SalleActivity
     public void errorFromClient(String pError) {
         //super.createLogD( "errorFromClient");
 
-        //fixme pError pas utilisé
-        String nMessage = getString(R.string.activity_toastMessageNoConnection);
+        String nMessage = pError.isEmpty() ? getString(R.string.activity_toastMessageNoConnection) : pError;
 
         super.toastMessage(nMessage, true);
     } // void
@@ -280,4 +283,11 @@ public class SalleActivity
 
         startSelectedActivity(TableActivity.class);
     } // void
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        mListAdapter.notifyDataSetChanged();
+    }
 } // class

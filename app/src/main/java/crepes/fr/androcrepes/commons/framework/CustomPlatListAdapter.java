@@ -125,12 +125,14 @@ public class CustomPlatListAdapter
                     nBuffer.append(nPlat.getStock());
                     nTextViewListAdapterStock.setText(nBuffer.toString());
 
-                    if (nIsQuantiteEmpty) { // pas check
-                        nImageViewListAdapterCheck.setImageResource(R.drawable.check_off);
+                    nImageViewListAdapterCheck.setImageResource(R.drawable.check_empty);
 
-                    } else { // check
-                        nImageViewListAdapterCheck.setImageResource(R.drawable.check_on);
-                    }
+//                    if (nIsQuantiteEmpty) { // pas check
+//                        nImageViewListAdapterCheck.setImageResource(R.drawable.check_off);
+//
+//                    } else { // check
+//                        nImageViewListAdapterCheck.setImageResource(R.drawable.check_on);
+//                    }
 
                     nButtonListAdapterLeft.setText(R.string.table_buttonRowLeft);
                     nButtonListAdapterLeft.setEnabled(!nIsQuantiteEmpty);
