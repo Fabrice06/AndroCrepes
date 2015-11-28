@@ -45,8 +45,8 @@
     <string name="home_buttonCuisine">Cocción</string>
     <string name="home_buttonSalle">Comedor</string>
     <string name="home_buttonAide">Ayuda</string>
-    <string name="home_buttonLog_logon">Logon</string>
-    <string name="home_buttonLog_logout">Logout</string>
+    <string name="home_buttonLog_logon">Conectado</string>
+    <string name="home_buttonLog_logout">Salida</string>
 
 
     <!--string pour l'activity salle-->
