@@ -46,6 +46,7 @@ public class CuisineActivity
         mEditTextQte = (EditText) findViewById(R.id.cuisine_editTextQuantite);
         mEditTextName = (EditText) findViewById(R.id.cuisine_editTextPlat);
 
+        super.doFilter(false);
     } // void
 
 

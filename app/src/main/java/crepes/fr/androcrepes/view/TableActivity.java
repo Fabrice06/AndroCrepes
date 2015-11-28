@@ -1,6 +1,8 @@
 package crepes.fr.androcrepes.view;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import java.util.List;
 
@@ -35,6 +37,22 @@ public class TableActivity
         return super.getController().getCurrentCommande().getPlats();
     } // Plats
 
+    private ImageButton mImageButtonFilter;
+
+    // associé à table_imageButtonFilter
+    public void doFilter(View pView) {
+        
+        boolean nIsFilterOn = ! super.getController().getCurrentCommande().getFilter();
+        super.getController().getCurrentCommande().setFilter(nIsFilterOn);
+
+        if (nIsFilterOn) {
+            mImageButtonFilter.setImageResource(R.drawable.check_on);
+        } else {
+            mImageButtonFilter.setImageResource(R.drawable.check_off);
+        }
+        super.doFilter(nIsFilterOn);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +61,9 @@ public class TableActivity
         nTitle = nTitle + super.getController().getCurrentCommande().getValueOfId();
         super.setTitle(nTitle);
 
+        mImageButtonFilter = (ImageButton) findViewById(R.id.table_imageButtonFilter);
+
+        super.doFilter(super.getController().getCurrentCommande().getFilter());
     } // void
 
     protected void updateCurrentPlatAfterCommande(final String pResponseFromServer) {

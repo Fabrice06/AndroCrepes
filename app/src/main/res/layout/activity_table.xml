@@ -25,9 +25,10 @@
             android:onClick="goHome"/>
 
         <FrameLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:layout_weight="5">
 
             <crepes.fr.androcrepes.commons.framework.CustomTextView
                 android:id="@+id/table_customTextViewTitle"
@@ -39,6 +40,14 @@
                 android:typeface="serif"
                 android:textColor="@color/font_customTextViewTitle" />
         </FrameLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/table_imageButtonFilter"
+            android:src="@drawable/home"
+            android:background="@drawable/roundedbutton"
+            android:onClick="doFilter"/>
 
     </LinearLayout>
 

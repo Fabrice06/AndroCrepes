@@ -13,9 +13,12 @@ public class Commande {
 
     private Plats mPlats;
 
+    private boolean mIsFilterOn;
+
     public Commande() {
         this.mId = mCount++;
         this.mPlats = new Plats();
+        mIsFilterOn = false;
     } // constructeur
 
     public Plats getPlats() {
@@ -45,4 +48,11 @@ public class Commande {
         return nReturn;
     } // int
 
+    public boolean getFilter() {
+        return mIsFilterOn;
+    } // boolean
+
+    public void setFilter(final boolean pIsOn) {
+        mIsFilterOn = pIsOn;
+    } // boolean
 } // class

@@ -19,6 +19,7 @@ public abstract class CustomListActivity
         implements CustomPlatListAdapter.PlatListAdapterCallBack {
 
 
+
     private ListView mListView = null;
     private CustomPlatListAdapter mListAdapter;
 
@@ -37,10 +38,17 @@ public abstract class CustomListActivity
         mListView = (ListView) findViewById(getListViewId());
         mListView.setAdapter(mListAdapter);
 
+        mListView.setTextFilterEnabled(true);
+//        mFilterOn = false;
+
         super.connectClient();
 
     } // void
 
+protected void doFilter(final boolean pIsFilterOn) {
+//    mFilterOn = !mFilterOn;
+    mListAdapter.getFilter().filter(pIsFilterOn? "on" : "");
+}
 
     //******************************************************************************
     // callback client: connexion
