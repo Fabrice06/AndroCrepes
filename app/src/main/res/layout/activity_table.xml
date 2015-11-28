@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/table_imageButtonFilter"
-            android:src="@drawable/home"
+            android:src="@drawable/checked"
             android:background="@drawable/roundedbutton"
             android:onClick="doFilter"/>
 

@@ -46,9 +46,9 @@ public class TableActivity
         super.getController().getCurrentCommande().setFilter(nIsFilterOn);
 
         if (nIsFilterOn) {
-            mImageButtonFilter.setImageResource(R.drawable.check_on);
+            mImageButtonFilter.setImageResource(R.drawable.list);
         } else {
-            mImageButtonFilter.setImageResource(R.drawable.check_off);
+            mImageButtonFilter.setImageResource(R.drawable.checked);
         }
         super.doFilter(nIsFilterOn);
     }
